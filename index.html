@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Usman — Research & Writing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#080c14;--surface:#0f1624;--card:#141e30;
+  --text:#e8edf5;--dim:#5a6a80;--dimmer:#3a4558;
+  --blue:#4fc3f7;--red:#ef5350;--purple:#7c4dff;
+  --gold:#ffd54f;--green:#66bb6a;--teal:#26c6da;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.6;min-height:100vh;}
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-thumb{background:#2a3550;border-radius:2px;}
+
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 40px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #0f1624;background:rgba(8,12,20,.85);backdrop-filter:blur(12px);}
+.nav-logo{font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--blue);letter-spacing:1px;}
+.nav-links{display:flex;gap:28px;}
+.nav-links a{color:var(--dim);font-size:.88rem;text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--text);}
+
+/* hero */
+.hero{padding:160px 40px 100px;max-width:860px;margin:0 auto;}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--purple);margin-bottom:20px;}
+.hero h1{font-size:clamp(2.4rem,5vw,4rem);font-weight:700;line-height:1.1;letter-spacing:-1.5px;margin-bottom:20px;}
+.hero h1 span{color:var(--blue);}
+.hero-desc{font-size:1.05rem;color:var(--dim);max-width:560px;line-height:1.8;}
+
+/* section label */
+.section-label{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--purple);margin-bottom:32px;padding:0 40px;max-width:1000px;margin-left:auto;margin-right:auto;}
+
+/* posts grid */
+.posts{max-width:1000px;margin:0 auto;padding:0 40px 120px;display:grid;gap:24px;}
+
+.post-card{background:var(--card);border:1px solid #1a2540;border-radius:20px;padding:40px;text-decoration:none;color:inherit;display:block;transition:border-color .25s,transform .25s;position:relative;overflow:hidden;}
+.post-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(124,77,255,.04),rgba(79,195,247,.04));opacity:0;transition:opacity .3s;}
+.post-card:hover{border-color:#2a3a5c;transform:translateY(-3px);}
+.post-card:hover::before{opacity:1;}
+
+.post-meta{display:flex;align-items:center;gap:16px;margin-bottom:18px;flex-wrap:wrap;}
+.post-tag{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:20px;border:1px solid;}
+.post-date{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--dim);}
+
+.post-card h2{font-size:1.55rem;font-weight:700;line-height:1.25;letter-spacing:-.4px;margin-bottom:14px;}
+.post-card p{color:var(--dim);font-size:.95rem;line-height:1.75;max-width:600px;margin-bottom:28px;}
+
+.post-stats{display:flex;gap:24px;flex-wrap:wrap;}
+.stat{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--dimmer);}
+.stat span{color:var(--text);}
+
+.read-link{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;font-weight:500;color:var(--blue);margin-top:28px;transition:gap .2s;}
+.post-card:hover .read-link{gap:14px;}
+
+/* featured badge */
+.featured-badge{position:absolute;top:20px;right:24px;font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:2px;text-transform:uppercase;padding:4px 10px;border-radius:10px;background:rgba(124,77,255,.15);color:var(--purple);border:1px solid rgba(124,77,255,.3);}
+
+/* footer */
+footer{border-top:1px solid #0f1624;padding:40px;text-align:center;color:var(--dimmer);font-size:.82rem;font-family:'JetBrains Mono',monospace;}
+footer a{color:var(--dim);text-decoration:none;}footer a:hover{color:var(--text);}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">ranausmanai</span>
+  <div class="nav-links">
+    <a href="https://github.com/ranausmanai" target="_blank">GitHub</a>
+    <a href="https://github.com/ranausmanai/LLMEmotionGeometry" target="_blank">Research</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="eyebrow">Independent Research</div>
+  <h1>Writing about <span>AI</span>,<br>from the inside out.</h1>
+  <p class="hero-desc">Experiments on small language models — mechanistic interpretability, behavioral analysis, and what happens when you look inside.</p>
+</section>
+
+<div class="section-label">— Posts</div>
+
+<main class="posts">
+
+  <a class="post-card" href="posts/under-pressure.html">
+    <div class="featured-badge">✦ Latest</div>
+    <div class="post-meta">
+      <span class="post-tag" style="color:var(--purple);border-color:rgba(124,77,255,.4);">Mechanistic Interpretability</span>
+      <span class="post-tag" style="color:var(--blue);border-color:rgba(79,195,247,.3);">Behavioral Analysis</span>
+      <span class="post-date">April 2026</span>
+    </div>
+    <h2>What Happens Inside an AI When You Stress It Out</h2>
+    <p>We gave a small AI an impossible task, then changed only the emotional tone of our follow-up message. Same model, same task, different words — completely different behavior. Then we looked inside at every one of its twenty-four layers.</p>
+    <div class="post-stats">
+      <div class="stat">Model <span>Qwen 3.5 0.8B + 2B</span></div>
+      <div class="stat">Conditions <span>8 emotional framings</span></div>
+      <div class="stat">PC1 variance <span>59.5%</span></div>
+      <div class="stat">Hack rate under pressure <span>55%</span></div>
+    </div>
+    <div class="read-link">Read the full story →</div>
+  </a>
+
+</main>
+
+<footer>
+  Built with curiosity &nbsp;·&nbsp;
+  <a href="https://github.com/ranausmanai/LLMEmotionGeometry">Code & Paper</a>
+  &nbsp;·&nbsp;
+  <a href="https://github.com/ranausmanai">ranausmanai</a>
+</footer>
+
+</body>
+</html>
