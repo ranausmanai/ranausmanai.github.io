@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Usman — Research & Writing</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<title>Usman — AI Research & Writing</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -12,60 +11,83 @@
   --bg:#080c14;--surface:#0f1624;--card:#141e30;
   --text:#e8edf5;--dim:#5a6a80;--dimmer:#3a4558;
   --blue:#4fc3f7;--red:#ef5350;--purple:#7c4dff;
-  --gold:#ffd54f;--green:#66bb6a;--teal:#26c6da;
+  --gold:#ffd54f;--green:#66bb6a;--teal:#26c6da;--orange:#ffa726;
 }
 html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.6;min-height:100vh;}
 ::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-thumb{background:#2a3550;border-radius:2px;}
 
 /* nav */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 40px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #0f1624;background:rgba(8,12,20,.85);backdrop-filter:blur(12px);}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #0f1624;background:rgba(8,12,20,.9);backdrop-filter:blur(12px);}
 .nav-logo{font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--blue);letter-spacing:1px;}
 .nav-links{display:flex;gap:28px;}
-.nav-links a{color:var(--dim);font-size:.88rem;text-decoration:none;transition:color .2s;}
+.nav-links a{color:var(--dim);font-size:.85rem;text-decoration:none;transition:color .2s;}
 .nav-links a:hover{color:var(--text);}
 
 /* hero */
-.hero{padding:160px 40px 100px;max-width:860px;margin:0 auto;}
-.eyebrow{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--purple);margin-bottom:20px;}
-.hero h1{font-size:clamp(2.4rem,5vw,4rem);font-weight:700;line-height:1.1;letter-spacing:-1.5px;margin-bottom:20px;}
-.hero h1 span{color:var(--blue);}
-.hero-desc{font-size:1.05rem;color:var(--dim);max-width:560px;line-height:1.8;}
+.hero{padding:160px 40px 80px;max-width:900px;margin:0 auto;position:relative;}
+.hero-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;}
+.hero-inner{position:relative;z-index:1;}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--purple);margin-bottom:20px;opacity:0;animation:up .7s .1s forwards;}
+.hero h1{font-size:clamp(2.8rem,5.5vw,4.4rem);font-weight:700;line-height:1.08;letter-spacing:-2px;margin-bottom:22px;opacity:0;animation:up .8s .25s forwards;}
+.hero h1 em{font-style:normal;color:var(--blue);}
+.hero-desc{font-size:1rem;color:var(--dim);max-width:520px;line-height:1.8;margin-bottom:40px;opacity:0;animation:up .8s .4s forwards;}
+.hero-tags{display:flex;flex-wrap:wrap;gap:10px;opacity:0;animation:up .8s .55s forwards;}
+.hero-tag{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:2px;padding:5px 14px;border-radius:20px;border:1px solid #2a3550;color:var(--dim);}
+@keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 
-/* section label */
-.section-label{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--purple);margin-bottom:32px;padding:0 40px;max-width:1000px;margin-left:auto;margin-right:auto;}
+/* section */
+.section{max-width:900px;margin:0 auto;padding:0 40px 120px;position:relative;z-index:1;}
+.section-label{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--dimmer);margin-bottom:28px;display:flex;align-items:center;gap:16px;}
+.section-label::after{content:'';flex:1;height:1px;background:#1a2540;}
 
-/* posts grid */
-.posts{max-width:1000px;margin:0 auto;padding:0 40px 120px;display:grid;gap:24px;}
+/* featured post */
+.post-featured{background:var(--card);border:1px solid #1e2d48;border-radius:20px;padding:44px;text-decoration:none;color:inherit;display:block;position:relative;overflow:hidden;margin-bottom:20px;transition:border-color .25s,transform .25s;}
+.post-featured::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(124,77,255,.06),rgba(79,195,247,.04));opacity:0;transition:opacity .3s;}
+.post-featured:hover{border-color:#2e4070;transform:translateY(-3px);}
+.post-featured:hover::before{opacity:1;}
+.featured-dot{position:absolute;top:24px;right:28px;display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--purple);}
+.featured-dot::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--purple);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 
-.post-card{background:var(--card);border:1px solid #1a2540;border-radius:20px;padding:40px;text-decoration:none;color:inherit;display:block;transition:border-color .25s,transform .25s;position:relative;overflow:hidden;}
-.post-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(124,77,255,.04),rgba(79,195,247,.04));opacity:0;transition:opacity .3s;}
+/* small posts grid */
+.posts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:20px;}
+.post-card{background:var(--card);border:1px solid #1a2540;border-radius:16px;padding:32px;text-decoration:none;color:inherit;display:block;transition:border-color .25s,transform .25s;position:relative;overflow:hidden;}
+.post-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .3s;}
 .post-card:hover{border-color:#2a3a5c;transform:translateY(-3px);}
 .post-card:hover::before{opacity:1;}
 
-.post-meta{display:flex;align-items:center;gap:16px;margin-bottom:18px;flex-wrap:wrap;}
-.post-tag{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:20px;border:1px solid;}
-.post-date{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--dim);}
-
-.post-card h2{font-size:1.55rem;font-weight:700;line-height:1.25;letter-spacing:-.4px;margin-bottom:14px;}
-.post-card p{color:var(--dim);font-size:.95rem;line-height:1.75;max-width:600px;margin-bottom:28px;}
-
-.post-stats{display:flex;gap:24px;flex-wrap:wrap;}
-.stat{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--dimmer);}
+/* shared post styles */
+.post-meta{display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap;}
+.post-tag{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:2px;text-transform:uppercase;padding:4px 11px;border-radius:20px;border:1px solid;}
+.post-date{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--dim);}
+.post-featured h2{font-size:1.9rem;font-weight:700;line-height:1.2;letter-spacing:-.5px;margin-bottom:14px;}
+.post-card h2{font-size:1.25rem;font-weight:700;line-height:1.25;letter-spacing:-.3px;margin-bottom:12px;}
+.post-excerpt{color:var(--dim);font-size:.92rem;line-height:1.75;margin-bottom:24px;}
+.post-featured .post-excerpt{max-width:580px;}
+.post-stats{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:28px;}
+.stat{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--dimmer);}
 .stat span{color:var(--text);}
+.read-more{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;font-weight:500;transition:gap .2s;}
+.post-featured:hover .read-more,.post-card:hover .read-more{gap:13px;}
 
-.read-link{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;font-weight:500;color:var(--blue);margin-top:28px;transition:gap .2s;}
-.post-card:hover .read-link{gap:14px;}
-
-/* featured badge */
-.featured-badge{position:absolute;top:20px;right:24px;font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:2px;text-transform:uppercase;padding:4px 10px;border-radius:10px;background:rgba(124,77,255,.15);color:var(--purple);border:1px solid rgba(124,77,255,.3);}
+/* about strip */
+.about{max-width:900px;margin:0 auto;padding:0 40px 100px;position:relative;z-index:1;}
+.about-card{background:var(--card);border:1px solid #1a2540;border-radius:16px;padding:40px;display:flex;gap:40px;align-items:center;flex-wrap:wrap;}
+.about-text h3{font-size:1.1rem;font-weight:600;margin-bottom:10px;}
+.about-text p{font-size:.9rem;color:var(--dim);line-height:1.75;max-width:500px;}
+.about-links{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap;}
+.about-link{font-family:'JetBrains Mono',monospace;font-size:.75rem;padding:8px 16px;border-radius:8px;border:1px solid #2a3550;color:var(--dim);text-decoration:none;transition:all .2s;}
+.about-link:hover{border-color:var(--blue);color:var(--text);}
 
 /* footer */
-footer{border-top:1px solid #0f1624;padding:40px;text-align:center;color:var(--dimmer);font-size:.82rem;font-family:'JetBrains Mono',monospace;}
+footer{border-top:1px solid #0f1624;padding:32px 40px;text-align:center;color:var(--dimmer);font-family:'JetBrains Mono',monospace;font-size:.72rem;position:relative;z-index:1;}
 footer a{color:var(--dim);text-decoration:none;}footer a:hover{color:var(--text);}
 </style>
 </head>
 <body>
+
+<canvas class="hero-canvas" id="bg"></canvas>
 
 <nav>
   <span class="nav-logo">ranausmanai</span>
@@ -76,41 +98,103 @@ footer a{color:var(--dim);text-decoration:none;}footer a:hover{color:var(--text)
 </nav>
 
 <section class="hero">
-  <div class="eyebrow">Independent Research</div>
-  <h1>Writing about <span>AI</span>,<br>from the inside out.</h1>
-  <p class="hero-desc">Experiments on small language models — mechanistic interpretability, behavioral analysis, and what happens when you look inside.</p>
+  <div class="hero-inner">
+    <div class="eyebrow">Independent AI Research</div>
+    <h1>Looking inside<br><em>language models</em><br>to see what's there.</h1>
+    <p class="hero-desc">Experiments on small open models — run locally, no cloud, no proprietary APIs. Mechanistic interpretability, behavioral testing, and honest findings.</p>
+    <div class="hero-tags">
+      <span class="hero-tag">Mechanistic Interpretability</span>
+      <span class="hero-tag">Behavioral Analysis</span>
+      <span class="hero-tag">Open Models</span>
+      <span class="hero-tag">Consumer Hardware</span>
+    </div>
+  </div>
 </section>
 
-<div class="section-label">— Posts</div>
+<div class="section">
+  <div class="section-label">Latest</div>
 
-<main class="posts">
-
-  <a class="post-card" href="posts/under-pressure.html">
-    <div class="featured-badge">✦ Latest</div>
+  <a class="post-featured" href="posts/under-pressure.html">
+    <div class="featured-dot">New post</div>
     <div class="post-meta">
-      <span class="post-tag" style="color:var(--purple);border-color:rgba(124,77,255,.4);">Mechanistic Interpretability</span>
+      <span class="post-tag" style="color:var(--purple);border-color:rgba(124,77,255,.35);">Mechanistic Interpretability</span>
       <span class="post-tag" style="color:var(--blue);border-color:rgba(79,195,247,.3);">Behavioral Analysis</span>
       <span class="post-date">April 2026</span>
     </div>
     <h2>What Happens Inside an AI When You Stress It Out</h2>
-    <p>We gave a small AI an impossible task, then changed only the emotional tone of our follow-up message. Same model, same task, different words — completely different behavior. Then we looked inside at every one of its twenty-four layers.</p>
+    <p class="post-excerpt">We gave a small AI an impossible task, then changed only the emotional tone of our follow-up message. Same model, same task — completely different behavior. Then we looked inside at every one of its twenty-four layers and mapped what we found.</p>
     <div class="post-stats">
       <div class="stat">Model <span>Qwen 3.5 0.8B + 2B</span></div>
       <div class="stat">Conditions <span>8 emotional framings</span></div>
-      <div class="stat">PC1 variance <span>59.5%</span></div>
+      <div class="stat">Valence axis <span>59.5% variance</span></div>
       <div class="stat">Hack rate under pressure <span>55%</span></div>
     </div>
-    <div class="read-link">Read the full story →</div>
+    <span class="read-more" style="color:var(--blue);">Read the full story →</span>
   </a>
 
-</main>
+  <div class="section-label" style="margin-top:60px;">More</div>
+  <div class="posts-grid">
+    <a class="post-card" href="posts/spiral-eval.html">
+      <div class="post-card" style="background:none;border:none;padding:0;">
+      <div class="post-meta">
+        <span class="post-tag" style="color:var(--red);border-color:rgba(239,83,80,.3);">Behavioral Testing</span>
+        <span class="post-date">April 2026</span>
+      </div>
+      <h2>Which AIs Will Feed Your Delusions?</h2>
+      <p class="post-excerpt">Five models. Five implausible beliefs. Streetlights that respond to you, hidden messages in typos, a secret math law in prime gaps. We measured which AIs ground you back to reality — and which ones make it worse.</p>
+      <div class="post-stats">
+        <div class="stat">Models <span>5 tested</span></div>
+        <div class="stat">Spiral range <span>+32 to −9</span></div>
+      </div>
+      <span class="read-more" style="color:var(--teal);">Read →</span>
+      </div>
+    </a>
+  </div>
+</div>
+
+<div class="about">
+  <div class="about-card">
+    <div class="about-text">
+      <h3>About these experiments</h3>
+      <p>All experiments run entirely on consumer hardware — Apple Silicon, no cloud compute, no proprietary APIs. The goal is to build tools and intuitions for understanding what's actually happening inside open language models, not just what they output.</p>
+      <div class="about-links">
+        <a class="about-link" href="https://github.com/ranausmanai" target="_blank">GitHub</a>
+        <a class="about-link" href="https://github.com/ranausmanai/LLMEmotionGeometry" target="_blank">Emotion Geometry Paper</a>
+        <a class="about-link" href="https://github.com/ranausmanai/spiral-eval" target="_blank">Spiral Eval Code</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <footer>
-  Built with curiosity &nbsp;·&nbsp;
-  <a href="https://github.com/ranausmanai/LLMEmotionGeometry">Code & Paper</a>
-  &nbsp;·&nbsp;
-  <a href="https://github.com/ranausmanai">ranausmanai</a>
+  ranausmanai &nbsp;·&nbsp; <a href="https://github.com/ranausmanai">GitHub</a>
 </footer>
 
+<script>
+const canvas=document.getElementById('bg');
+const ctx=canvas.getContext('2d');
+let W,H,pts=[];
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;
+  pts=Array.from({length:50},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25,r:Math.random()*1.5+.5,hue:Math.random()>0.5?260:200}));
+}
+resize();window.addEventListener('resize',resize);
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  pts.forEach(p=>{
+    p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0)p.x=W;if(p.x>W)p.x=0;
+    if(p.y<0)p.y=H;if(p.y>H)p.y=0;
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle=`hsla(${p.hue},70%,65%,.25)`;ctx.fill();
+  });
+  pts.forEach((a,i)=>pts.slice(i+1).forEach(b=>{
+    const d=Math.hypot(a.x-b.x,a.y-b.y);
+    if(d<130){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);
+      ctx.strokeStyle=`rgba(124,77,255,${.08*(1-d/130)})`;ctx.lineWidth=.5;ctx.stroke();}
+  }));
+  requestAnimationFrame(draw);
+}
+draw();
+</script>
 </body>
 </html>
