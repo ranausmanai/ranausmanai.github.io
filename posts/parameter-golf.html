@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Parameter Golf: The Tiny Model That Won By Doing Less — ranausmanai</title>
+<title>Parameter Golf: How a Tiny Model Got Better By Doing Less — ranausmanai</title>
 <meta name="description" content="131 experiments, one RTX 4000 Ada, and a hard 600-second cap. The biggest gains came from making a tiny language model simpler, faster, and more decoder-heavy.">
 
 <!-- Open Graph -->
-<meta property="og:title" content="Parameter Golf: The Tiny Model That Won By Doing Less">
+<meta property="og:title" content="Parameter Golf: How a Tiny Model Got Better By Doing Less">
 <meta property="og:description" content="131 experiments, one RTX 4000 Ada, and a hard 600-second cap. The biggest gains came from making a tiny language model simpler, faster, and more decoder-heavy.">
 <meta property="og:image" content="https://ranausmanai.github.io/og/parameter-golf.png">
 <meta property="og:url" content="https://ranausmanai.github.io/posts/parameter-golf.html">
@@ -15,7 +15,7 @@
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Parameter Golf: The Tiny Model That Won By Doing Less">
+<meta name="twitter:title" content="Parameter Golf: How a Tiny Model Got Better By Doing Less">
 <meta name="twitter:description" content="131 experiments, one RTX 4000 Ada, and a hard 600-second cap. The biggest gains came from making a tiny language model simpler, faster, and more decoder-heavy.">
 <meta name="twitter:image" content="https://ranausmanai.github.io/og/parameter-golf.png">
 
@@ -135,7 +135,7 @@ footer a:hover{color:var(--text);}
   <canvas id="heroBg"></canvas>
   <div class="hero-inner">
     <div class="eyebrow">OpenAI Parameter Golf · 131 Experiments</div>
-    <h1>The tiny model that won<br>got better by doing <em>less</em>.</h1>
+    <h1>A tiny model got better<br>by doing <em>less</em>.</h1>
     <p class="hero-desc">I spent 131 runs tuning a 9-layer language model under a hard 600-second cap on a single RTX 4000 Ada. The biggest gains did not come from clever regularizers. They came from making the model simpler, faster, and more decoder-heavy.</p>
     <div class="hero-pills">
       <span class="pill" style="border-color:rgba(102,187,106,.35);color:var(--accent)">131 runs</span>
@@ -209,7 +209,7 @@ Weight decay schedule 0.04   1.6569
 
 <div class="chapter reveal">
   <div class="tag">What Worked</div>
-  <h2>The winners all pushed in the same direction.</h2>
+  <h2>The best changes all pushed in the same direction.</h2>
   <p class="lead">The best changes did not feel random. They all made the model spend more of its ten minutes on useful learning instead of overhead.</p>
 
   <div class="data-table">
@@ -290,7 +290,7 @@ Weight decay schedule 0.04   1.6569
 <div class="chapter reveal">
   <div class="tag">Best Run</div>
   <h2>The final configuration is not magical. It is just disciplined.</h2>
-  <p class="lead">By the end, the winning recipe looked less like a bag of hacks and more like a coherent answer to the constraint.</p>
+  <p class="lead">By the end, the best recipe in this study looked less like a bag of hacks and more like a coherent answer to the constraint.</p>
 
   <div class="terminal">
     <div class="terminal-bar">
@@ -314,7 +314,7 @@ TIE_EMBEDDINGS=0
 # 1.5207 BPB in 600 seconds</pre>
   </div>
 
-  <p class="body-text">That run finished at roughly 14MB after int8 + zlib compression, which left around 2MB of headroom under the 16MB budget. The model did not win by becoming huge, exotic, or fragile. It won by wasting less of its budget.</p>
+  <p class="body-text">That run finished at roughly 14MB after int8 + zlib compression, which left around 2MB of headroom under the 16MB budget. The model did not improve by becoming huge, exotic, or fragile. It improved by wasting less of its budget.</p>
 </div>
 
 <div class="chapter reveal">

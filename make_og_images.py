@@ -103,7 +103,7 @@ make_og("home.png",
 
 make_og("parameter-golf.png",
     eyebrow="OpenAI Parameter Golf · 131 Runs",
-    title_lines=["The Tiny Model", "Won By Doing Less"],
+    title_lines=["A Tiny Model", "Got Better", "By Doing Less"],
     subtitle="131 experiments under a 600-second cap on one RTX 4000 Ada.",
     accent="#66bb6a",
     stats=[("Best BPB", "1.5207"), ("Runs", "131"), ("Main lesson", "Speed = quality")],
