@@ -98,7 +98,15 @@ make_og("home.png",
     title_lines=["Looking inside", "language models."],
     subtitle="Mechanistic interpretability & behavioral testing on open models.",
     accent="#4fc3f7",
-    stats=[("Posts", "3"), ("Models", "Open"), ("Hardware", "Consumer")],
+    stats=[("Posts", "4"), ("Models", "Open"), ("Hardware", "Consumer")],
+)
+
+make_og("parameter-golf.png",
+    eyebrow="OpenAI Parameter Golf · 131 Runs",
+    title_lines=["The Tiny Model", "Won By Doing Less"],
+    subtitle="131 experiments under a 600-second cap on one RTX 4000 Ada.",
+    accent="#66bb6a",
+    stats=[("Best BPB", "1.5207"), ("Runs", "131"), ("Main lesson", "Speed = quality")],
 )
 
 make_og("under-pressure.png",

@@ -124,26 +124,40 @@ footer a{color:var(--dim);text-decoration:none;}footer a:hover{color:var(--text)
 <div class="section">
   <div class="section-label">Latest</div>
 
-  <a class="post-featured" href="posts/under-pressure.html">
+  <a class="post-featured" href="posts/parameter-golf.html">
     <div class="featured-dot">New post</div>
     <div class="post-meta">
-      <span class="post-tag" style="color:var(--purple);border-color:rgba(124,77,255,.35);">Mechanistic Interpretability</span>
-      <span class="post-tag" style="color:var(--blue);border-color:rgba(79,195,247,.3);">Behavioral Analysis</span>
+      <span class="post-tag" style="color:var(--green);border-color:rgba(102,187,106,.35);">Training Experiments</span>
+      <span class="post-tag" style="color:var(--teal);border-color:rgba(38,198,218,.3);">Parameter Golf</span>
       <span class="post-date">April 2026</span>
     </div>
-    <h2>What Happens Inside an AI When You Stress It Out</h2>
-    <p class="post-excerpt">We gave a small AI an impossible task, then changed only the emotional tone of our follow-up message. Same model, same task — completely different behavior. Then we looked inside at every one of its twenty-four layers and mapped what we found.</p>
+    <h2>Parameter Golf: The Tiny Model That Won By Doing Less</h2>
+    <p class="post-excerpt">I ran 131 experiments on a tiny language model under a hard 600-second training cap. The big gains did not come from clever regularizers. They came from making the model simpler, faster, more decoder-heavy, and less tied together.</p>
     <div class="post-stats">
-      <div class="stat">Model <span>Qwen 3.5 0.8B + 2B</span></div>
-      <div class="stat">Conditions <span>8 emotional framings</span></div>
-      <div class="stat">Valence axis <span>59.5% variance</span></div>
-      <div class="stat">Hack rate under pressure <span>55%</span></div>
+      <div class="stat">Runs <span>131</span></div>
+      <div class="stat">Hardware <span>RTX 4000 Ada</span></div>
+      <div class="stat">Best BPB <span>1.5207</span></div>
+      <div class="stat">Main lesson <span>Speed is quality</span></div>
     </div>
-    <span class="read-more" style="color:var(--blue);">Read the full story →</span>
+    <span class="read-more" style="color:var(--green);">Read the full story →</span>
   </a>
 
   <div class="section-label" style="margin-top:60px;">More</div>
   <div class="posts-grid">
+    <a class="post-card" href="posts/under-pressure.html">
+      <div class="post-meta">
+        <span class="post-tag" style="color:var(--purple);border-color:rgba(124,77,255,.35);">Mechanistic Interpretability</span>
+        <span class="post-date">April 2026</span>
+      </div>
+      <h2>What Happens Inside an AI When You Stress It Out</h2>
+      <p class="post-excerpt">We gave a small AI an impossible task, then changed only the emotional tone of our follow-up message. Same model, same task, completely different behavior. Then we looked inside all twenty-four layers to see why.</p>
+      <div class="post-stats">
+        <div class="stat">Hack rate <span>55%</span></div>
+        <div class="stat">Valence axis <span>59.5%</span></div>
+      </div>
+      <span class="read-more" style="color:var(--purple);">Read →</span>
+    </a>
+
     <a class="post-card" href="posts/tinyforge.html">
       <div class="post-meta">
         <span class="post-tag" style="color:var(--orange);border-color:rgba(255,167,38,.3);">Self-Improving AI</span>
