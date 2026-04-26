@@ -133,4 +133,12 @@ make_og("tinyforge.png",
     stats=[("Single-pass improvement", "+75%"), ("RAM", "6GB"), ("Training pairs", "13")],
 )
 
+make_og("twenty-experiments.png",
+    eyebrow="Local LLM Inference · 22 Experiments",
+    title_lines=["Can a 9B Model", "Run Twice as Fast?"],
+    subtitle="We tried every trick on a MacBook Air. One worked.",
+    accent="#4fc3f7",
+    stats=[("Baseline", "16 tok/s"), ("Techniques tried", "22"), ("What worked", "1")],
+)
+
 print("Done → og/")
