@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)https://services.arxiv.org/html/submission/7575637/view -->
+<html lang="en" data-theme="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy</title>
+<!--Generated on Wed May 13 16:13:17 2026 by LaTeXML (version 0.8.8) http://dlmf.nist.gov/LaTeXML/.-->
+<!--Document created on May 2026.-->
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="./How Far Can an Open Base Model Self-Improve_ Recipes, Limits, and Test-Time Synergy_files/arxiv-html-papers-20260131.css" type="text/css">
+<script src="./How Far Can an Open Base Model Self-Improve_ Recipes, Limits, and Test-Time Synergy_files/arxiv-html-papers-20260131.js"></script>
+<script>
+  // Restore the saved color scheme preference, or
+  // enact the browser preference if "automatic", 
+  // without expecting DOM load to have completed.
+  //
+  // Also restore any saved readingmode and ToC display preferences.
+  function initializeReadingPreferences() {
+    let saved_theme = localStorage.getItem("ar5iv_theme") || "automatic";
+    if (saved_theme === "automatic") {
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        saved_theme = "dark";
+      }
+    }
+    if (saved_theme == "dark") {
+      document.documentElement.setAttribute("data-theme", "dark");
+    } else {
+      document.documentElement.setAttribute("data-theme", "light");
+    }
+
+    const tocDisplay = localStorage.getItem('arxiv_html_paper_toc_display');
+    if (tocDisplay) {
+      document.documentElement.setAttribute("data-toc-display", tocDisplay);
+    }
+    const readingMode = localStorage.getItem('arxiv_html_paper_reading_mode');
+    if (readingMode) {
+      document.documentElement.setAttribute("data-reading-mode", readingMode);
+    }
+  }
+  // Run as soon as JS starts, to minimize repainting
+  initializeReadingPreferences();
+</script>
+<link rel="apple-touch-icon" sizes="180x180" href="https://services.arxiv.org/static/browse/0.3.4/images/icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://services.arxiv.org/static/browse/0.3.4/images/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://services.arxiv.org/static/browse/0.3.4/images/icons/favicon-16x16.png">
+<link rel="manifest" href="https://services.arxiv.org/static/browse/0.3.4/images/icons/site.webmanifest">
+<link rel="mask-icon" href="https://services.arxiv.org/static/browse/0.3.4/images/icons/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="stylesheet" type="text/css" media="screen" href="./How Far Can an Open Base Model Self-Improve_ Recipes, Limits, and Test-Time Synergy_files/utz6mli.css">
+<script src="chrome-extension://liecbddmkiiihnedobmlmillhodjkdmb/js/recordConsoleEvents.js"></script></head>
+<body>
+<dialog id="modal-form" aria-labelledby="modal-title" closedby="any">
+  <form id="modal-form-content" method="dialog" enctype="multipart/form-data">
+    <header class="modal-header">
+      <h5 id="modal-title" class="modal-title">Report GitHub Issue</h5>
+      <button type="submit" formnovalidate="" class="modal-close" aria-label="Close">×</button>
+    </header>
+
+    <div class="modal-body">
+      <label for="form_title">Title:</label>
+      <input class="form-control" id="form_title" name="form_title" required="" placeholder="Enter title">
+
+      <p id="selectedTextModalDescription" hidden="">Content selection saved. Describe the issue below:</p>
+
+      <label for="description">Description:</label>
+      <textarea class="form-control" id="description" name="description" required="" maxlength="500" placeholder="500 characters maximum"></textarea>
+    </div>
+
+    <footer class="modal-footer">
+      <button type="submit" value="internal-report" class="sr-only modal-submit">Submit without GitHub</button>
+      <button type="submit" value="github-report" class="modal-submit">Submit in GitHub</button>
+    </footer>
+  </form>
+</dialog>
+
+<header class="arxiv-html-header">
+  <div class="html-header-logo">
+    <a href="https://services.arxiv.org/">
+      <img alt="arXiv logo" class="logo desktop-only" width="100" src="./How Far Can an Open Base Model Self-Improve_ Recipes, Limits, and Test-Time Synergy_files/arxiv-logo-one-color-white.svg">
+      <span class="sr-only">Back to arXiv</span>
+    </a>
+  </div>
+  <!--TOC, dark mode, links-->
+  <nav class="html-header-nav">
+    <a class="header-button hover-effect desktop-only" href="https://info.arxiv.org/about/accessible_HTML.html" target="_blank">Why HTML?</a>
+    <a class="header-button" title="Report an Issue" href="https://services.arxiv.org/html/submission/7575637/view#" onclick="event.preventDefault(); showModalForm();">
+      <svg role="presentation" class="mobile-only toggle-icon" aria-hidden="true" height="1.25rem" viewBox="0 0 640 640">
+        <path d="M224 160C224 107 267 64 320 64C373 64 416 107 416 160L416 163.6C416 179.3 403.3 192 387.6 192L252.5 192C236.8 192 224.1 179.3 224.1 163.6L224.1 160zM569.6 172.8C580.2 186.9 577.3 207 563.2 217.6L465.4 290.9C470.7 299.8 474.7 309.6 477.2 320L576 320C593.7 320 608 334.3 608 352C608 369.7 593.7 384 576 384L480 384L480 416C480 418.6 479.9 421.3 479.8 423.9L563.2 486.4C577.3 497 580.2 517.1 569.6 531.2C559 545.3 538.9 548.2 524.8 537.6L461.7 490.3C438.5 534.5 395.2 566.5 344 574.2L344 344C344 330.7 333.3 320 320 320C306.7 320 296 330.7 296 344L296 574.2C244.8 566.5 201.5 534.5 178.3 490.3L115.2 537.6C101.1 548.2 81 545.3 70.4 531.2C59.8 517.1 62.7 497 76.8 486.4L160.2 423.9C160.1 421.3 160 418.7 160 416L160 384L64 384C46.3 384 32 369.7 32 352C32 334.3 46.3 320 64 320L162.8 320C165.3 309.6 169.3 299.8 174.6 290.9L76.8 217.6C62.7 207 59.8 186.9 70.4 172.8C81 158.7 101.1 155.8 115.2 166.4L224 248C236.3 242.9 249.8 240 264 240L376 240C390.2 240 403.7 242.8 416 248L524.8 166.4C538.9 155.8 559 158.7 569.6 172.8z"></path>
+      </svg>
+      <span class="desktop-only">Report Issue</span></a>
+    <!--back to abstract-->
+    
+    <!-- navigational table of contents toggle -->
+    <a class="header-button toggle-icon" href="javascript:toggleNavTOC();" title="Toggle navigation" aria-label="Toggle navigation">
+      <svg height="1.25rem" role="presentation" viewBox="0 0 512 512">
+        <path d="M40 48C26.7 48 16 58.7 16 72v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V232c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zM40 368c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V392c0-13.3-10.7-24-24-24H40z">
+        </path>
+      </svg>
+    </a>
+    <!--- collapsable header / reading mode toggle -->
+    <a class="header-button toggle-icon" href="javascript:toggleReadingMode();" title="Disable reading mode, show header and footer">
+      <svg role="presentation" height="1.25rem" viewBox="0 0 448 512"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+        <path d="M32 32C14.3 32 0 46.3 0 64l0 96c0 17.7 14.3 32 32 32s32-14.3 32-32l0-64 64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L32 32zM64 352c0-17.7-14.3-32-32-32S0 334.3 0 352l0 96c0 17.7 14.3 32 32 32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0 0-64zM320 32c-17.7 0-32 14.3-32 32s14.3 32 32 32l64 0 0 64c0 17.7 14.3 32 32 32s32-14.3 32-32l0-96c0-17.7-14.3-32-32-32l-96 0zM448 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64-64 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l96 0c17.7 0 32-14.3 32-32l0-96z"></path>
+      </svg>
+    </a>
+    <!--- colored theme toggle -->
+    <button type="button" class="header-button color-tog" onclick="toggleColorScheme();" title="Toggle dark/light mode" aria-label="Toggle color scheme">
+      <span class="toggle-icon automatic-tog" aria-hidden="true">
+        <svg role="presentation" height="1.25rem" viewBox="0 0 24 24">
+          <path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z">
+          </path>
+        </svg>
+      </span>
+      <span class="toggle-icon light-tog" aria-hidden="true">
+        <svg role="presentation" height="1.25rem" viewBox="0 0 24 24">
+          <path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z">
+          </path>
+        </svg>
+      </span>
+      <span class="toggle-icon dark-tog" aria-hidden="true">
+        <svg role="presentation" height="1.25rem" viewBox="0 0 24 24">
+          <path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z">
+          </path>
+        </svg>
+      </span>
+    </button>
+  </nav>
+</header><nav class="ltx_page_navbar">
+<nav class="ltx_TOC">
+<ol class="ltx_toclist">
+<li class="ltx_tocentry ltx_tocentry_abstract"><a href="https://services.arxiv.org/html/submission/7575637/view#abstract1" title="In How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title">Abstract</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_section">
+<a href="https://services.arxiv.org/html/submission/7575637/view#S1" title="In How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">1 </span>Introduction</span></a>
+<ol class="ltx_toclist ltx_toclist_section">
+<li class="ltx_tocentry ltx_tocentry_paragraph"><a href="https://services.arxiv.org/html/submission/7575637/view#S1.SS0.SSS0.Px1" title="In Introduction ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title">Self-bootstrap.</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_paragraph"><a href="https://services.arxiv.org/html/submission/7575637/view#S1.SS0.SSS0.Px2" title="In Introduction ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title">Test-time sampling (TTS).</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_subsection"><a href="https://services.arxiv.org/html/submission/7575637/view#S1.SS1" title="In Introduction ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">1.1 </span>Contributions</span></a></li>
+</ol>
+</li>
+<li class="ltx_tocentry ltx_tocentry_section">
+<a href="https://services.arxiv.org/html/submission/7575637/view#S2" title="In How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">2 </span>Method</span></a>
+<ol class="ltx_toclist ltx_toclist_section">
+<li class="ltx_tocentry ltx_tocentry_subsection"><a href="https://services.arxiv.org/html/submission/7575637/view#S2.SS1" title="In Method ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">2.1 </span>Self-bootstrap pipeline (code)</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_subsection"><a href="https://services.arxiv.org/html/submission/7575637/view#S2.SS2" title="In Method ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">2.2 </span>Test-time sampling</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_subsection"><a href="https://services.arxiv.org/html/submission/7575637/view#S2.SS3" title="In Method ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">2.3 </span>Auto-difficulty curriculum (math)</span></a></li>
+</ol>
+</li>
+<li class="ltx_tocentry ltx_tocentry_section">
+<a href="https://services.arxiv.org/html/submission/7575637/view#S3" title="In How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">3 </span>Experiments</span></a>
+<ol class="ltx_toclist ltx_toclist_section">
+<li class="ltx_tocentry ltx_tocentry_subsection"><a href="https://services.arxiv.org/html/submission/7575637/view#S3.SS1" title="In Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">3.1 </span>Setup</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_subsection">
+<a href="https://services.arxiv.org/html/submission/7575637/view#S3.SS2" title="In Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">3.2 </span>Recipe alone: HumanEval and HumanEval+</span></a>
+<ol class="ltx_toclist ltx_toclist_subsection">
+<li class="ltx_tocentry ltx_tocentry_paragraph"><a href="https://services.arxiv.org/html/submission/7575637/view#S3.SS2.SSS0.Px1" title="In Recipe alone: HumanEval and HumanEval+ ‣ Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title">Headline.</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_paragraph"><a href="https://services.arxiv.org/html/submission/7575637/view#S3.SS2.SSS0.Px2" title="In Recipe alone: HumanEval and HumanEval+ ‣ Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title">Generation effects.</span></a></li>
+</ol>
+</li>
+<li class="ltx_tocentry ltx_tocentry_subsection">
+<a href="https://services.arxiv.org/html/submission/7575637/view#S3.SS3" title="In Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">3.3 </span>Test-time sampling (TTS) alone</span></a>
+<ol class="ltx_toclist ltx_toclist_subsection">
+<li class="ltx_tocentry ltx_tocentry_paragraph"><a href="https://services.arxiv.org/html/submission/7575637/view#S3.SS3.SSS0.Px1" title="In Test-time sampling (TTS) alone ‣ Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title">Reading the table.</span></a></li>
+</ol>
+</li>
+<li class="ltx_tocentry ltx_tocentry_subsection"><a href="https://services.arxiv.org/html/submission/7575637/view#S3.SS4" title="In Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">3.4 </span>Self-consistency (deployable TTS, no oracle)</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_subsection">
+<a href="https://services.arxiv.org/html/submission/7575637/view#S3.SS5" title="In Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">3.5 </span>Recipe <math class="ltx_Math" alttext="\times" display="inline" intent=":literal"><semantics><mo>×</mo><annotation encoding="application/x-tex">\times</annotation></semantics></math> TTS synergy threshold</span></a>
+<ol class="ltx_toclist ltx_toclist_subsection">
+<li class="ltx_tocentry ltx_tocentry_paragraph"><a href="https://services.arxiv.org/html/submission/7575637/view#S3.SS5.SSS0.Px1" title="In Recipe × TTS synergy threshold ‣ Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title">Practical implication.</span></a></li>
+</ol>
+</li>
+<li class="ltx_tocentry ltx_tocentry_subsection"><a href="https://services.arxiv.org/html/submission/7575637/view#S3.SS6" title="In Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">3.6 </span>Control: format alone does not explain the lift</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_subsection">
+<a href="https://services.arxiv.org/html/submission/7575637/view#S3.SS7" title="In Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">3.7 </span>Multi-pair mining at 14B (the 80.5% result)</span></a>
+<ol class="ltx_toclist ltx_toclist_subsection">
+<li class="ltx_tocentry ltx_tocentry_paragraph"><a href="https://services.arxiv.org/html/submission/7575637/view#S3.SS7.SSS0.Px1" title="In Multi-pair mining at 14B (the 80.5% result) ‣ Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title">Pair-count scaling.</span></a></li>
+</ol>
+</li>
+<li class="ltx_tocentry ltx_tocentry_subsection"><a href="https://services.arxiv.org/html/submission/7575637/view#S3.SS8" title="In Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">3.8 </span>Math: auto-difficulty curriculum</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_subsection">
+<a href="https://services.arxiv.org/html/submission/7575637/view#S3.SS9" title="In Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">3.9 </span>Cross-architecture and cross-generation</span></a>
+<ol class="ltx_toclist ltx_toclist_subsection">
+<li class="ltx_tocentry ltx_tocentry_paragraph"><a href="https://services.arxiv.org/html/submission/7575637/view#S3.SS9.SSS0.Px1" title="In Cross-architecture and cross-generation ‣ Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title">MBPP coverage.</span></a></li>
+</ol>
+</li>
+<li class="ltx_tocentry ltx_tocentry_subsection">
+<a href="https://services.arxiv.org/html/submission/7575637/view#S3.SS10" title="In Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">3.10 </span>Failure modes and methodology lessons</span></a>
+<ol class="ltx_toclist ltx_toclist_subsection">
+<li class="ltx_tocentry ltx_tocentry_paragraph"><a href="https://services.arxiv.org/html/submission/7575637/view#S3.SS10.SSS0.Px1" title="In Failure modes and methodology lessons ‣ Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title">(a) Self-correction over-correction.</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_paragraph"><a href="https://services.arxiv.org/html/submission/7575637/view#S3.SS10.SSS0.Px2" title="In Failure modes and methodology lessons ‣ Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title">(b) Recursive self-bootstrap plateau.</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_paragraph"><a href="https://services.arxiv.org/html/submission/7575637/view#S3.SS10.SSS0.Px3" title="In Failure modes and methodology lessons ‣ Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title">(c) Tree-shaped training data degrades plain-prompt evaluation.</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_paragraph"><a href="https://services.arxiv.org/html/submission/7575637/view#S3.SS10.SSS0.Px4" title="In Failure modes and methodology lessons ‣ Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title">(d) Distribution mismatch.</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_paragraph"><a href="https://services.arxiv.org/html/submission/7575637/view#S3.SS10.SSS0.Px5" title="In Failure modes and methodology lessons ‣ Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title">(e) ARC-AGI: silent infrastructure crash.</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_paragraph"><a href="https://services.arxiv.org/html/submission/7575637/view#S3.SS10.SSS0.Px6" title="In Failure modes and methodology lessons ‣ Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title">(f) Cross-domain transfer is marginal.</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_paragraph"><a href="https://services.arxiv.org/html/submission/7575637/view#S3.SS10.SSS0.Px7" title="In Failure modes and methodology lessons ‣ Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title">(g) Diversity-cued mining yields too few pairs to help.</span></a></li>
+</ol>
+</li>
+<li class="ltx_tocentry ltx_tocentry_subsection"><a href="https://services.arxiv.org/html/submission/7575637/view#S3.SS11" title="In Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">3.11 </span>Boundary conditions summary</span></a></li>
+</ol>
+</li>
+<li class="ltx_tocentry ltx_tocentry_section">
+<a href="https://services.arxiv.org/html/submission/7575637/view#S4" title="In How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">4 </span>Related work</span></a>
+<ol class="ltx_toclist ltx_toclist_section">
+<li class="ltx_tocentry ltx_tocentry_paragraph"><a href="https://services.arxiv.org/html/submission/7575637/view#S4.SS0.SSS0.Px1" title="In Related work ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title">Self-improvement with verifiers.</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_paragraph"><a href="https://services.arxiv.org/html/submission/7575637/view#S4.SS0.SSS0.Px2" title="In Related work ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title">Test-time scaling.</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_paragraph"><a href="https://services.arxiv.org/html/submission/7575637/view#S4.SS0.SSS0.Px3" title="In Related work ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title">Synergy between training and inference scaling.</span></a></li>
+</ol>
+</li>
+<li class="ltx_tocentry ltx_tocentry_section">
+<a href="https://services.arxiv.org/html/submission/7575637/view#S5" title="In How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">5 </span>Discussion</span></a>
+<ol class="ltx_toclist ltx_toclist_section">
+<li class="ltx_tocentry ltx_tocentry_paragraph"><a href="https://services.arxiv.org/html/submission/7575637/view#S5.SS0.SSS0.Px1" title="In Discussion ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title">What the recipe actually does.</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_paragraph"><a href="https://services.arxiv.org/html/submission/7575637/view#S5.SS0.SSS0.Px2" title="In Discussion ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title">Recipe vs. TTS, regime-dependent.</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_paragraph"><a href="https://services.arxiv.org/html/submission/7575637/view#S5.SS0.SSS0.Px3" title="In Discussion ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title">Modern bases vs. older bases.</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_paragraph"><a href="https://services.arxiv.org/html/submission/7575637/view#S5.SS0.SSS0.Px4" title="In Discussion ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title">Negative findings as evidence.</span></a></li>
+</ol>
+</li>
+<li class="ltx_tocentry ltx_tocentry_section"><a href="https://services.arxiv.org/html/submission/7575637/view#S6" title="In How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">6 </span>Limitations</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_section"><a href="https://services.arxiv.org/html/submission/7575637/view#S7" title="In How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">7 </span>Conclusion</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_bibliography"><a href="https://services.arxiv.org/html/submission/7575637/view#bib" title="In How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_title">References</span></a></li>
+</ol></nav>
+</nav>
+<div class="ltx_page_main">
+<div id="infobox" class="infobox">
+  <a id="license-tr" href="https://info.arxiv.org/help/license/index.html#licenses-available">
+    License: CC BY 4.0
+  </a>
+  <div id="watermark-tr">
+    submission/7575637  </div>
+</div><div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_font_bold ltx_title_document" style="font-size:120%;">
+<span id="id1.id1" class="ltx_text" style="font-size:83%;">How Far Can an Open Base Model Self-Improve?
+<br class="ltx_break"></span>Recipes, Limits, and Test-Time Synergy</h1>
+<div class="ltx_authors">
+<span class="ltx_creator ltx_role_author">
+<span class="ltx_personname">Rana Usman
+</span><span class="ltx_author_notes">
+<span class="ltx_contact ltx_role_affiliation">
+</span></span></span>
+</div>
+<div class="ltx_dates">(May 2026)</div>
+
+<div id="abstract1" class="ltx_abstract">
+<h6 class="ltx_title ltx_title_abstract">Abstract</h6>
+<p class="ltx_p">A 14B open base language model, given only a Python interpreter as oracle and no human-written training data, reaches <span class="ltx_text ltx_font_bold">80% on HumanEval</span> and <span class="ltx_text ltx_font_bold">74.4% on the contamination-resistant HumanEval+</span> — essentially matching its own RLHF Instruct version on the harder evaluation, for under $5 of consumer-GPU compute. We achieve this with a simple recipe: the base model generates its own coding problems with tests, samples multiple solution attempts, and is fine-tuned via LoRA on the <em class="ltx_emph ltx_font_italic">(broken, fixed)</em> repair pairs that emerge from its own divergent outputs. A control with identically-formatted but mechanically-corrupted external pairs yields exactly +0, isolating the signal to self-mined content. Across nine open base models (1.7B–72B), we further situate this recipe alongside <em class="ltx_emph ltx_font_italic">test-time sampling</em> (TTS) and report the first documented <em class="ltx_emph ltx_font_italic">synergy threshold</em> between the two: at sufficient mined-pair counts the recipe adds 12.8pp <em class="ltx_emph ltx_font_italic">beyond</em> TTS on the same model, but with too few pairs the recipe <em class="ltx_emph ltx_font_italic">degrades</em> TTS by 4.9pp. We extend the recipe to math via an auto-difficulty curriculum (GSM8K 32<math class="ltx_Math" alttext="\rightarrow" display="inline" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math>66 with 13 self-mined pairs), document four boundary conditions under which self-bootstrap fails, and offer a methodology lesson on self-correction training (wrong<math class="ltx_Math" alttext="\rightarrow" display="inline" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math>fix triples alone over-correct catastrophically; mixing in right<math class="ltx_Math" alttext="\rightarrow" display="inline" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math>stays-right examples recovers). All code, mined pairs, and adapter weights are released.</p>
+</div>
+<section id="S1" class="ltx_section">
+<h2 class="ltx_title ltx_font_bold ltx_title_section" style="font-size:120%;">Introduction</h2>
+
+<div id="S1.p1" class="ltx_para">
+<p id="S1.p1.1" class="ltx_p">The dominant pipeline for adapting open base models to coding and math tasks involves curated code corpora, instruction tuning, and reinforcement learning with verifiable rewards&nbsp;<cite class="ltx_cite ltx_citemacro_cite">[<a href="https://services.arxiv.org/html/submission/7575637/view#bib.bib3" title="" class="ltx_ref">3</a>, <a href="https://services.arxiv.org/html/submission/7575637/view#bib.bib4" title="" class="ltx_ref">4</a>]</cite>. Each step requires substantial data engineering. We instead study two simpler axes:</p>
+</div>
+<section id="S1.SS0.SSS0.Px1" class="ltx_paragraph">
+<h4 class="ltx_title ltx_title_paragraph">Self-bootstrap.</h4>
+
+<div id="S1.SS0.SSS0.Px1.p1" class="ltx_para">
+<p id="S1.SS0.SSS0.Px1.p1.1" class="ltx_p">A base model generates its own coding problems with tests, samples multiple solution attempts, and mines <em id="S1.SS0.SSS0.Px1.p1.1.1" class="ltx_emph ltx_font_italic">(broken, fixed)</em> pairs from its divergent outputs. We fine-tune via LoRA on these pairs. No human-written training data is used.</p>
+</div>
+</section>
+<section id="S1.SS0.SSS0.Px2" class="ltx_paragraph">
+<h4 class="ltx_title ltx_title_paragraph">Test-time sampling (TTS).</h4>
+
+<div id="S1.SS0.SSS0.Px2.p1" class="ltx_para">
+<p id="S1.SS0.SSS0.Px2.p1.1" class="ltx_p">At inference, generate <math id="S1.SS0.SSS0.Px2.p1.1.m1" class="ltx_Math" alttext="N" display="inline" intent=":literal"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math> samples; accept the first whose output passes the available verifier (test cases, sympy answer-check). Known technique&nbsp;<cite class="ltx_cite ltx_citemacro_cite">[<a href="https://services.arxiv.org/html/submission/7575637/view#bib.bib9" title="" class="ltx_ref">9</a>, <a href="https://services.arxiv.org/html/submission/7575637/view#bib.bib15" title="" class="ltx_ref">15</a>, <a href="https://services.arxiv.org/html/submission/7575637/view#bib.bib16" title="" class="ltx_ref">16</a>]</cite>; we quantify its gap on modern small base models.</p>
+</div>
+<div id="S1.SS0.SSS0.Px2.p2" class="ltx_para">
+<p id="S1.SS0.SSS0.Px2.p2.1" class="ltx_p">We ask: (a) How far does each axis go on its own? (b) Are they additive, sub-additive, or super-additive — and when? (c) Where do they fail?</p>
+</div>
+</section>
+<section id="S1.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_font_bold ltx_title_subsection">Contributions</h3>
+
+<div id="S1.SS1.p1" class="ltx_para">
+<ol id="S1.I1" class="ltx_enumerate">
+<li id="S1.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">1.</span> 
+<div id="S1.I1.i1.p1" class="ltx_para">
+<p id="S1.I1.i1.p1.1" class="ltx_p"><span id="S1.I1.i1.p1.1.1" class="ltx_text ltx_font_bold">Recipe lift on a 14B base, no human data</span>: <span id="S1.I1.i1.p1.1.2" class="ltx_text ltx_font_typewriter">Qwen2.5-14B-Base</span> from 26.8% (44/164) to 79.9% (131/164) on HumanEval pass@1 (+53.0pp) in chat-template eval, and 74.4% (122/164) on HumanEval+. The same adapter reads 132/164 (80.5%) in the multi-pair run’s eval format — both round to 80%. The 6.1pp public<math id="S1.I1.i1.p1.1.m1" class="ltx_Math" alttext="\rightarrow" display="inline" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math>plus drop on HE+ is consistent with generalization rather than memorization.</p>
+</div>
+</li>
+<li id="S1.I1.i2" class="ltx_item" style="list-style-type:none;padding-top:0.0pt;">
+<span class="ltx_tag ltx_tag_item">2.</span> 
+<div id="S1.I1.i2.p1" class="ltx_para">
+<p id="S1.I1.i2.p1.1" class="ltx_p"><span id="S1.I1.i2.p1.1.1" class="ltx_text ltx_font_bold">TTS quantification on modern open bases</span>: best-of-8 oracle pass@1 of 92.7% (Qwen3-4B) and 92.1% (Qwen3-8B) on HumanEval; 79.4% / 81% on MATH-500; 25.6% / 38.9% (best-of-32) on AIME — all without training.</p>
+</div>
+</li>
+<li id="S1.I1.i3" class="ltx_item" style="list-style-type:none;padding-top:0.0pt;">
+<span class="ltx_tag ltx_tag_item">3.</span> 
+<div id="S1.I1.i3.p1" class="ltx_para">
+<p id="S1.I1.i3.p1.1" class="ltx_p"><span id="S1.I1.i3.p1.1.1" class="ltx_text ltx_font_bold">Recipe <math id="S1.I1.i3.p1.1.1.m1" class="ltx_Math" alttext="\times" display="inline" intent=":literal"><semantics><mo>×</mo><annotation encoding="application/x-tex">\times</annotation></semantics></math> TTS synergy threshold</span> (novel): on <span id="S1.I1.i3.p1.1.2" class="ltx_text ltx_font_typewriter">Qwen2.5-14B</span> with 132 mined pairs the recipe adds +12.8pp <em id="S1.I1.i3.p1.1.3" class="ltx_emph ltx_font_italic">beyond</em> TTS; on <span id="S1.I1.i3.p1.1.4" class="ltx_text ltx_font_typewriter">Qwen2.5-3B</span> with 36 mined pairs the recipe <em id="S1.I1.i3.p1.1.5" class="ltx_emph ltx_font_italic">subtracts</em> 4.9pp from TTS. Recipe training appears to hurt sampling diversity below a pair-count threshold.</p>
+</div>
+</li>
+<li id="S1.I1.i4" class="ltx_item" style="list-style-type:none;padding-top:0.0pt;">
+<span class="ltx_tag ltx_tag_item">4.</span> 
+<div id="S1.I1.i4.p1" class="ltx_para">
+<p id="S1.I1.i4.p1.1" class="ltx_p"><span id="S1.I1.i4.p1.1.1" class="ltx_text ltx_font_bold">Control experiment</span>: identically-formatted random external pairs (MBPP-corrupt) yield exactly +0, isolating the signal to the self-mined content.</p>
+</div>
+</li>
+<li id="S1.I1.i5" class="ltx_item" style="list-style-type:none;padding-top:0.0pt;">
+<span class="ltx_tag ltx_tag_item">5.</span> 
+<div id="S1.I1.i5.p1" class="ltx_para">
+<p id="S1.I1.i5.p1.1" class="ltx_p"><span id="S1.I1.i5.p1.1.1" class="ltx_text ltx_font_bold">Auto-difficulty curriculum</span> for math: lifts <span id="S1.I1.i5.p1.1.2" class="ltx_text ltx_font_typewriter">Qwen2.5-3B-Base</span> on GSM8K from 32/100 to 66/100 (+34) with 13 self-mined pairs.</p>
+</div>
+</li>
+<li id="S1.I1.i6" class="ltx_item" style="list-style-type:none;padding-top:0.0pt;">
+<span class="ltx_tag ltx_tag_item">6.</span> 
+<div id="S1.I1.i6.p1" class="ltx_para">
+<p id="S1.I1.i6.p1.1" class="ltx_p"><span id="S1.I1.i6.p1.1.1" class="ltx_text ltx_font_bold">Seven negative or marginal results</span> cleanly documented: self-saturation, distribution mismatch (BCB-Hard, math), tree-shaped training data, recursive bootstrap plateau, the self-correction over-correction failure mode (and its fix via mixed positive traces), marginal cross-domain transfer (code<math id="S1.I1.i6.p1.1.m1" class="ltx_Math" alttext="\to" display="inline" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\to</annotation></semantics></math>math, +2), and low-yield diversity-cued mining.</p>
+</div>
+</li>
+<li id="S1.I1.i7" class="ltx_item" style="list-style-type:none;padding-top:0.0pt;">
+<span class="ltx_tag ltx_tag_item">7.</span> 
+<div id="S1.I1.i7.p1" class="ltx_para">
+<p id="S1.I1.i7.p1.1" class="ltx_p"><span id="S1.I1.i7.p1.1.1" class="ltx_text ltx_font_bold">Boundary characterization</span> across 9 base models: identifies four conditions under which the recipe fails.</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="S1.SS1.p2" class="ltx_para">
+<p id="S1.SS1.p2.1" class="ltx_p">We emphasize what this is <em id="S1.SS1.p2.1.1" class="ltx_emph ltx_font_italic">not</em>: a frontier capability breakthrough. Best-of-<math id="S1.SS1.p2.1.m1" class="ltx_Math" alttext="N" display="inline" intent=":literal"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math> pass@1 with oracle verification is well-known. The 80.5% HumanEval number on a 14B base is within 3pp of <span id="S1.SS1.p2.1.2" class="ltx_text ltx_font_typewriter">Qwen2.5-14B-Instruct</span>, but does not match code-specialized instruct models (<span id="S1.SS1.p2.1.3" class="ltx_text ltx_font_typewriter">Qwen2.5-Coder-7B-Instruct</span>: 88.4%). Our contributions are empirical: a clean recipe that works under stated conditions, a novel synergy-threshold observation, and a set of cleanly documented negative findings.</p>
+</div>
+</section>
+</section>
+<section id="S2" class="ltx_section">
+<h2 class="ltx_title ltx_font_bold ltx_title_section" style="font-size:120%;">Method</h2>
+
+<section id="S2.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_font_bold ltx_title_subsection">Self-bootstrap pipeline (code)</h3>
+
+<div id="S2.SS1.p1" class="ltx_para">
+<p id="S2.SS1.p1.1" class="ltx_p">Given a base model <math id="S2.SS1.p1.1.m1" class="ltx_Math" alttext="M_{0}" display="inline" intent=":literal"><semantics><msub><mi>M</mi><mn>0</mn></msub><annotation encoding="application/x-tex">M_{0}</annotation></semantics></math> with a chat template and the Python interpreter as oracle:</p>
+</div>
+<div id="S2.SS1.p2" class="ltx_para ltx_noindent">
+<p id="S2.SS1.p2.1" class="ltx_p"><span id="S2.SS1.p2.1.1" class="ltx_text ltx_font_bold">(1) Problem generation.</span> Prompt <math id="S2.SS1.p2.1.m1" class="ltx_Math" alttext="M_{0}" display="inline" intent=":literal"><semantics><msub><mi>M</mi><mn>0</mn></msub><annotation encoding="application/x-tex">M_{0}</annotation></semantics></math> to emit a Python function with a docstring and three <span id="S2.SS1.p2.1.2" class="ltx_text ltx_font_typewriter">assert</span> test statements. Parse and reject malformed candidates. Verify each problem’s canonical solution by running it against its own tests inside a sandboxed subprocess; only problems where the canonical passes are kept.</p>
+</div>
+<div id="S2.SS1.p3" class="ltx_para ltx_noindent">
+<p id="S2.SS1.p3.2" class="ltx_p"><span id="S2.SS1.p3.2.1" class="ltx_text ltx_font_bold">(2) Diverse solving.</span> For each valid problem, re-prompt <math id="S2.SS1.p3.1.m1" class="ltx_Math" alttext="M_{0}" display="inline" intent=":literal"><semantics><msub><mi>M</mi><mn>0</mn></msub><annotation encoding="application/x-tex">M_{0}</annotation></semantics></math> four times at temperature <math id="S2.SS1.p3.2.m2" class="ltx_Math" alttext="T=0.7" display="inline" intent=":literal"><semantics><mrow><mi>T</mi><mo>=</mo><mn>0.7</mn></mrow><annotation encoding="application/x-tex">T=0.7</annotation></semantics></math> for candidate implementations. Each candidate is verified.</p>
+</div>
+<div id="S2.SS1.p4" class="ltx_para ltx_noindent">
+<p id="S2.SS1.p4.1" class="ltx_p"><span id="S2.SS1.p4.1.1" class="ltx_text ltx_font_bold">(3) Pair mining (at-edge).</span> Examine the four attempts:</p>
+<ul id="S2.I1" class="ltx_itemize">
+<li id="S2.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I1.i1.p1" class="ltx_para">
+<p id="S2.I1.i1.p1.1" class="ltx_p">All four pass: too easy; skip.</p>
+</div>
+</li>
+<li id="S2.I1.i2" class="ltx_item" style="list-style-type:none;padding-top:0.0pt;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I1.i2.p1" class="ltx_para">
+<p id="S2.I1.i2.p1.1" class="ltx_p">All four fail: above competence, no signal; skip.</p>
+</div>
+</li>
+<li id="S2.I1.i3" class="ltx_item" style="list-style-type:none;padding-top:0.0pt;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S2.I1.i3.p1" class="ltx_para">
+<p id="S2.I1.i3.p1.1" class="ltx_p">Otherwise: mine an <em id="S2.I1.i3.p1.1.1" class="ltx_emph ltx_font_italic">at-edge</em> (broken, fixed) pair. Failed attempt + runtime error become the input; passed attempt is the target.</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="S2.SS1.p5" class="ltx_para ltx_noindent">
+<p id="S2.SS1.p5.2" class="ltx_p"><span id="S2.SS1.p5.2.1" class="ltx_text ltx_font_bold">(4) Multi-pair mining (aggressive)</span> (Section&nbsp;<a href="https://services.arxiv.org/html/submission/7575637/view#S3.SS7" title="Multi-pair mining at 14B (the 80.5% result) ‣ Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_tag">3.7</span></a>). For each problem sample <math id="S2.SS1.p5.1.m1" class="ltx_Math" alttext="N=8" display="inline" intent=":literal"><semantics><mrow><mi>N</mi><mo>=</mo><mn>8</mn></mrow><annotation encoding="application/x-tex">N=8</annotation></semantics></math> attempts at <math id="S2.SS1.p5.2.m2" class="ltx_Math" alttext="T=0.8" display="inline" intent=":literal"><semantics><mrow><mi>T</mi><mo>=</mo><mn>0.8</mn></mrow><annotation encoding="application/x-tex">T=0.8</annotation></semantics></math> and mine up to 4 (broken, fixed) pairs per problem, deduplicating near-identical broken code.</p>
+</div>
+<div id="S2.SS1.p6" class="ltx_para ltx_noindent">
+<p id="S2.SS1.p6.1" class="ltx_p"><span id="S2.SS1.p6.1.1" class="ltx_text ltx_font_bold">(5) LoRA fine-tuning.</span> Rank-16 LoRA on attention projections (q,k,v,o), 2 epochs, <math id="S2.SS1.p6.1.m1" class="ltx_Math" alttext="\text{lr}=10^{-4}" display="inline" intent=":literal"><semantics><mrow><mtext>lr</mtext><mo>=</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>4</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\text{lr}=10^{-4}</annotation></semantics></math>, batch size 1, gradient accumulation 4. Causal-LM loss with prompt tokens masked.</p>
+</div>
+</section>
+<section id="S2.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_font_bold ltx_title_subsection">Test-time sampling</h3>
+
+<div id="S2.SS2.p1" class="ltx_para">
+<p id="S2.SS2.p1.3" class="ltx_p">At inference, generate <math id="S2.SS2.p1.1.m1" class="ltx_Math" alttext="N" display="inline" intent=":literal"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math> samples at <math id="S2.SS2.p1.2.m2" class="ltx_Math" alttext="T=0.6" display="inline" intent=":literal"><semantics><mrow><mi>T</mi><mo>=</mo><mn>0.6</mn></mrow><annotation encoding="application/x-tex">T=0.6</annotation></semantics></math>–<math id="S2.SS2.p1.3.m3" class="ltx_Math" alttext="0.8" display="inline" intent=":literal"><semantics><mn>0.8</mn><annotation encoding="application/x-tex">0.8</annotation></semantics></math>, then either (i) accept the first sample whose output passes the available verifier (<em id="S2.SS2.p1.3.1" class="ltx_emph ltx_font_italic">oracle pass@N</em>), or (ii) take the majority-voted answer among extracted final answers (<em id="S2.SS2.p1.3.2" class="ltx_emph ltx_font_italic">self-consistency</em>, no oracle required). We report both: oracle gives the upper bound, self-consistency the deployable lower bound.</p>
+</div>
+</section>
+<section id="S2.SS3" class="ltx_subsection">
+<h3 class="ltx_title ltx_font_bold ltx_title_subsection">Auto-difficulty curriculum (math)</h3>
+
+<div id="S2.SS3.p1" class="ltx_para">
+<p id="S2.SS3.p1.1" class="ltx_p">Vanilla self-bootstrap fails on math because self-generated arithmetic does not match GSM8K’s multi-step structure. We add an auto-difficulty curriculum: problems the model solves greedily are passed through an <span id="S2.SS3.p1.1.1" class="ltx_text ltx_font_typewriter">amplify</span> prompt (“rewrite requiring one more step”); problems where all attempts fail are passed through a <span id="S2.SS3.p1.1.2" class="ltx_text ltx_font_typewriter">simplify</span> prompt. The pool drifts toward the model’s edge of competence.</p>
+</div>
+</section>
+</section>
+<section id="S3" class="ltx_section">
+<h2 class="ltx_title ltx_font_bold ltx_title_section" style="font-size:120%;">Experiments</h2>
+
+<div id="S3.p1" class="ltx_para">
+<p id="S3.p1.2" class="ltx_p">We report results from 30+ unique model<math id="S3.p1.1.m1" class="ltx_Math" alttext="\times" display="inline" intent=":literal"><semantics><mo>×</mo><annotation encoding="application/x-tex">\times</annotation></semantics></math>benchmark experimental configurations across nine base models, four benchmarks (HumanEval, HumanEval+, MBPP-sanitized, MATH-500, AIME, BCB-Hard, GSM8K), four recipe variants (single-pair, multi-pair, auto-curriculum, self-correction), and TTS scaling sweeps up to <math id="S3.p1.2.m2" class="ltx_Math" alttext="N=64" display="inline" intent=":literal"><semantics><mrow><mi>N</mi><mo>=</mo><mn>64</mn></mrow><annotation encoding="application/x-tex">N=64</annotation></semantics></math>. All artifacts (94 <span id="S3.p1.2.1" class="ltx_text ltx_font_typewriter">result.json</span> files, mined pairs, adapter weights, evaluation logs) and a paper-claim-to-command reproduction guide are released at <a href="https://github.com/ranausmanai/tinyforge-zero" title="" class="ltx_ref ltx_url ltx_font_typewriter">https://github.com/ranausmanai/tinyforge-zero</a>.</p>
+</div>
+<section id="S3.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_font_bold ltx_title_subsection">Setup</h3>
+
+<div id="S3.SS1.p1" class="ltx_para">
+<p id="S3.SS1.p1.1" class="ltx_p"><span id="S3.SS1.p1.1.1" class="ltx_text ltx_font_bold">Models.</span> <span id="S3.SS1.p1.1.2" class="ltx_text ltx_font_typewriter">Qwen2.5-{3B,7B,14B,72B}-Base</span>, <span id="S3.SS1.p1.1.3" class="ltx_text ltx_font_typewriter">Qwen3-{1.7B,4B,8B,14B}-Base</span>, <span id="S3.SS1.p1.1.4" class="ltx_text ltx_font_typewriter">Qwen2.5-Coder-7B-Base</span>, <span id="S3.SS1.p1.1.5" class="ltx_text ltx_font_typewriter">Llama-3.2-3B-Base</span> (via <span id="S3.SS1.p1.1.6" class="ltx_text ltx_font_typewriter">unsloth/Llama-3.2-3B</span> mirror), and <span id="S3.SS1.p1.1.7" class="ltx_text ltx_font_typewriter">OLMo-2-7B-Base</span>.</p>
+</div>
+<div id="S3.SS1.p2" class="ltx_para">
+<p id="S3.SS1.p2.1" class="ltx_p"><span id="S3.SS1.p2.1.1" class="ltx_text ltx_font_bold">Hardware.</span> All experiments use single-GPU consumer-rentable instances: RTX A6000 (48 GB) at $0.49/hr, RTX 6000 Ada (48 GB) at $0.85/hr, RTX 4000 Ada (20 GB) at $0.30/hr, and H100 (80 GB) at $3/hr. Total spend across all reported experiments: under $50.</p>
+</div>
+<div id="S3.SS1.p3" class="ltx_para">
+<p id="S3.SS1.p3.2" class="ltx_p"><span id="S3.SS1.p3.2.1" class="ltx_text ltx_font_bold">Evaluation.</span> HumanEval&nbsp;<cite class="ltx_cite ltx_citemacro_cite">[<a href="https://services.arxiv.org/html/submission/7575637/view#bib.bib8" title="" class="ltx_ref">8</a>]</cite> pass@1 at <math id="S3.SS1.p3.1.m1" class="ltx_Math" alttext="T=0" display="inline" intent=":literal"><semantics><mrow><mi>T</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">T=0</annotation></semantics></math> for greedy; pass@<math id="S3.SS1.p3.2.m2" class="ltx_Math" alttext="N" display="inline" intent=":literal"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math> with first-passing-sample selection for TTS. HumanEval+&nbsp;<cite class="ltx_cite ltx_citemacro_cite">[<a href="https://services.arxiv.org/html/submission/7575637/view#bib.bib10" title="" class="ltx_ref">10</a>]</cite> for contamination-resistance. MATH-500&nbsp;<cite class="ltx_cite ltx_citemacro_cite">[<a href="https://services.arxiv.org/html/submission/7575637/view#bib.bib13" title="" class="ltx_ref">13</a>]</cite> for competition math. AIME (90 problems via <span id="S3.SS1.p3.2.2" class="ltx_text ltx_font_typewriter">AI-MO/aimo-validation-aime</span>) for Olympiad. MBPP&nbsp;<cite class="ltx_cite ltx_citemacro_cite">[<a href="https://services.arxiv.org/html/submission/7575637/view#bib.bib11" title="" class="ltx_ref">11</a>]</cite> sanitized for additional code coverage. All verification via sandboxed subprocess with 10s timeout.</p>
+</div>
+<div id="S3.SS1.p4" class="ltx_para">
+<p id="S3.SS1.p4.4" class="ltx_p"><span id="S3.SS1.p4.4.1" class="ltx_text ltx_font_bold">vLLM acceleration.</span> On H100 (driver 570+), <span id="S3.SS1.p4.4.2" class="ltx_text ltx_font_typewriter">vllm 0.8.5</span>/<span id="S3.SS1.p4.4.3" class="ltx_text ltx_font_typewriter">torch 2.6</span>/<span id="S3.SS1.p4.4.4" class="ltx_text ltx_font_typewriter">transformers 4.51.3</span> provides <math id="S3.SS1.p4.1.m1" class="ltx_Math" alttext="\sim" display="inline" intent=":literal"><semantics><mo>∼</mo><annotation encoding="application/x-tex">\sim</annotation></semantics></math>50<math id="S3.SS1.p4.2.m2" class="ltx_Math" alttext="\times" display="inline" intent=":literal"><semantics><mo>×</mo><annotation encoding="application/x-tex">\times</annotation></semantics></math> throughput over HF Transformers, enabling best-of-<math id="S3.SS1.p4.3.m3" class="ltx_Math" alttext="N" display="inline" intent=":literal"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math> at large <math id="S3.SS1.p4.4.m4" class="ltx_Math" alttext="N" display="inline" intent=":literal"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math> to complete in seconds. On RTX 4000 Ada, the same stack works for models up to 4B parameters.</p>
+</div>
+</section>
+<section id="S3.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_font_bold ltx_title_subsection">Recipe alone: HumanEval and HumanEval+</h3>
+
+<div id="S3.SS2.p1" class="ltx_para">
+<p id="S3.SS2.p1.1" class="ltx_p">Table&nbsp;<a href="https://services.arxiv.org/html/submission/7575637/view#S3.T1" title="Table 1 ‣ Recipe alone: HumanEval and HumanEval+ ‣ Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_tag">1</span></a> summarizes recipe-only results.</p>
+</div>
+<figure id="S3.T1" class="ltx_table">
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_table"><span id="S3.T1.7.1.1" class="ltx_text" style="font-size:90%;">Table 1</span>: </span><span id="S3.T1.8.2" class="ltx_text" style="font-size:90%;">HumanEval pass@1 with self-bootstrap recipe. Multi-seed where indicated (mean / range). HE+ = HumanEval+.</span></figcaption>
+<table id="S3.T1.5" class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr id="S3.T1.1.1" class="ltx_tr">
+<th id="S3.T1.1.1.2" class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_th_row ltx_border_tt"><span id="S3.T1.1.1.2.1" class="ltx_text" style="font-size:90%;">Model</span></th>
+<th id="S3.T1.1.1.3" class="ltx_td ltx_align_right ltx_th ltx_th_column ltx_th_row ltx_border_tt"><span id="S3.T1.1.1.3.1" class="ltx_text" style="font-size:90%;">Pairs</span></th>
+<th id="S3.T1.1.1.4" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_tt"><span id="S3.T1.1.1.4.1" class="ltx_text" style="font-size:90%;">Base (%)</span></th>
+<th id="S3.T1.1.1.5" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_tt"><span id="S3.T1.1.1.5.1" class="ltx_text" style="font-size:90%;">Recipe (%)</span></th>
+<th id="S3.T1.1.1.1" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_tt">
+<math id="S3.T1.1.1.1.m1" class="ltx_Math" alttext="\Delta" display="inline" intent=":literal"><semantics><mi mathsize="0.900em" mathvariant="normal">Δ</mi><annotation encoding="application/x-tex">\Delta</annotation></semantics></math><span id="S3.T1.1.1.1.1" class="ltx_text" style="font-size:90%;">pp</span>
+</th>
+<th id="S3.T1.1.1.6" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_tt"><span id="S3.T1.1.1.6.1" class="ltx_text" style="font-size:90%;">HE+ (%)</span></th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr id="S3.T1.5.6.1" class="ltx_tr">
+<th id="S3.T1.5.6.1.1" class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t"><span id="S3.T1.5.6.1.1.1" class="ltx_text" style="font-size:90%;">Qwen2.5-7B-Base (3 seeds)</span></th>
+<th id="S3.T1.5.6.1.2" class="ltx_td ltx_align_right ltx_th ltx_th_row ltx_border_t"><span id="S3.T1.5.6.1.2.1" class="ltx_text" style="font-size:90%;">21</span></th>
+<td id="S3.T1.5.6.1.3" class="ltx_td ltx_align_center ltx_border_t"><span id="S3.T1.5.6.1.3.1" class="ltx_text" style="font-size:90%;">15.2</span></td>
+<td id="S3.T1.5.6.1.4" class="ltx_td ltx_align_center ltx_border_t"><span id="S3.T1.5.6.1.4.1" class="ltx_text" style="font-size:90%;">52.4–57.9 (55.3)</span></td>
+<td id="S3.T1.5.6.1.5" class="ltx_td ltx_align_center ltx_border_t"><span id="S3.T1.5.6.1.5.1" class="ltx_text" style="font-size:90%;">+40.1</span></td>
+<td id="S3.T1.5.6.1.6" class="ltx_td ltx_align_center ltx_border_t"><span id="S3.T1.5.6.1.6.1" class="ltx_text" style="font-size:90%;">—</span></td>
+</tr>
+<tr id="S3.T1.5.7.2" class="ltx_tr">
+<th id="S3.T1.5.7.2.1" class="ltx_td ltx_align_left ltx_th ltx_th_row"><span id="S3.T1.5.7.2.1.1" class="ltx_text" style="font-size:90%;">Qwen2.5-7B-Base (3 seeds)</span></th>
+<th id="S3.T1.5.7.2.2" class="ltx_td ltx_align_right ltx_th ltx_th_row"><span id="S3.T1.5.7.2.2.1" class="ltx_text" style="font-size:90%;">40</span></th>
+<td id="S3.T1.5.7.2.3" class="ltx_td ltx_align_center"><span id="S3.T1.5.7.2.3.1" class="ltx_text" style="font-size:90%;">15.2</span></td>
+<td id="S3.T1.5.7.2.4" class="ltx_td ltx_align_center"><span id="S3.T1.5.7.2.4.1" class="ltx_text" style="font-size:90%;">61.0–68.3 (64.2)</span></td>
+<td id="S3.T1.5.7.2.5" class="ltx_td ltx_align_center"><span id="S3.T1.5.7.2.5.1" class="ltx_text" style="font-size:90%;">+49.0</span></td>
+<td id="S3.T1.5.7.2.6" class="ltx_td ltx_align_center"><span id="S3.T1.5.7.2.6.1" class="ltx_text" style="font-size:90%;">—</span></td>
+</tr>
+<tr id="S3.T1.5.8.3" class="ltx_tr">
+<th id="S3.T1.5.8.3.1" class="ltx_td ltx_align_left ltx_th ltx_th_row"><span id="S3.T1.5.8.3.1.1" class="ltx_text" style="font-size:90%;">Qwen2.5-14B-Base (warmup)</span></th>
+<th id="S3.T1.5.8.3.2" class="ltx_td ltx_align_right ltx_th ltx_th_row"><span id="S3.T1.5.8.3.2.1" class="ltx_text" style="font-size:90%;">40</span></th>
+<td id="S3.T1.5.8.3.3" class="ltx_td ltx_align_center"><span id="S3.T1.5.8.3.3.1" class="ltx_text" style="font-size:90%;">26.8</span></td>
+<td id="S3.T1.5.8.3.4" class="ltx_td ltx_align_center"><span id="S3.T1.5.8.3.4.1" class="ltx_text" style="font-size:90%;">78.0</span></td>
+<td id="S3.T1.5.8.3.5" class="ltx_td ltx_align_center"><span id="S3.T1.5.8.3.5.1" class="ltx_text" style="font-size:90%;">+51.2</span></td>
+<td id="S3.T1.5.8.3.6" class="ltx_td ltx_align_center"><span id="S3.T1.5.8.3.6.1" class="ltx_text" style="font-size:90%;">—</span></td>
+</tr>
+<tr id="S3.T1.5.9.4" class="ltx_tr">
+<th id="S3.T1.5.9.4.1" class="ltx_td ltx_align_left ltx_th ltx_th_row"><span id="S3.T1.5.9.4.1.1" class="ltx_text" style="font-size:90%;">Qwen2.5-14B-Base (multi-pair)</span></th>
+<th id="S3.T1.5.9.4.2" class="ltx_td ltx_align_right ltx_th ltx_th_row"><span id="S3.T1.5.9.4.2.1" class="ltx_text" style="font-size:90%;">100</span></th>
+<td id="S3.T1.5.9.4.3" class="ltx_td ltx_align_center"><span id="S3.T1.5.9.4.3.1" class="ltx_text" style="font-size:90%;">26.8</span></td>
+<td id="S3.T1.5.9.4.4" class="ltx_td ltx_align_center"><span id="S3.T1.5.9.4.4.1" class="ltx_text ltx_font_bold" style="font-size:90%;">79.9<sup id="S3.T1.5.9.4.4.1.1" class="ltx_sup"><span id="S3.T1.5.9.4.4.1.1.1" class="ltx_text ltx_font_medium">a</span></sup></span></td>
+<td id="S3.T1.5.9.4.5" class="ltx_td ltx_align_center"><span id="S3.T1.5.9.4.5.1" class="ltx_text ltx_font_bold" style="font-size:90%;">+53.0</span></td>
+<td id="S3.T1.5.9.4.6" class="ltx_td ltx_align_center"><span id="S3.T1.5.9.4.6.1" class="ltx_text ltx_font_bold" style="font-size:90%;">74.4</span></td>
+</tr>
+<tr id="S3.T1.2.2" class="ltx_tr">
+<th id="S3.T1.2.2.2" class="ltx_td ltx_align_left ltx_th ltx_th_row"><span id="S3.T1.2.2.2.1" class="ltx_text" style="font-size:90%;">Qwen2.5-72B-Base</span></th>
+<th id="S3.T1.2.2.3" class="ltx_td ltx_align_right ltx_th ltx_th_row"><span id="S3.T1.2.2.3.1" class="ltx_text" style="font-size:90%;">10</span></th>
+<td id="S3.T1.2.2.4" class="ltx_td ltx_align_center"><span id="S3.T1.2.2.4.1" class="ltx_text" style="font-size:90%;">50.6</span></td>
+<td id="S3.T1.2.2.5" class="ltx_td ltx_align_center"><span id="S3.T1.2.2.5.1" class="ltx_text" style="font-size:90%;">44.5</span></td>
+<td id="S3.T1.2.2.1" class="ltx_td ltx_align_center"><math id="S3.T1.2.2.1.m1" class="ltx_Math" alttext="-6.1" display="inline" intent=":literal"><semantics><mrow><mo mathsize="0.900em">−</mo><mn mathsize="0.900em">6.1</mn></mrow><annotation encoding="application/x-tex">-6.1</annotation></semantics></math></td>
+<td id="S3.T1.2.2.6" class="ltx_td ltx_align_center"><span id="S3.T1.2.2.6.1" class="ltx_text" style="font-size:90%;">—</span></td>
+</tr>
+<tr id="S3.T1.5.10.5" class="ltx_tr">
+<th id="S3.T1.5.10.5.1" class="ltx_td ltx_align_left ltx_th ltx_th_row"><span id="S3.T1.5.10.5.1.1" class="ltx_text" style="font-size:90%;">Qwen2.5-Coder-7B-Base</span></th>
+<th id="S3.T1.5.10.5.2" class="ltx_td ltx_align_right ltx_th ltx_th_row"><span id="S3.T1.5.10.5.2.1" class="ltx_text" style="font-size:90%;">32</span></th>
+<td id="S3.T1.5.10.5.3" class="ltx_td ltx_align_center"><span id="S3.T1.5.10.5.3.1" class="ltx_text" style="font-size:90%;">50.6</span></td>
+<td id="S3.T1.5.10.5.4" class="ltx_td ltx_align_center"><span id="S3.T1.5.10.5.4.1" class="ltx_text" style="font-size:90%;">53.0</span></td>
+<td id="S3.T1.5.10.5.5" class="ltx_td ltx_align_center"><span id="S3.T1.5.10.5.5.1" class="ltx_text" style="font-size:90%;">+2.4</span></td>
+<td id="S3.T1.5.10.5.6" class="ltx_td ltx_align_center"><span id="S3.T1.5.10.5.6.1" class="ltx_text" style="font-size:90%;">—</span></td>
+</tr>
+<tr id="S3.T1.5.11.6" class="ltx_tr">
+<th id="S3.T1.5.11.6.1" class="ltx_td ltx_align_left ltx_th ltx_th_row"><span id="S3.T1.5.11.6.1.1" class="ltx_text" style="font-size:90%;">Qwen3-4B-Base (chat fmt)</span></th>
+<th id="S3.T1.5.11.6.2" class="ltx_td ltx_align_right ltx_th ltx_th_row"><span id="S3.T1.5.11.6.2.1" class="ltx_text" style="font-size:90%;">40</span></th>
+<td id="S3.T1.5.11.6.3" class="ltx_td ltx_align_center"><span id="S3.T1.5.11.6.3.1" class="ltx_text" style="font-size:90%;">48.2</span></td>
+<td id="S3.T1.5.11.6.4" class="ltx_td ltx_align_center"><span id="S3.T1.5.11.6.4.1" class="ltx_text" style="font-size:90%;">64.6</span></td>
+<td id="S3.T1.5.11.6.5" class="ltx_td ltx_align_center"><span id="S3.T1.5.11.6.5.1" class="ltx_text" style="font-size:90%;">+16.5</span></td>
+<td id="S3.T1.5.11.6.6" class="ltx_td ltx_align_center"><span id="S3.T1.5.11.6.6.1" class="ltx_text" style="font-size:90%;">—</span></td>
+</tr>
+<tr id="S3.T1.3.3" class="ltx_tr">
+<th id="S3.T1.3.3.2" class="ltx_td ltx_align_left ltx_th ltx_th_row"><span id="S3.T1.3.3.2.1" class="ltx_text" style="font-size:90%;">Qwen3-8B-Base</span></th>
+<th id="S3.T1.3.3.3" class="ltx_td ltx_align_right ltx_th ltx_th_row"><span id="S3.T1.3.3.3.1" class="ltx_text" style="font-size:90%;">40</span></th>
+<td id="S3.T1.3.3.4" class="ltx_td ltx_align_center"><span id="S3.T1.3.3.4.1" class="ltx_text" style="font-size:90%;">79.9</span></td>
+<td id="S3.T1.3.3.5" class="ltx_td ltx_align_center"><span id="S3.T1.3.3.5.1" class="ltx_text" style="font-size:90%;">72.0</span></td>
+<td id="S3.T1.3.3.1" class="ltx_td ltx_align_center"><math id="S3.T1.3.3.1.m1" class="ltx_Math" alttext="-7.9" display="inline" intent=":literal"><semantics><mrow><mo mathsize="0.900em">−</mo><mn mathsize="0.900em">7.9</mn></mrow><annotation encoding="application/x-tex">-7.9</annotation></semantics></math></td>
+<td id="S3.T1.3.3.6" class="ltx_td ltx_align_center"><span id="S3.T1.3.3.6.1" class="ltx_text" style="font-size:90%;">—</span></td>
+</tr>
+<tr id="S3.T1.4.4" class="ltx_tr">
+<th id="S3.T1.4.4.2" class="ltx_td ltx_align_left ltx_th ltx_th_row"><span id="S3.T1.4.4.2.1" class="ltx_text" style="font-size:90%;">Qwen3-14B-Base</span></th>
+<th id="S3.T1.4.4.3" class="ltx_td ltx_align_right ltx_th ltx_th_row"><span id="S3.T1.4.4.3.1" class="ltx_text" style="font-size:90%;">40</span></th>
+<td id="S3.T1.4.4.4" class="ltx_td ltx_align_center"><span id="S3.T1.4.4.4.1" class="ltx_text" style="font-size:90%;">87.2</span></td>
+<td id="S3.T1.4.4.5" class="ltx_td ltx_align_center"><span id="S3.T1.4.4.5.1" class="ltx_text" style="font-size:90%;">85.4</span></td>
+<td id="S3.T1.4.4.1" class="ltx_td ltx_align_center"><math id="S3.T1.4.4.1.m1" class="ltx_Math" alttext="-1.8" display="inline" intent=":literal"><semantics><mrow><mo mathsize="0.900em">−</mo><mn mathsize="0.900em">1.8</mn></mrow><annotation encoding="application/x-tex">-1.8</annotation></semantics></math></td>
+<td id="S3.T1.4.4.6" class="ltx_td ltx_align_center"><span id="S3.T1.4.4.6.1" class="ltx_text" style="font-size:90%;">—</span></td>
+</tr>
+<tr id="S3.T1.5.12.7" class="ltx_tr">
+<th id="S3.T1.5.12.7.1" class="ltx_td ltx_align_left ltx_th ltx_th_row">
+<span id="S3.T1.5.12.7.1.1" class="ltx_text" style="font-size:90%;">Llama-3.2-3B (own-mined, 32 pairs)</span><span id="footnotex1" class="ltx_note ltx_role_footnote"><sup class="ltx_note_mark">1</sup><span class="ltx_note_outer"><span class="ltx_note_content"><sup class="ltx_note_mark">1</sup><span class="ltx_tag ltx_tag_note">1</span><span id="footnotex1.1" class="ltx_text" style="font-size:90%;">Llama-3.2-3B numbers reported with raw-completion prompt format. A separate evaluation with the H100 vLLM pipeline (different prompt format) reads 39/164</span><math id="footnotex2.m1a" class="ltx_Math" alttext="\to" display="inline" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\to</annotation></semantics></math><span id="footnotex1.2" class="ltx_text" style="font-size:90%;">43/164 on HumanEval — same lift sign, different absolute level.</span></span></span></span>
+</th>
+<th id="S3.T1.5.12.7.2" class="ltx_td ltx_align_right ltx_th ltx_th_row"><span id="S3.T1.5.12.7.2.1" class="ltx_text" style="font-size:90%;">32</span></th>
+<td id="S3.T1.5.12.7.3" class="ltx_td ltx_align_center"><span id="S3.T1.5.12.7.3.1" class="ltx_text" style="font-size:90%;">23.8</span></td>
+<td id="S3.T1.5.12.7.4" class="ltx_td ltx_align_center"><span id="S3.T1.5.12.7.4.1" class="ltx_text" style="font-size:90%;">26.2</span></td>
+<td id="S3.T1.5.12.7.5" class="ltx_td ltx_align_center"><span id="S3.T1.5.12.7.5.1" class="ltx_text" style="font-size:90%;">+2.4</span></td>
+<td id="S3.T1.5.12.7.6" class="ltx_td ltx_align_center"><span id="S3.T1.5.12.7.6.1" class="ltx_text" style="font-size:90%;">—</span></td>
+</tr>
+<tr id="S3.T1.5.5" class="ltx_tr">
+<th id="S3.T1.5.5.2" class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_bb"><span id="S3.T1.5.5.2.1" class="ltx_text" style="font-size:90%;">OLMo-2-7B-Base</span></th>
+<th id="S3.T1.5.5.3" class="ltx_td ltx_align_right ltx_th ltx_th_row ltx_border_bb"><span id="S3.T1.5.5.3.1" class="ltx_text" style="font-size:90%;">32</span></th>
+<td id="S3.T1.5.5.4" class="ltx_td ltx_align_center ltx_border_bb"><span id="S3.T1.5.5.4.1" class="ltx_text" style="font-size:90%;">3.0</span></td>
+<td id="S3.T1.5.5.5" class="ltx_td ltx_align_center ltx_border_bb"><span id="S3.T1.5.5.5.1" class="ltx_text" style="font-size:90%;">1.8</span></td>
+<td id="S3.T1.5.5.1" class="ltx_td ltx_align_center ltx_border_bb"><math id="S3.T1.5.5.1.m1" class="ltx_Math" alttext="-1.2" display="inline" intent=":literal"><semantics><mrow><mo mathsize="0.900em">−</mo><mn mathsize="0.900em">1.2</mn></mrow><annotation encoding="application/x-tex">-1.2</annotation></semantics></math></td>
+<td id="S3.T1.5.5.6" class="ltx_td ltx_align_center ltx_border_bb"><span id="S3.T1.5.5.6.1" class="ltx_text" style="font-size:90%;">—</span></td>
+</tr>
+</tbody>
+</table>
+</figure>
+<div id="S3.SS2.p2" class="ltx_para ltx_noindent">
+<p id="S3.SS2.p2.1" class="ltx_p"><sup id="S3.SS2.p2.1.1" class="ltx_sup">a</sup>Chat-template eval (131/164). The same adapter under the multi-pair run’s eval reads 132/164 (80.5%); both rounds to 80%. We use the chat-template numbers (where both base 44/164 and adapter 131/164 are measured) for the same-format <math id="S3.SS2.p2.1.m1" class="ltx_Math" alttext="\Delta" display="inline" intent=":literal"><semantics><mi mathvariant="normal">Δ</mi><annotation encoding="application/x-tex">\Delta</annotation></semantics></math>pp.</p>
+</div>
+<section id="S3.SS2.SSS0.Px1" class="ltx_paragraph">
+<h4 class="ltx_title ltx_title_paragraph">Headline.</h4>
+
+<div id="S3.SS2.SSS0.Px1.p1" class="ltx_para">
+<p id="S3.SS2.SSS0.Px1.p1.4" class="ltx_p">The 14B multi-pair adapter reaches <math id="S3.SS2.SSS0.Px1.p1.1.m1" class="ltx_Math" alttext="\approx" display="inline" intent=":literal"><semantics><mo>≈</mo><annotation encoding="application/x-tex">\approx</annotation></semantics></math>80% on HumanEval (131/164 = 79.9% in chat-template eval; 132/164 = 80.5% in the multi-pair run’s eval) — approaching <span id="S3.SS2.SSS0.Px1.p1.4.1" class="ltx_text ltx_font_typewriter">Qwen2.5-14B-Instruct</span> (83.5%) with no human-written training data. On HumanEval+, our 74.4% (122/164) essentially matches Instruct (estimated 75–77%) — a contamination-resistant validation. The 6.1pp public<math id="S3.SS2.SSS0.Px1.p1.2.m2" class="ltx_Math" alttext="\rightarrow" display="inline" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math>plus drop is in the range of strong instruct models (5–8pp typical) rather than the 15–25pp drop seen for memorization. The best 7B single seed lifts <span id="S3.SS2.SSS0.Px1.p1.4.2" class="ltx_text ltx_font_typewriter">Qwen2.5-7B-Base</span> from 25/164 to 112/164 (<math id="S3.SS2.SSS0.Px1.p1.3.m3" class="ltx_Math" alttext="+87" display="inline" intent=":literal"><semantics><mrow><mo>+</mo><mn>87</mn></mrow><annotation encoding="application/x-tex">+87</annotation></semantics></math> problems, <math id="S3.SS2.SSS0.Px1.p1.4.m4" class="ltx_Math" alttext="+53.0" display="inline" intent=":literal"><semantics><mrow><mo>+</mo><mn>53.0</mn></mrow><annotation encoding="application/x-tex">+53.0</annotation></semantics></math>pp) with 40 self-mined pairs.</p>
+</div>
+</section>
+<section id="S3.SS2.SSS0.Px2" class="ltx_paragraph">
+<h4 class="ltx_title ltx_title_paragraph">Generation effects.</h4>
+
+<div id="S3.SS2.SSS0.Px2.p1" class="ltx_para">
+<p id="S3.SS2.SSS0.Px2.p1.1" class="ltx_p">The recipe gives large lifts on Qwen2.5 (older) bases with low greedy pass rates and substantial headroom, modest lifts on Qwen3-4B, and <em id="S3.SS2.SSS0.Px2.p1.1.1" class="ltx_emph ltx_font_italic">regressions</em> on saturated modern bases (Qwen3-8B/14B, Qwen2.5-72B). These regressions are not artifacts: they reflect the recipe’s design (mining at-edge requires the base to be wrong sometimes).</p>
+</div>
+<figure id="S3.F1" class="ltx_figure"><img src="./How Far Can an Open Base Model Self-Improve_ Recipes, Limits, and Test-Time Synergy_files/x1.png" id="S3.F1.g1" class="ltx_graphics ltx_centering ltx_img_landscape" width="788" height="469" alt="Refer to caption">
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure"><span id="S3.F1.3.1.1" class="ltx_text" style="font-size:90%;">Figure 1</span>: </span><span id="S3.F1.4.2" class="ltx_text ltx_font_bold" style="font-size:90%;">Recipe lift vs. base capability.<span id="S3.F1.4.2.1" class="ltx_text ltx_font_medium"> Scatter of recipe lift (percentage points) against base HumanEval pass@1, across nine base models from four families. The recipe captures the most lift on under-trained bases (upper-left: Qwen2.5-7B/14B); transitions to modest lift on Qwen3-4B; and fails (negative lift, lower-right) on saturated bases (Qwen2.5-72B, Qwen3-8B/14B). Outliers: OLMo-2-7B (too weak to mine well-formed pairs), Llama-3.2-3B (cross-architecture limit), Qwen2.5-Coder-7B (already code-specialized at base). Dashed line: linear fit on Qwen-family points.</span></span></figcaption>
+</figure>
+</section>
+</section>
+<section id="S3.SS3" class="ltx_subsection">
+<h3 class="ltx_title ltx_font_bold ltx_title_subsection">Test-time sampling (TTS) alone</h3>
+
+<div id="S3.SS3.p1" class="ltx_para">
+<p id="S3.SS3.p1.2" class="ltx_p">Table&nbsp;<a href="https://services.arxiv.org/html/submission/7575637/view#S3.T2" title="Table 2 ‣ Test-time sampling (TTS) alone ‣ Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_tag">2</span></a> reports oracle pass@<math id="S3.SS3.p1.1.m1" class="ltx_Math" alttext="N" display="inline" intent=":literal"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math> for several models without any training. Best-of-8 lifts modern bases dramatically; best-of-32 pushes further; AIME shows continued scaling up to <math id="S3.SS3.p1.2.m2" class="ltx_Math" alttext="N=64" display="inline" intent=":literal"><semantics><mrow><mi>N</mi><mo>=</mo><mn>64</mn></mrow><annotation encoding="application/x-tex">N=64</annotation></semantics></math>.</p>
+</div>
+<figure id="S3.T2" class="ltx_table">
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_table"><span id="S3.T2.5.2.1" class="ltx_text" style="font-size:90%;">Table 2</span>: </span><span id="S3.T2.2.1" class="ltx_text" style="font-size:90%;">Oracle pass@<math id="S3.T2.2.1.m1" class="ltx_Math" alttext="N" display="inline" intent=":literal"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math> on base models (no training). <em id="S3.T2.2.1.1" class="ltx_emph ltx_font_italic">Selection requires test cases as verifier — this is the upper bound; deployable numbers via self-consistency are lower (Section&nbsp;<a href="https://services.arxiv.org/html/submission/7575637/view#S3.SS4" title="Self-consistency (deployable TTS, no oracle) ‣ Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_tag">3.4</span></a>).</em></span></figcaption>
+<table id="S3.T2.6" class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr id="S3.T2.6.1.1" class="ltx_tr">
+<th id="S3.T2.6.1.1.1" class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_th_row ltx_border_tt"><span id="S3.T2.6.1.1.1.1" class="ltx_text" style="font-size:90%;">Model</span></th>
+<th id="S3.T2.6.1.1.2" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_tt"><span id="S3.T2.6.1.1.2.1" class="ltx_text" style="font-size:90%;">Benchmark</span></th>
+<th id="S3.T2.6.1.1.3" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_tt"><span id="S3.T2.6.1.1.3.1" class="ltx_text" style="font-size:90%;">pass@1</span></th>
+<th id="S3.T2.6.1.1.4" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_tt"><span id="S3.T2.6.1.1.4.1" class="ltx_text" style="font-size:90%;">pass@2</span></th>
+<th id="S3.T2.6.1.1.5" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_tt"><span id="S3.T2.6.1.1.5.1" class="ltx_text" style="font-size:90%;">pass@4</span></th>
+<th id="S3.T2.6.1.1.6" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_tt"><span id="S3.T2.6.1.1.6.1" class="ltx_text" style="font-size:90%;">pass@8</span></th>
+<th id="S3.T2.6.1.1.7" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_tt"><span id="S3.T2.6.1.1.7.1" class="ltx_text" style="font-size:90%;">pass@16</span></th>
+<th id="S3.T2.6.1.1.8" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_tt"><span id="S3.T2.6.1.1.8.1" class="ltx_text" style="font-size:90%;">pass@32</span></th>
+<th id="S3.T2.6.1.1.9" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_tt"><span id="S3.T2.6.1.1.9.1" class="ltx_text" style="font-size:90%;">pass@64</span></th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr id="S3.T2.6.2.1" class="ltx_tr">
+<th id="S3.T2.6.2.1.1" class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t"><span id="S3.T2.6.2.1.1.1" class="ltx_text" style="font-size:90%;">Qwen2.5-3B</span></th>
+<td id="S3.T2.6.2.1.2" class="ltx_td ltx_align_center ltx_border_t"><span id="S3.T2.6.2.1.2.1" class="ltx_text" style="font-size:90%;">HumanEval</span></td>
+<td id="S3.T2.6.2.1.3" class="ltx_td ltx_align_center ltx_border_t"><span id="S3.T2.6.2.1.3.1" class="ltx_text" style="font-size:90%;">22.6</span></td>
+<td id="S3.T2.6.2.1.4" class="ltx_td ltx_align_center ltx_border_t"><span id="S3.T2.6.2.1.4.1" class="ltx_text" style="font-size:90%;">40.2</span></td>
+<td id="S3.T2.6.2.1.5" class="ltx_td ltx_align_center ltx_border_t"><span id="S3.T2.6.2.1.5.1" class="ltx_text" style="font-size:90%;">56.1</span></td>
+<td id="S3.T2.6.2.1.6" class="ltx_td ltx_align_center ltx_border_t"><span id="S3.T2.6.2.1.6.1" class="ltx_text" style="font-size:90%;">70.7</span></td>
+<td id="S3.T2.6.2.1.7" class="ltx_td ltx_align_center ltx_border_t"><span id="S3.T2.6.2.1.7.1" class="ltx_text" style="font-size:90%;">78.0</span></td>
+<td id="S3.T2.6.2.1.8" class="ltx_td ltx_align_center ltx_border_t"><span id="S3.T2.6.2.1.8.1" class="ltx_text" style="font-size:90%;">86.0</span></td>
+<td id="S3.T2.6.2.1.9" class="ltx_td ltx_align_center ltx_border_t"><span id="S3.T2.6.2.1.9.1" class="ltx_text" style="font-size:90%;">—</span></td>
+</tr>
+<tr id="S3.T2.6.3.2" class="ltx_tr">
+<th id="S3.T2.6.3.2.1" class="ltx_td ltx_align_left ltx_th ltx_th_row"><span id="S3.T2.6.3.2.1.1" class="ltx_text" style="font-size:90%;">Qwen3-1.7B</span></th>
+<td id="S3.T2.6.3.2.2" class="ltx_td ltx_align_center"><span id="S3.T2.6.3.2.2.1" class="ltx_text" style="font-size:90%;">HumanEval</span></td>
+<td id="S3.T2.6.3.2.3" class="ltx_td ltx_align_center"><span id="S3.T2.6.3.2.3.1" class="ltx_text" style="font-size:90%;">33.5</span></td>
+<td id="S3.T2.6.3.2.4" class="ltx_td ltx_align_center"><span id="S3.T2.6.3.2.4.1" class="ltx_text" style="font-size:90%;">49.4</span></td>
+<td id="S3.T2.6.3.2.5" class="ltx_td ltx_align_center"><span id="S3.T2.6.3.2.5.1" class="ltx_text" style="font-size:90%;">70.7</span></td>
+<td id="S3.T2.6.3.2.6" class="ltx_td ltx_align_center"><span id="S3.T2.6.3.2.6.1" class="ltx_text" style="font-size:90%;">82.3</span></td>
+<td id="S3.T2.6.3.2.7" class="ltx_td ltx_align_center"><span id="S3.T2.6.3.2.7.1" class="ltx_text" style="font-size:90%;">86.0</span></td>
+<td id="S3.T2.6.3.2.8" class="ltx_td ltx_align_center"><span id="S3.T2.6.3.2.8.1" class="ltx_text" style="font-size:90%;">89.6</span></td>
+<td id="S3.T2.6.3.2.9" class="ltx_td ltx_align_center"><span id="S3.T2.6.3.2.9.1" class="ltx_text" style="font-size:90%;">—</span></td>
+</tr>
+<tr id="S3.T2.6.4.3" class="ltx_tr">
+<th id="S3.T2.6.4.3.1" class="ltx_td ltx_align_left ltx_th ltx_th_row"><span id="S3.T2.6.4.3.1.1" class="ltx_text" style="font-size:90%;">Qwen3-4B</span></th>
+<td id="S3.T2.6.4.3.2" class="ltx_td ltx_align_center"><span id="S3.T2.6.4.3.2.1" class="ltx_text" style="font-size:90%;">HumanEval</span></td>
+<td id="S3.T2.6.4.3.3" class="ltx_td ltx_align_center"><span id="S3.T2.6.4.3.3.1" class="ltx_text" style="font-size:90%;">48.2</span></td>
+<td id="S3.T2.6.4.3.4" class="ltx_td ltx_align_center"><span id="S3.T2.6.4.3.4.1" class="ltx_text" style="font-size:90%;">—</span></td>
+<td id="S3.T2.6.4.3.5" class="ltx_td ltx_align_center"><span id="S3.T2.6.4.3.5.1" class="ltx_text" style="font-size:90%;">—</span></td>
+<td id="S3.T2.6.4.3.6" class="ltx_td ltx_align_center"><span id="S3.T2.6.4.3.6.1" class="ltx_text" style="font-size:90%;">92.7</span></td>
+<td id="S3.T2.6.4.3.7" class="ltx_td ltx_align_center"><span id="S3.T2.6.4.3.7.1" class="ltx_text" style="font-size:90%;">—</span></td>
+<td id="S3.T2.6.4.3.8" class="ltx_td ltx_align_center"><span id="S3.T2.6.4.3.8.1" class="ltx_text" style="font-size:90%;">—</span></td>
+<td id="S3.T2.6.4.3.9" class="ltx_td ltx_align_center"><span id="S3.T2.6.4.3.9.1" class="ltx_text" style="font-size:90%;">—</span></td>
+</tr>
+<tr id="S3.T2.6.5.4" class="ltx_tr">
+<th id="S3.T2.6.5.4.1" class="ltx_td ltx_align_left ltx_th ltx_th_row"><span id="S3.T2.6.5.4.1.1" class="ltx_text" style="font-size:90%;">Qwen3-4B</span></th>
+<td id="S3.T2.6.5.4.2" class="ltx_td ltx_align_center"><span id="S3.T2.6.5.4.2.1" class="ltx_text" style="font-size:90%;">HumanEval+</span></td>
+<td id="S3.T2.6.5.4.3" class="ltx_td ltx_align_center"><span id="S3.T2.6.5.4.3.1" class="ltx_text" style="font-size:90%;">44.5</span></td>
+<td id="S3.T2.6.5.4.4" class="ltx_td ltx_align_center"><span id="S3.T2.6.5.4.4.1" class="ltx_text" style="font-size:90%;">—</span></td>
+<td id="S3.T2.6.5.4.5" class="ltx_td ltx_align_center"><span id="S3.T2.6.5.4.5.1" class="ltx_text" style="font-size:90%;">—</span></td>
+<td id="S3.T2.6.5.4.6" class="ltx_td ltx_align_center"><span id="S3.T2.6.5.4.6.1" class="ltx_text" style="font-size:90%;">86.0</span></td>
+<td id="S3.T2.6.5.4.7" class="ltx_td ltx_align_center"><span id="S3.T2.6.5.4.7.1" class="ltx_text" style="font-size:90%;">—</span></td>
+<td id="S3.T2.6.5.4.8" class="ltx_td ltx_align_center"><span id="S3.T2.6.5.4.8.1" class="ltx_text" style="font-size:90%;">—</span></td>
+<td id="S3.T2.6.5.4.9" class="ltx_td ltx_align_center"><span id="S3.T2.6.5.4.9.1" class="ltx_text" style="font-size:90%;">—</span></td>
+</tr>
+<tr id="S3.T2.6.6.5" class="ltx_tr">
+<th id="S3.T2.6.6.5.1" class="ltx_td ltx_align_left ltx_th ltx_th_row"><span id="S3.T2.6.6.5.1.1" class="ltx_text" style="font-size:90%;">Qwen3-8B</span></th>
+<td id="S3.T2.6.6.5.2" class="ltx_td ltx_align_center"><span id="S3.T2.6.6.5.2.1" class="ltx_text" style="font-size:90%;">HumanEval</span></td>
+<td id="S3.T2.6.6.5.3" class="ltx_td ltx_align_center"><span id="S3.T2.6.6.5.3.1" class="ltx_text" style="font-size:90%;">79.9</span></td>
+<td id="S3.T2.6.6.5.4" class="ltx_td ltx_align_center"><span id="S3.T2.6.6.5.4.1" class="ltx_text" style="font-size:90%;">—</span></td>
+<td id="S3.T2.6.6.5.5" class="ltx_td ltx_align_center"><span id="S3.T2.6.6.5.5.1" class="ltx_text" style="font-size:90%;">—</span></td>
+<td id="S3.T2.6.6.5.6" class="ltx_td ltx_align_center"><span id="S3.T2.6.6.5.6.1" class="ltx_text" style="font-size:90%;">92.1</span></td>
+<td id="S3.T2.6.6.5.7" class="ltx_td ltx_align_center"><span id="S3.T2.6.6.5.7.1" class="ltx_text" style="font-size:90%;">—</span></td>
+<td id="S3.T2.6.6.5.8" class="ltx_td ltx_align_center"><span id="S3.T2.6.6.5.8.1" class="ltx_text" style="font-size:90%;">—</span></td>
+<td id="S3.T2.6.6.5.9" class="ltx_td ltx_align_center"><span id="S3.T2.6.6.5.9.1" class="ltx_text" style="font-size:90%;">—</span></td>
+</tr>
+<tr id="S3.T2.6.7.6" class="ltx_tr">
+<th id="S3.T2.6.7.6.1" class="ltx_td ltx_align_left ltx_th ltx_th_row"><span id="S3.T2.6.7.6.1.1" class="ltx_text" style="font-size:90%;">Qwen2.5-3B</span></th>
+<td id="S3.T2.6.7.6.2" class="ltx_td ltx_align_center"><span id="S3.T2.6.7.6.2.1" class="ltx_text" style="font-size:90%;">MATH-500</span></td>
+<td id="S3.T2.6.7.6.3" class="ltx_td ltx_align_center"><span id="S3.T2.6.7.6.3.1" class="ltx_text" style="font-size:90%;">35.0</span></td>
+<td id="S3.T2.6.7.6.4" class="ltx_td ltx_align_center"><span id="S3.T2.6.7.6.4.1" class="ltx_text" style="font-size:90%;">46.5</span></td>
+<td id="S3.T2.6.7.6.5" class="ltx_td ltx_align_center"><span id="S3.T2.6.7.6.5.1" class="ltx_text" style="font-size:90%;">56.0</span></td>
+<td id="S3.T2.6.7.6.6" class="ltx_td ltx_align_center"><span id="S3.T2.6.7.6.6.1" class="ltx_text" style="font-size:90%;">65.0</span></td>
+<td id="S3.T2.6.7.6.7" class="ltx_td ltx_align_center"><span id="S3.T2.6.7.6.7.1" class="ltx_text" style="font-size:90%;">73.0</span></td>
+<td id="S3.T2.6.7.6.8" class="ltx_td ltx_align_center"><span id="S3.T2.6.7.6.8.1" class="ltx_text" style="font-size:90%;">78.5</span></td>
+<td id="S3.T2.6.7.6.9" class="ltx_td ltx_align_center"><span id="S3.T2.6.7.6.9.1" class="ltx_text" style="font-size:90%;">—</span></td>
+</tr>
+<tr id="S3.T2.6.8.7" class="ltx_tr">
+<th id="S3.T2.6.8.7.1" class="ltx_td ltx_align_left ltx_th ltx_th_row"><span id="S3.T2.6.8.7.1.1" class="ltx_text" style="font-size:90%;">Qwen3-1.7B</span></th>
+<td id="S3.T2.6.8.7.2" class="ltx_td ltx_align_center"><span id="S3.T2.6.8.7.2.1" class="ltx_text" style="font-size:90%;">MATH-500</span></td>
+<td id="S3.T2.6.8.7.3" class="ltx_td ltx_align_center"><span id="S3.T2.6.8.7.3.1" class="ltx_text" style="font-size:90%;">38.5</span></td>
+<td id="S3.T2.6.8.7.4" class="ltx_td ltx_align_center"><span id="S3.T2.6.8.7.4.1" class="ltx_text" style="font-size:90%;">49.5</span></td>
+<td id="S3.T2.6.8.7.5" class="ltx_td ltx_align_center"><span id="S3.T2.6.8.7.5.1" class="ltx_text" style="font-size:90%;">60.0</span></td>
+<td id="S3.T2.6.8.7.6" class="ltx_td ltx_align_center"><span id="S3.T2.6.8.7.6.1" class="ltx_text" style="font-size:90%;">67.0</span></td>
+<td id="S3.T2.6.8.7.7" class="ltx_td ltx_align_center"><span id="S3.T2.6.8.7.7.1" class="ltx_text" style="font-size:90%;">75.0</span></td>
+<td id="S3.T2.6.8.7.8" class="ltx_td ltx_align_center"><span id="S3.T2.6.8.7.8.1" class="ltx_text" style="font-size:90%;">81.0</span></td>
+<td id="S3.T2.6.8.7.9" class="ltx_td ltx_align_center"><span id="S3.T2.6.8.7.9.1" class="ltx_text" style="font-size:90%;">—</span></td>
+</tr>
+<tr id="S3.T2.6.9.8" class="ltx_tr">
+<th id="S3.T2.6.9.8.1" class="ltx_td ltx_align_left ltx_th ltx_th_row"><span id="S3.T2.6.9.8.1.1" class="ltx_text" style="font-size:90%;">Qwen3-4B</span></th>
+<td id="S3.T2.6.9.8.2" class="ltx_td ltx_align_center"><span id="S3.T2.6.9.8.2.1" class="ltx_text" style="font-size:90%;">MATH-500</span></td>
+<td id="S3.T2.6.9.8.3" class="ltx_td ltx_align_center"><span id="S3.T2.6.9.8.3.1" class="ltx_text" style="font-size:90%;">60.0</span></td>
+<td id="S3.T2.6.9.8.4" class="ltx_td ltx_align_center"><span id="S3.T2.6.9.8.4.1" class="ltx_text" style="font-size:90%;">—</span></td>
+<td id="S3.T2.6.9.8.5" class="ltx_td ltx_align_center"><span id="S3.T2.6.9.8.5.1" class="ltx_text" style="font-size:90%;">—</span></td>
+<td id="S3.T2.6.9.8.6" class="ltx_td ltx_align_center"><span id="S3.T2.6.9.8.6.1" class="ltx_text" style="font-size:90%;">79.4</span></td>
+<td id="S3.T2.6.9.8.7" class="ltx_td ltx_align_center"><span id="S3.T2.6.9.8.7.1" class="ltx_text" style="font-size:90%;">—</span></td>
+<td id="S3.T2.6.9.8.8" class="ltx_td ltx_align_center"><span id="S3.T2.6.9.8.8.1" class="ltx_text" style="font-size:90%;">—</span></td>
+<td id="S3.T2.6.9.8.9" class="ltx_td ltx_align_center"><span id="S3.T2.6.9.8.9.1" class="ltx_text" style="font-size:90%;">—</span></td>
+</tr>
+<tr id="S3.T2.6.10.9" class="ltx_tr">
+<th id="S3.T2.6.10.9.1" class="ltx_td ltx_align_left ltx_th ltx_th_row"><span id="S3.T2.6.10.9.1.1" class="ltx_text" style="font-size:90%;">Qwen3-8B</span></th>
+<td id="S3.T2.6.10.9.2" class="ltx_td ltx_align_center"><span id="S3.T2.6.10.9.2.1" class="ltx_text" style="font-size:90%;">MATH-500</span></td>
+<td id="S3.T2.6.10.9.3" class="ltx_td ltx_align_center"><span id="S3.T2.6.10.9.3.1" class="ltx_text" style="font-size:90%;">60.2</span></td>
+<td id="S3.T2.6.10.9.4" class="ltx_td ltx_align_center"><span id="S3.T2.6.10.9.4.1" class="ltx_text" style="font-size:90%;">—</span></td>
+<td id="S3.T2.6.10.9.5" class="ltx_td ltx_align_center"><span id="S3.T2.6.10.9.5.1" class="ltx_text" style="font-size:90%;">—</span></td>
+<td id="S3.T2.6.10.9.6" class="ltx_td ltx_align_center"><span id="S3.T2.6.10.9.6.1" class="ltx_text" style="font-size:90%;">81.0</span></td>
+<td id="S3.T2.6.10.9.7" class="ltx_td ltx_align_center"><span id="S3.T2.6.10.9.7.1" class="ltx_text" style="font-size:90%;">—</span></td>
+<td id="S3.T2.6.10.9.8" class="ltx_td ltx_align_center"><span id="S3.T2.6.10.9.8.1" class="ltx_text" style="font-size:90%;">—</span></td>
+<td id="S3.T2.6.10.9.9" class="ltx_td ltx_align_center"><span id="S3.T2.6.10.9.9.1" class="ltx_text" style="font-size:90%;">—</span></td>
+</tr>
+<tr id="S3.T2.6.11.10" class="ltx_tr">
+<th id="S3.T2.6.11.10.1" class="ltx_td ltx_align_left ltx_th ltx_th_row"><span id="S3.T2.6.11.10.1.1" class="ltx_text" style="font-size:90%;">Qwen3-1.7B</span></th>
+<td id="S3.T2.6.11.10.2" class="ltx_td ltx_align_center"><span id="S3.T2.6.11.10.2.1" class="ltx_text" style="font-size:90%;">AIME (n=90)</span></td>
+<td id="S3.T2.6.11.10.3" class="ltx_td ltx_align_center"><span id="S3.T2.6.11.10.3.1" class="ltx_text" style="font-size:90%;">2.2</span></td>
+<td id="S3.T2.6.11.10.4" class="ltx_td ltx_align_center"><span id="S3.T2.6.11.10.4.1" class="ltx_text" style="font-size:90%;">2.2</span></td>
+<td id="S3.T2.6.11.10.5" class="ltx_td ltx_align_center"><span id="S3.T2.6.11.10.5.1" class="ltx_text" style="font-size:90%;">2.2</span></td>
+<td id="S3.T2.6.11.10.6" class="ltx_td ltx_align_center"><span id="S3.T2.6.11.10.6.1" class="ltx_text" style="font-size:90%;">5.6</span></td>
+<td id="S3.T2.6.11.10.7" class="ltx_td ltx_align_center"><span id="S3.T2.6.11.10.7.1" class="ltx_text" style="font-size:90%;">7.8</span></td>
+<td id="S3.T2.6.11.10.8" class="ltx_td ltx_align_center"><span id="S3.T2.6.11.10.8.1" class="ltx_text" style="font-size:90%;">11.1</span></td>
+<td id="S3.T2.6.11.10.9" class="ltx_td ltx_align_center"><span id="S3.T2.6.11.10.9.1" class="ltx_text" style="font-size:90%;">18.9</span></td>
+</tr>
+<tr id="S3.T2.6.12.11" class="ltx_tr">
+<th id="S3.T2.6.12.11.1" class="ltx_td ltx_align_left ltx_th ltx_th_row"><span id="S3.T2.6.12.11.1.1" class="ltx_text" style="font-size:90%;">Qwen3-4B</span></th>
+<td id="S3.T2.6.12.11.2" class="ltx_td ltx_align_center"><span id="S3.T2.6.12.11.2.1" class="ltx_text" style="font-size:90%;">AIME (n=90)</span></td>
+<td id="S3.T2.6.12.11.3" class="ltx_td ltx_align_center"><span id="S3.T2.6.12.11.3.1" class="ltx_text" style="font-size:90%;">7.8</span></td>
+<td id="S3.T2.6.12.11.4" class="ltx_td ltx_align_center"><span id="S3.T2.6.12.11.4.1" class="ltx_text" style="font-size:90%;">—</span></td>
+<td id="S3.T2.6.12.11.5" class="ltx_td ltx_align_center"><span id="S3.T2.6.12.11.5.1" class="ltx_text" style="font-size:90%;">—</span></td>
+<td id="S3.T2.6.12.11.6" class="ltx_td ltx_align_center"><span id="S3.T2.6.12.11.6.1" class="ltx_text" style="font-size:90%;">—</span></td>
+<td id="S3.T2.6.12.11.7" class="ltx_td ltx_align_center"><span id="S3.T2.6.12.11.7.1" class="ltx_text" style="font-size:90%;">—</span></td>
+<td id="S3.T2.6.12.11.8" class="ltx_td ltx_align_center"><span id="S3.T2.6.12.11.8.1" class="ltx_text" style="font-size:90%;">25.6</span></td>
+<td id="S3.T2.6.12.11.9" class="ltx_td ltx_align_center"><span id="S3.T2.6.12.11.9.1" class="ltx_text" style="font-size:90%;">—</span></td>
+</tr>
+<tr id="S3.T2.6.13.12" class="ltx_tr">
+<th id="S3.T2.6.13.12.1" class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_bb"><span id="S3.T2.6.13.12.1.1" class="ltx_text" style="font-size:90%;">Qwen3-8B</span></th>
+<td id="S3.T2.6.13.12.2" class="ltx_td ltx_align_center ltx_border_bb"><span id="S3.T2.6.13.12.2.1" class="ltx_text" style="font-size:90%;">AIME (n=90)</span></td>
+<td id="S3.T2.6.13.12.3" class="ltx_td ltx_align_center ltx_border_bb"><span id="S3.T2.6.13.12.3.1" class="ltx_text" style="font-size:90%;">5.6</span></td>
+<td id="S3.T2.6.13.12.4" class="ltx_td ltx_align_center ltx_border_bb"><span id="S3.T2.6.13.12.4.1" class="ltx_text" style="font-size:90%;">—</span></td>
+<td id="S3.T2.6.13.12.5" class="ltx_td ltx_align_center ltx_border_bb"><span id="S3.T2.6.13.12.5.1" class="ltx_text" style="font-size:90%;">—</span></td>
+<td id="S3.T2.6.13.12.6" class="ltx_td ltx_align_center ltx_border_bb"><span id="S3.T2.6.13.12.6.1" class="ltx_text" style="font-size:90%;">—</span></td>
+<td id="S3.T2.6.13.12.7" class="ltx_td ltx_align_center ltx_border_bb"><span id="S3.T2.6.13.12.7.1" class="ltx_text" style="font-size:90%;">—</span></td>
+<td id="S3.T2.6.13.12.8" class="ltx_td ltx_align_center ltx_border_bb"><span id="S3.T2.6.13.12.8.1" class="ltx_text" style="font-size:90%;">38.9</span></td>
+<td id="S3.T2.6.13.12.9" class="ltx_td ltx_align_center ltx_border_bb"><span id="S3.T2.6.13.12.9.1" class="ltx_text" style="font-size:90%;">—</span></td>
+</tr>
+</tbody>
+</table>
+</figure>
+<section id="S3.SS3.SSS0.Px1" class="ltx_paragraph">
+<h4 class="ltx_title ltx_title_paragraph">Reading the table.</h4>
+
+<div id="S3.SS3.SSS0.Px1.p1" class="ltx_para">
+<p id="S3.SS3.SSS0.Px1.p1.2" class="ltx_p"><span id="S3.SS3.SSS0.Px1.p1.2.1" class="ltx_text ltx_font_typewriter">Qwen3-1.7B-Base</span> with 32 samples reaches 89.6% HE / 81.0% MATH-500 — competitive with frontier instruct models at a fraction of the parameters and zero training. <span id="S3.SS3.SSS0.Px1.p1.2.2" class="ltx_text ltx_font_typewriter">Qwen3-8B-Base</span> + best-of-32 reaches 38.9% on AIME, exceeding GPT-4 Turbo (<math id="S3.SS3.SSS0.Px1.p1.1.m1" class="ltx_Math" alttext="\sim" display="inline" intent=":literal"><semantics><mo>∼</mo><annotation encoding="application/x-tex">\sim</annotation></semantics></math>15%) and Claude 3.5 Sonnet (<math id="S3.SS3.SSS0.Px1.p1.2.m2" class="ltx_Math" alttext="\sim" display="inline" intent=":literal"><semantics><mo>∼</mo><annotation encoding="application/x-tex">\sim</annotation></semantics></math>16%) on Olympiad math. Caveat: oracle selection requires the verifier; deployable selection (Section&nbsp;<a href="https://services.arxiv.org/html/submission/7575637/view#S3.SS4" title="Self-consistency (deployable TTS, no oracle) ‣ Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_tag">3.4</span></a>) recovers a fraction of this.</p>
+</div>
+</section>
+</section>
+<section id="S3.SS4" class="ltx_subsection">
+<h3 class="ltx_title ltx_font_bold ltx_title_subsection">Self-consistency (deployable TTS, no oracle)</h3>
+
+<div id="S3.SS4.p1" class="ltx_para">
+<p id="S3.SS4.p1.2" class="ltx_p">In deployment, the verifier may be unavailable or expensive. Self-consistency&nbsp;<cite class="ltx_cite ltx_citemacro_cite">[<a href="https://services.arxiv.org/html/submission/7575637/view#bib.bib16" title="" class="ltx_ref">16</a>]</cite> extracts the final answer from each of <math id="S3.SS4.p1.1.m1" class="ltx_Math" alttext="N" display="inline" intent=":literal"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math> samples and takes the majority vote (after normalization). On MATH-500 with <span id="S3.SS4.p1.2.1" class="ltx_text ltx_font_typewriter">Qwen3-1.7B-Base</span> at <math id="S3.SS4.p1.2.m2" class="ltx_Math" alttext="N=16" display="inline" intent=":literal"><semantics><mrow><mi>N</mi><mo>=</mo><mn>16</mn></mrow><annotation encoding="application/x-tex">N=16</annotation></semantics></math>:</p>
+</div>
+<div id="S3.SS4.p2" class="ltx_para">
+<ul id="S3.I1" class="ltx_itemize">
+<li id="S3.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I1.i1.p1" class="ltx_para">
+<p id="S3.I1.i1.p1.1" class="ltx_p">Greedy (first sample only): 25.5%</p>
+</div>
+</li>
+<li id="S3.I1.i2" class="ltx_item" style="list-style-type:none;padding-top:0.0pt;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I1.i2.p1" class="ltx_para">
+<p id="S3.I1.i2.p1.1" class="ltx_p">Self-consistency vote: <span id="S3.I1.i2.p1.1.1" class="ltx_text ltx_font_bold">60.0%</span></p>
+</div>
+</li>
+<li id="S3.I1.i3" class="ltx_item" style="list-style-type:none;padding-top:0.0pt;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I1.i3.p1" class="ltx_para">
+<p id="S3.I1.i3.p1.1" class="ltx_p">Oracle pass@<math id="S3.I1.i3.p1.1.m1" class="ltx_Math" alttext="N" display="inline" intent=":literal"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math> (upper bound): 74.5%</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="S3.SS4.p3" class="ltx_para">
+<p id="S3.SS4.p3.1" class="ltx_p">Self-consistency recovers <math id="S3.SS4.p3.1.m1" class="ltx_Math" alttext="(60.0-25.5)/(74.5-25.5)=" display="inline" intent=":literal"><semantics><mrow><mrow><mrow><mo stretchy="false">(</mo><mrow><mn>60.0</mn><mo>−</mo><mn>25.5</mn></mrow><mo stretchy="false">)</mo></mrow><mo>/</mo><mrow><mo stretchy="false">(</mo><mrow><mn>74.5</mn><mo>−</mo><mn>25.5</mn></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi></mi></mrow><annotation encoding="application/x-tex">(60.0-25.5)/(74.5-25.5)=</annotation></semantics></math> <span id="S3.SS4.p3.1.1" class="ltx_text ltx_font_bold">70%</span> of the oracle–greedy gap with <em id="S3.SS4.p3.1.2" class="ltx_emph ltx_font_italic">no</em> verifier access. This corroborates the broader self-consistency literature and gives a concrete number for a modern small open base.</p>
+</div>
+</section>
+<section id="S3.SS5" class="ltx_subsection">
+<h3 class="ltx_title ltx_font_bold ltx_title_subsection">Recipe <math id="S3.SS5.1.1.m1" class="ltx_Math" alttext="\times" display="inline" intent=":literal"><semantics><mo>×</mo><annotation encoding="application/x-tex">\times</annotation></semantics></math> TTS synergy threshold</h3>
+
+<div id="S3.SS5.p1" class="ltx_para">
+<p id="S3.SS5.p1.1" class="ltx_p">A central question: <em id="S3.SS5.p1.1.1" class="ltx_emph ltx_font_italic">does the recipe contribute anything beyond what TTS alone provides?</em> We measure four conditions: (A) raw greedy, (B) raw + best-of-8, (C) recipe greedy, (D) recipe + best-of-8 — on the same model. Table&nbsp;<a href="https://services.arxiv.org/html/submission/7575637/view#S3.T3" title="Table 3 ‣ Recipe × TTS synergy threshold ‣ Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_tag">3</span></a> compares two scales.</p>
+</div>
+<figure id="S3.T3" class="ltx_table">
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_table"><span id="S3.T3.9.3.1" class="ltx_text" style="font-size:90%;">Table 3</span>: </span><span id="S3.T3.4.2" class="ltx_text" style="font-size:90%;">Recipe <math id="S3.T3.3.1.m1" class="ltx_Math" alttext="\times" display="inline" intent=":literal"><semantics><mo>×</mo><annotation encoding="application/x-tex">\times</annotation></semantics></math> TTS interaction at two scales. “Synergy” = D <math id="S3.T3.4.2.m2" class="ltx_Math" alttext="-" display="inline" intent=":literal"><semantics><mo>−</mo><annotation encoding="application/x-tex">-</annotation></semantics></math> B = the additional contribution of recipe-training <em id="S3.T3.4.2.1" class="ltx_emph ltx_font_italic">on top of</em> raw best-of-8 sampling. Positive means recipe-training adds beyond TTS-alone; negative means recipe-training <em id="S3.T3.4.2.2" class="ltx_emph ltx_font_italic">degrades</em> sampling diversity below what raw+TTS achieves.</span></figcaption>
+<table id="S3.T3.5" class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr id="S3.T3.5.2.1" class="ltx_tr">
+<th id="S3.T3.5.2.1.1" class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_th_row ltx_border_tt"><span id="S3.T3.5.2.1.1.1" class="ltx_text" style="font-size:90%;">Model</span></th>
+<th id="S3.T3.5.2.1.2" class="ltx_td ltx_align_right ltx_th ltx_th_column ltx_th_row ltx_border_tt"><span id="S3.T3.5.2.1.2.1" class="ltx_text" style="font-size:90%;">Pairs</span></th>
+<th id="S3.T3.5.2.1.3" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_tt"><span id="S3.T3.5.2.1.3.1" class="ltx_text" style="font-size:90%;">A (raw greedy)</span></th>
+<th id="S3.T3.5.2.1.4" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_tt"><span id="S3.T3.5.2.1.4.1" class="ltx_text" style="font-size:90%;">B (raw+TTS)</span></th>
+<th id="S3.T3.5.2.1.5" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_tt"><span id="S3.T3.5.2.1.5.1" class="ltx_text" style="font-size:90%;">C (rec. greedy)</span></th>
+<th id="S3.T3.5.2.1.6" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_tt"><span id="S3.T3.5.2.1.6.1" class="ltx_text" style="font-size:90%;">D (rec.+TTS)</span></th>
+<th id="S3.T3.5.2.1.7" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_tt"><span id="S3.T3.5.2.1.7.1" class="ltx_text" style="font-size:90%;">Synergy</span></th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr id="S3.T3.5.1" class="ltx_tr">
+<th id="S3.T3.5.1.2" class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t"><span id="S3.T3.5.1.2.1" class="ltx_text" style="font-size:90%;">Qwen2.5-3B (RTX 4000)</span></th>
+<th id="S3.T3.5.1.3" class="ltx_td ltx_align_right ltx_th ltx_th_row ltx_border_t"><span id="S3.T3.5.1.3.1" class="ltx_text" style="font-size:90%;">36</span></th>
+<td id="S3.T3.5.1.4" class="ltx_td ltx_align_center ltx_border_t"><span id="S3.T3.5.1.4.1" class="ltx_text" style="font-size:90%;">7.9%</span></td>
+<td id="S3.T3.5.1.5" class="ltx_td ltx_align_center ltx_border_t"><span id="S3.T3.5.1.5.1" class="ltx_text" style="font-size:90%;">52.4%</span></td>
+<td id="S3.T3.5.1.6" class="ltx_td ltx_align_center ltx_border_t"><span id="S3.T3.5.1.6.1" class="ltx_text" style="font-size:90%;">9.1%</span></td>
+<td id="S3.T3.5.1.7" class="ltx_td ltx_align_center ltx_border_t"><span id="S3.T3.5.1.7.1" class="ltx_text" style="font-size:90%;">47.6%</span></td>
+<td id="S3.T3.5.1.1" class="ltx_td ltx_align_center ltx_border_t">
+<math id="S3.T3.5.1.1.m1" class="ltx_Math" alttext="-4.9" display="inline" intent=":literal"><semantics><mrow><mo mathsize="0.900em">−</mo><mn mathsize="0.900em">4.9</mn></mrow><annotation encoding="application/x-tex">-4.9</annotation></semantics></math><span id="S3.T3.5.1.1.1" class="ltx_text ltx_font_bold" style="font-size:90%;">pp</span>
+</td>
+</tr>
+<tr id="S3.T3.5.3.1" class="ltx_tr">
+<th id="S3.T3.5.3.1.1" class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_bb"><span id="S3.T3.5.3.1.1.1" class="ltx_text" style="font-size:90%;">Qwen2.5-14B (H100)</span></th>
+<th id="S3.T3.5.3.1.2" class="ltx_td ltx_align_right ltx_th ltx_th_row ltx_border_bb"><span id="S3.T3.5.3.1.2.1" class="ltx_text" style="font-size:90%;">132</span></th>
+<td id="S3.T3.5.3.1.3" class="ltx_td ltx_align_center ltx_border_bb"><span id="S3.T3.5.3.1.3.1" class="ltx_text" style="font-size:90%;">26.8%</span></td>
+<td id="S3.T3.5.3.1.4" class="ltx_td ltx_align_center ltx_border_bb"><span id="S3.T3.5.3.1.4.1" class="ltx_text" style="font-size:90%;">76.8%</span></td>
+<td id="S3.T3.5.3.1.5" class="ltx_td ltx_align_center ltx_border_bb"><span id="S3.T3.5.3.1.5.1" class="ltx_text" style="font-size:90%;">80.0%</span></td>
+<td id="S3.T3.5.3.1.6" class="ltx_td ltx_align_center ltx_border_bb"><span id="S3.T3.5.3.1.6.1" class="ltx_text" style="font-size:90%;">89.6%</span></td>
+<td id="S3.T3.5.3.1.7" class="ltx_td ltx_align_center ltx_border_bb"><span id="S3.T3.5.3.1.7.1" class="ltx_text ltx_font_bold" style="font-size:90%;">+12.8pp</span></td>
+</tr>
+</tbody>
+</table>
+</figure>
+<div id="S3.SS5.p2" class="ltx_para">
+<p id="S3.SS5.p2.1" class="ltx_p">At 132 mined pairs on 14B, the recipe adds 12.8pp <em id="S3.SS5.p2.1.1" class="ltx_emph ltx_font_italic">beyond</em> sampling. At 36 pairs on 3B, the recipe <em id="S3.SS5.p2.1.2" class="ltx_emph ltx_font_italic">harms</em> the model’s sampling diversity, costing 4.9pp. We interpret this as evidence of a <em id="S3.SS5.p2.1.3" class="ltx_emph ltx_font_italic">recipe-quality threshold</em>: undertrained adapters produce more homogeneous sample distributions and therefore extract less benefit from best-of-<math id="S3.SS5.p2.1.m1" class="ltx_Math" alttext="N" display="inline" intent=":literal"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math>. This is, to our knowledge, the first concrete documentation of this interaction.</p>
+</div>
+<section id="S3.SS5.SSS0.Px1" class="ltx_paragraph">
+<h4 class="ltx_title ltx_title_paragraph">Practical implication.</h4>
+
+<div id="S3.SS5.SSS0.Px1.p1" class="ltx_para">
+<p id="S3.SS5.SSS0.Px1.p1.1" class="ltx_p">At small mined-pair counts, run TTS on the raw base; at large mined-pair counts, recipe + TTS dominates. The threshold likely depends on base capability, mined-pair quality, and LoRA rank; we did not characterize the full surface.</p>
+</div>
+</section>
+</section>
+<section id="S3.SS6" class="ltx_subsection">
+<h3 class="ltx_title ltx_font_bold ltx_title_subsection">Control: format alone does not explain the lift</h3>
+
+<div id="S3.SS6.p1" class="ltx_para">
+<p id="S3.SS6.p1.1" class="ltx_p">A natural concern: does LoRA on any repair-shaped pairs cause this lift? We train identically — same model, same prompt format, same hyperparameters — on 21 <em id="S3.SS6.p1.1.1" class="ltx_emph ltx_font_italic">external</em> (broken, fixed) pairs generated by mechanical corruption of canonical MBPP solutions (e.g., swap <span id="S3.SS6.p1.1.2" class="ltx_text ltx_font_typewriter">&lt;=</span> to <span id="S3.SS6.p1.1.3" class="ltx_text ltx_font_typewriter">&lt;</span>). The control yields <span id="S3.SS6.p1.1.4" class="ltx_text ltx_font_bold">exactly +0</span> on HumanEval (Figure&nbsp;<a href="https://services.arxiv.org/html/submission/7575637/view#S3.F2" title="Figure 2 ‣ Control: format alone does not explain the lift ‣ Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_tag">2</span></a>).</p>
+</div>
+<figure id="S3.F2" class="ltx_figure"><img src="./How Far Can an Open Base Model Self-Improve_ Recipes, Limits, and Test-Time Synergy_files/x2.png" id="S3.F2.g1" class="ltx_graphics ltx_centering ltx_img_landscape" width="581" height="368" alt="Refer to caption">
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure"><span id="S3.F2.3.1.1" class="ltx_text" style="font-size:90%;">Figure 2</span>: </span><span id="S3.F2.4.2" class="ltx_text ltx_font_bold" style="font-size:90%;">Control: format alone does not explain the lift.<span id="S3.F2.4.2.1" class="ltx_text ltx_font_medium"> Same training procedure, same hyperparameters, same model — only the source of the pairs differs.</span></span></figcaption>
+</figure>
+<div id="S3.SS6.p2" class="ltx_para">
+<p id="S3.SS6.p2.1" class="ltx_p">We interpret this as evidence that the self-mined pairs encode a signal specific to the model’s own at-edge failure modes, which random corruptions do not provide.</p>
+</div>
+</section>
+<section id="S3.SS7" class="ltx_subsection">
+<h3 class="ltx_title ltx_font_bold ltx_title_subsection">Multi-pair mining at 14B (the 80.5% result)</h3>
+
+<div id="S3.SS7.p1" class="ltx_para">
+<p id="S3.SS7.p1.1" class="ltx_p">We initially observed <em id="S3.SS7.p1.1.1" class="ltx_emph ltx_font_italic">self-saturation</em>: using the warmup-trained model to mine additional pairs yields zero from 120 problems — the strict filter (greedy fails AND <math id="S3.SS7.p1.1.m1" class="ltx_Math" alttext="\geq" display="inline" intent=":literal"><semantics><mo>≥</mo><annotation encoding="application/x-tex">\geq</annotation></semantics></math>1 of four sampled passes) finds no in-between. We instead mine from the <em id="S3.SS7.p1.1.2" class="ltx_emph ltx_font_italic">base</em> model with a harder generation prompt:</p>
+<ul id="S3.I2" class="ltx_itemize">
+<li id="S3.I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I2.i1.p1" class="ltx_para">
+<p id="S3.I2.i1.p1.1" class="ltx_p">Generate 200 problems with a prompt demanding edge cases.</p>
+</div>
+</li>
+<li id="S3.I2.i2" class="ltx_item" style="list-style-type:none;padding-top:0.0pt;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I2.i2.p1" class="ltx_para">
+<p id="S3.I2.i2.p1.2" class="ltx_p">Sample <math id="S3.I2.i2.p1.1.m1" class="ltx_Math" alttext="N=8" display="inline" intent=":literal"><semantics><mrow><mi>N</mi><mo>=</mo><mn>8</mn></mrow><annotation encoding="application/x-tex">N=8</annotation></semantics></math> attempts at <math id="S3.I2.i2.p1.2.m2" class="ltx_Math" alttext="T=0.8" display="inline" intent=":literal"><semantics><mrow><mi>T</mi><mo>=</mo><mn>0.8</mn></mrow><annotation encoding="application/x-tex">T=0.8</annotation></semantics></math>.</p>
+</div>
+</li>
+<li id="S3.I2.i3" class="ltx_item" style="list-style-type:none;padding-top:0.0pt;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I2.i3.p1" class="ltx_para">
+<p id="S3.I2.i3.p1.1" class="ltx_p">Mine up to 4 (broken, fixed) pairs per problem; dedupe near-identical broken code.</p>
+</div>
+</li>
+<li id="S3.I2.i4" class="ltx_item" style="list-style-type:none;padding-top:0.0pt;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I2.i4.p1" class="ltx_para">
+<p id="S3.I2.i4.p1.1" class="ltx_p">Combine with the 40-pair warmup and train a fresh rank-32 LoRA from base.</p>
+</div>
+</li>
+</ul>
+<p id="S3.SS7.p1.2" class="ltx_p">This yields 60 additional pairs from 55 valid problems (<math id="S3.SS7.p1.2.m1" class="ltx_Math" alttext="\approx" display="inline" intent=":literal"><semantics><mo>≈</mo><annotation encoding="application/x-tex">\approx</annotation></semantics></math>27% acceptance under the harder prompt). The combined 100-pair training reaches <span id="S3.SS7.p1.2.1" class="ltx_text ltx_font_bold">132/164 (80.5%)</span> HumanEval in the multi-pair run’s eval format (the same adapter reads 131/164 (79.9%) under the chat-template eval used in Section&nbsp;<a href="https://services.arxiv.org/html/submission/7575637/view#S3.SS5" title="Recipe × TTS synergy threshold ‣ Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_tag">3.5</span></a>).</p>
+</div>
+<section id="S3.SS7.SSS0.Px1" class="ltx_paragraph">
+<h4 class="ltx_title ltx_title_paragraph">Pair-count scaling.</h4>
+
+<div id="S3.SS7.SSS0.Px1.p1" class="ltx_para">
+<p id="S3.SS7.SSS0.Px1.p1.4" class="ltx_p">Holding training procedure fixed and sweeping <math id="S3.SS7.SSS0.Px1.p1.1.m1" class="ltx_Math" alttext="n\in\{10,21,40\}" display="inline" intent=":literal"><semantics><mrow><mi>n</mi><mo>∈</mo><mrow><mo stretchy="false">{</mo><mn>10</mn><mo>,</mo><mn>21</mn><mo>,</mo><mn>40</mn><mo stretchy="false">}</mo></mrow></mrow><annotation encoding="application/x-tex">n\in\{10,21,40\}</annotation></semantics></math> pairs at 2 epochs on Qwen2.5-7B-Base: lift grows from +26 (n=10) to +66 (n=21) to mean +49pp (n=40, 3 seeds) (Figure&nbsp;<a href="https://services.arxiv.org/html/submission/7575637/view#S3.F3" title="Figure 3 ‣ Pair-count scaling. ‣ Multi-pair mining at 14B (the 80.5% result) ‣ Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_tag">3</span></a>). At <math id="S3.SS7.SSS0.Px1.p1.2.m2" class="ltx_Math" alttext="n=40" display="inline" intent=":literal"><semantics><mrow><mi>n</mi><mo>=</mo><mn>40</mn></mrow><annotation encoding="application/x-tex">n=40</annotation></semantics></math>, epochs 1–4 give similar lift (seed 42: +75/+79/+77 problems for <math id="S3.SS7.SSS0.Px1.p1.3.m3" class="ltx_Math" alttext="e\in\{2,3,4\}" display="inline" intent=":literal"><semantics><mrow><mi>e</mi><mo>∈</mo><mrow><mo stretchy="false">{</mo><mn>2</mn><mo>,</mo><mn>3</mn><mo>,</mo><mn>4</mn><mo stretchy="false">}</mo></mrow></mrow><annotation encoding="application/x-tex">e\in\{2,3,4\}</annotation></semantics></math>), suggesting the recipe is not highly sensitive to training duration once enough at-edge pairs are present. We did not run <math id="S3.SS7.SSS0.Px1.p1.4.m4" class="ltx_Math" alttext="n&gt;40" display="inline" intent=":literal"><semantics><mrow><mi>n</mi><mo>&gt;</mo><mn>40</mn></mrow><annotation encoding="application/x-tex">n&gt;40</annotation></semantics></math> at this seed, so the plateau onset is an open question.</p>
+</div>
+<figure id="S3.F3" class="ltx_figure"><img src="./How Far Can an Open Base Model Self-Improve_ Recipes, Limits, and Test-Time Synergy_files/x3.png" id="S3.F3.g1" class="ltx_graphics ltx_centering ltx_img_landscape" width="581" height="328" alt="Refer to caption">
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure"><span id="S3.F3.13.6.1" class="ltx_text" style="font-size:90%;">Figure 3</span>: </span><span id="S3.F3.10.5" class="ltx_text ltx_font_bold" style="font-size:90%;">Pair-count scaling on Qwen2.5-7B-Base.<span id="S3.F3.10.5.5" class="ltx_text ltx_font_medium"> Lift grows from <math id="S3.F3.6.1.1.m1" class="ltx_Math" alttext="n=10" display="inline" intent=":literal"><semantics><mrow><mi>n</mi><mo>=</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">n=10</annotation></semantics></math> through <math id="S3.F3.7.2.2.m2" class="ltx_Math" alttext="n=40" display="inline" intent=":literal"><semantics><mrow><mi>n</mi><mo>=</mo><mn>40</mn></mrow><annotation encoding="application/x-tex">n=40</annotation></semantics></math>. Shaded region: range across 3 seeds at <math id="S3.F3.8.3.3.m3" class="ltx_Math" alttext="n=21" display="inline" intent=":literal"><semantics><mrow><mi>n</mi><mo>=</mo><mn>21</mn></mrow><annotation encoding="application/x-tex">n=21</annotation></semantics></math> and <math id="S3.F3.9.4.4.m4" class="ltx_Math" alttext="n=40" display="inline" intent=":literal"><semantics><mrow><mi>n</mi><mo>=</mo><mn>40</mn></mrow><annotation encoding="application/x-tex">n=40</annotation></semantics></math>. The 14B multi-pair result (<math id="S3.F3.10.5.5.m5" class="ltx_Math" alttext="n=100" display="inline" intent=":literal"><semantics><mrow><mi>n</mi><mo>=</mo><mn>100</mn></mrow><annotation encoding="application/x-tex">n=100</annotation></semantics></math>, 80%) suggests further scaling possible but was not measured at the 7B scale.</span></span></figcaption>
+</figure>
+</section>
+</section>
+<section id="S3.SS8" class="ltx_subsection">
+<h3 class="ltx_title ltx_font_bold ltx_title_subsection">Math: auto-difficulty curriculum</h3>
+
+<div id="S3.SS8.p1" class="ltx_para">
+<p id="S3.SS8.p1.1" class="ltx_p">Applied to GSM8K on <span id="S3.SS8.p1.1.1" class="ltx_text ltx_font_typewriter">Qwen2.5-3B-Base</span>, vanilla self-bootstrap is known to underperform on math (a distribution mismatch between self-generated arithmetic and GSM8K’s multi-step word problems; we observed regression in preliminary vanilla runs). The auto-difficulty curriculum (Section&nbsp;<a href="https://services.arxiv.org/html/submission/7575637/view#S2.SS3" title="Auto-difficulty curriculum (math) ‣ Method ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_tag">2.3</span></a>) resolves this. With 13 self-mined pairs, the curriculum-trained model reaches <span id="S3.SS8.p1.1.2" class="ltx_text ltx_font_bold">66/100 from a base of 32/100</span> on GSM8K — a doubling with no human-written training data (Figure&nbsp;<a href="https://services.arxiv.org/html/submission/7575637/view#S3.F4" title="Figure 4 ‣ Math: auto-difficulty curriculum ‣ Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_tag">4</span></a>).</p>
+</div>
+<figure id="S3.F4" class="ltx_figure"><img src="./How Far Can an Open Base Model Self-Improve_ Recipes, Limits, and Test-Time Synergy_files/x4.png" id="S3.F4.g1" class="ltx_graphics ltx_centering ltx_img_landscape" width="498" height="349" alt="Refer to caption">
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure"><span id="S3.F4.3.1.1" class="ltx_text" style="font-size:90%;">Figure 4</span>: </span><span id="S3.F4.4.2" class="ltx_text ltx_font_bold" style="font-size:90%;">Math: curriculum is necessary.<span id="S3.F4.4.2.1" class="ltx_text ltx_font_medium"> Vanilla self-bootstrap regresses on GSM8K; auto-difficulty curriculum lifts +34.</span></span></figcaption>
+</figure>
+</section>
+<section id="S3.SS9" class="ltx_subsection">
+<h3 class="ltx_title ltx_font_bold ltx_title_subsection">Cross-architecture and cross-generation</h3>
+
+<div id="S3.SS9.p1" class="ltx_para">
+<p id="S3.SS9.p1.1" class="ltx_p"><span id="S3.SS9.p1.1.1" class="ltx_text ltx_font_bold">Cross-generation.</span> The recipe transfers from Qwen2.5 (2024) to Qwen3 (2025) when there is headroom. Qwen3-4B-Base lifts +16.5pp on HumanEval with the simple 40-pair recipe; Qwen3-8B-Base saturates (<math id="S3.SS9.p1.1.m1" class="ltx_Math" alttext="-7.9" display="inline" intent=":literal"><semantics><mrow><mo>−</mo><mn>7.9</mn></mrow><annotation encoding="application/x-tex">-7.9</annotation></semantics></math>pp).</p>
+</div>
+<div id="S3.SS9.p2" class="ltx_para">
+<p id="S3.SS9.p2.3" class="ltx_p"><span id="S3.SS9.p2.3.1" class="ltx_text ltx_font_bold">Cross-architecture.</span> Pairs mined on Qwen2.5 do <em id="S3.SS9.p2.3.2" class="ltx_emph ltx_font_italic">not</em> transfer to Llama-3.2-3B (HE <math id="S3.SS9.p2.1.m1" class="ltx_Math" alttext="-7" display="inline" intent=":literal"><semantics><mrow><mo>−</mo><mn>7</mn></mrow><annotation encoding="application/x-tex">-7</annotation></semantics></math>, MBPP <math id="S3.SS9.p2.2.m2" class="ltx_Math" alttext="-5" display="inline" intent=":literal"><semantics><mrow><mo>−</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">-5</annotation></semantics></math> when trained on Qwen-mined pairs). With <em id="S3.SS9.p2.3.3" class="ltx_emph ltx_font_italic">own-mined</em> pairs (32 mined from MBPP-train problems on Llama), the recipe lifts Llama-3.2-3B HumanEval by +4pp (39<math id="S3.SS9.p2.3.m3" class="ltx_Math" alttext="\rightarrow" display="inline" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math>43) and is flat on MBPP-test. The cross-architecture lift is positive but modest; pairs must be model-native.</p>
+</div>
+<section id="S3.SS9.SSS0.Px1" class="ltx_paragraph">
+<h4 class="ltx_title ltx_title_paragraph">MBPP coverage.</h4>
+
+<div id="S3.SS9.SSS0.Px1.p1" class="ltx_para">
+<p id="S3.SS9.SSS0.Px1.p1.4" class="ltx_p">Beyond the headline HumanEval numbers, MBPP-sanitized was measured for Qwen3-4B-Base (135<math id="S3.SS9.SSS0.Px1.p1.1.m1" class="ltx_Math" alttext="\to" display="inline" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\to</annotation></semantics></math>148, +13 problems / +6.5pp), Qwen2.5-Coder-7B-Base (122<math id="S3.SS9.SSS0.Px1.p1.2.m2" class="ltx_Math" alttext="\to" display="inline" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\to</annotation></semantics></math>124, +2), Llama-3.2-3B (95<math id="S3.SS9.SSS0.Px1.p1.3.m3" class="ltx_Math" alttext="\to" display="inline" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\to</annotation></semantics></math>95, flat), and OLMo-2-7B-Base (4<math id="S3.SS9.SSS0.Px1.p1.4.m4" class="ltx_Math" alttext="\to" display="inline" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\to</annotation></semantics></math>5, noise). MBPP magnitudes mirror HumanEval qualitatively: positive on under-trained bases, flat/zero on bases with limited code skill or saturated bases.</p>
+</div>
+<div id="S3.SS9.SSS0.Px1.p2" class="ltx_para">
+<p id="S3.SS9.SSS0.Px1.p2.2" class="ltx_p"><span id="S3.SS9.SSS0.Px1.p2.2.1" class="ltx_text ltx_font_bold">Cross-family cautions.</span> On <span id="S3.SS9.SSS0.Px1.p2.2.2" class="ltx_text ltx_font_typewriter">OLMo-2-7B-Base</span> (HumanEval base <math id="S3.SS9.SSS0.Px1.p2.1.m1" class="ltx_Math" alttext="\approx" display="inline" intent=":literal"><semantics><mo>≈</mo><annotation encoding="application/x-tex">\approx</annotation></semantics></math> 3%), the recipe regresses (<math id="S3.SS9.SSS0.Px1.p2.2.m2" class="ltx_Math" alttext="-1.2" display="inline" intent=":literal"><semantics><mrow><mo>−</mo><mn>1.2</mn></mrow><annotation encoding="application/x-tex">-1.2</annotation></semantics></math>pp). The model is too weak on code to produce well-formed mined material.</p>
+</div>
+</section>
+</section>
+<section id="S3.SS10" class="ltx_subsection">
+<h3 class="ltx_title ltx_font_bold ltx_title_subsection">Failure modes and methodology lessons</h3>
+
+<div id="S3.SS10.p1" class="ltx_para">
+<p id="S3.SS10.p1.1" class="ltx_p">We report seven negative or marginal-result paths cleanly. These are valuable: each pins down a specific failure mode of self-bootstrap and may save future researchers time.</p>
+</div>
+<section id="S3.SS10.SSS0.Px1" class="ltx_paragraph">
+<h4 class="ltx_title ltx_title_paragraph">(a) Self-correction over-correction.</h4>
+
+<div id="S3.SS10.SSS0.Px1.p1" class="ltx_para">
+<p id="S3.SS10.SSS0.Px1.p1.5" class="ltx_p">Inspired by o1-style reasoning, we tried mining <em id="S3.SS10.SSS0.Px1.p1.2.2" class="ltx_emph ltx_font_italic">wrong <math id="S3.SS10.SSS0.Px1.p1.1.1.m1" class="ltx_Math" alttext="\rightarrow" display="inline" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math> “wait, let me reconsider” <math id="S3.SS10.SSS0.Px1.p1.2.2.m2" class="ltx_Math" alttext="\rightarrow" display="inline" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math> correct</em> triples on MATH problems. Training Qwen3-4B-Base on 67 such triples produced a <em id="S3.SS10.SSS0.Px1.p1.5.3" class="ltx_emph ltx_font_italic">catastrophic regression</em>: 299/500 <math id="S3.SS10.SSS0.Px1.p1.3.m1" class="ltx_Math" alttext="\rightarrow" display="inline" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math> 69/500 (<math id="S3.SS10.SSS0.Px1.p1.4.m2" class="ltx_Math" alttext="\Delta=-230" display="inline" intent=":literal"><semantics><mrow><mi mathvariant="normal">Δ</mi><mo>=</mo><mrow><mo>−</mo><mn>230</mn></mrow></mrow><annotation encoding="application/x-tex">\Delta=-230</annotation></semantics></math>). Diagnosis: training only on wrong<math id="S3.SS10.SSS0.Px1.p1.5.m3" class="ltx_Math" alttext="\rightarrow" display="inline" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math>fix teaches the model to second-guess itself even when its first attempt was correct.</p>
+</div>
+<div id="S3.SS10.SSS0.Px1.p2" class="ltx_para">
+<p id="S3.SS10.SSS0.Px1.p2.4" class="ltx_p"><em id="S3.SS10.SSS0.Px1.p2.4.1" class="ltx_emph ltx_font_italic">Fix:</em> mix 67 wrong<math id="S3.SS10.SSS0.Px1.p2.1.m1" class="ltx_Math" alttext="\rightarrow" display="inline" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math>fix triples with 100 right<math id="S3.SS10.SSS0.Px1.p2.2.m2" class="ltx_Math" alttext="\rightarrow" display="inline" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math>stays-right examples (greedy was correct, no “wait”). Re-training produces a small positive lift: 303/500 <math id="S3.SS10.SSS0.Px1.p2.3.m3" class="ltx_Math" alttext="\rightarrow" display="inline" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math> 308/500 (<math id="S3.SS10.SSS0.Px1.p2.4.m4" class="ltx_Math" alttext="\Delta=+5" display="inline" intent=":literal"><semantics><mrow><mi mathvariant="normal">Δ</mi><mo>=</mo><mrow><mo>+</mo><mn>5</mn></mrow></mrow><annotation encoding="application/x-tex">\Delta=+5</annotation></semantics></math>). The methodology lesson is general: <em id="S3.SS10.SSS0.Px1.p2.4.2" class="ltx_emph ltx_font_italic">any self-correction training must include positive examples where the model commits, not just examples where it corrects.</em></p>
+</div>
+</section>
+<section id="S3.SS10.SSS0.Px2" class="ltx_paragraph">
+<h4 class="ltx_title ltx_title_paragraph">(b) Recursive self-bootstrap plateau.</h4>
+
+<div id="S3.SS10.SSS0.Px2.p1" class="ltx_para">
+<p id="S3.SS10.SSS0.Px2.p1.5" class="ltx_p">We tested whether iterating the recipe (iter 1 mines pairs from base <math id="S3.SS10.SSS0.Px2.p1.1.m1" class="ltx_Math" alttext="\to" display="inline" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\to</annotation></semantics></math> adapter <math id="S3.SS10.SSS0.Px2.p1.2.m2" class="ltx_Math" alttext="A_{1}" display="inline" intent=":literal"><semantics><msub><mi>A</mi><mn>1</mn></msub><annotation encoding="application/x-tex">A_{1}</annotation></semantics></math>; iter 2 uses <math id="S3.SS10.SSS0.Px2.p1.3.m3" class="ltx_Math" alttext="A_{1}" display="inline" intent=":literal"><semantics><msub><mi>A</mi><mn>1</mn></msub><annotation encoding="application/x-tex">A_{1}</annotation></semantics></math> to mine pairs on new problems <math id="S3.SS10.SSS0.Px2.p1.4.m4" class="ltx_Math" alttext="\to" display="inline" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\to</annotation></semantics></math> adapter <math id="S3.SS10.SSS0.Px2.p1.5.m5" class="ltx_Math" alttext="A_{2}" display="inline" intent=":literal"><semantics><msub><mi>A</mi><mn>2</mn></msub><annotation encoding="application/x-tex">A_{2}</annotation></semantics></math>; iter 3 similarly) compounds capability. On Qwen2.5-3B with 200 MBPP-train problems per iter:</p>
+<ul id="S3.I3" class="ltx_itemize">
+<li id="S3.I3.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I3.i1.p1" class="ltx_para">
+<p id="S3.I3.i1.p1.1" class="ltx_p">iter 1: HE pre-train 16, post-train 12 (regression)</p>
+</div>
+</li>
+<li id="S3.I3.i2" class="ltx_item" style="list-style-type:none;padding-top:0.0pt;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I3.i2.p1" class="ltx_para">
+<p id="S3.I3.i2.p1.1" class="ltx_p">iter 2: HE pre-train 13, post-train 13 (flat)</p>
+</div>
+</li>
+<li id="S3.I3.i3" class="ltx_item" style="list-style-type:none;padding-top:0.0pt;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I3.i3.p1" class="ltx_para">
+<p id="S3.I3.i3.p1.1" class="ltx_p">iter 3: HE pre-train 15, post-train 15 (flat)</p>
+</div>
+</li>
+</ul>
+<p id="S3.SS10.SSS0.Px2.p1.7" class="ltx_p">No compounding. Cumulative pairs grew (36 <math id="S3.SS10.SSS0.Px2.p1.6.m1" class="ltx_Math" alttext="\to" display="inline" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\to</annotation></semantics></math> 74 <math id="S3.SS10.SSS0.Px2.p1.7.m2" class="ltx_Math" alttext="\to" display="inline" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\to</annotation></semantics></math> 74) but lift plateaued.</p>
+</div>
+</section>
+<section id="S3.SS10.SSS0.Px3" class="ltx_paragraph">
+<h4 class="ltx_title ltx_title_paragraph">(c) Tree-shaped training data degrades plain-prompt evaluation.</h4>
+
+<div id="S3.SS10.SSS0.Px3.p1" class="ltx_para">
+<p id="S3.SS10.SSS0.Px3.p1.4" class="ltx_p">We attempted four variants of “mine multiple solution approaches per problem; train on the full multi-approach trace.” All four regressed on plain-prompt HumanEval (<math id="S3.SS10.SSS0.Px3.p1.1.m1" class="ltx_Math" alttext="-14" display="inline" intent=":literal"><semantics><mrow><mo>−</mo><mn>14</mn></mrow><annotation encoding="application/x-tex">-14</annotation></semantics></math>, <math id="S3.SS10.SSS0.Px3.p1.2.m2" class="ltx_Math" alttext="-5" display="inline" intent=":literal"><semantics><mrow><mo>−</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">-5</annotation></semantics></math>, <math id="S3.SS10.SSS0.Px3.p1.3.m3" class="ltx_Math" alttext="-2" display="inline" intent=":literal"><semantics><mrow><mo>−</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">-2</annotation></semantics></math>, <math id="S3.SS10.SSS0.Px3.p1.4.m4" class="ltx_Math" alttext="-10" display="inline" intent=":literal"><semantics><mrow><mo>−</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">-10</annotation></semantics></math>). Training on traces that include failed candidate code teaches the model to occasionally emit failing code; even filtering to keep only the winning approach injects a multi-step preamble that conflicts with plain-prompt evaluation format.</p>
+</div>
+</section>
+<section id="S3.SS10.SSS0.Px4" class="ltx_paragraph">
+<h4 class="ltx_title ltx_title_paragraph">(d) Distribution mismatch.</h4>
+
+<div id="S3.SS10.SSS0.Px4.p1" class="ltx_para">
+<p id="S3.SS10.SSS0.Px4.p1.4" class="ltx_p">Mining HE-style pairs and evaluating on BCB-Hard (library-fluency) yields flat results (Qwen3-8B: <math id="S3.SS10.SSS0.Px4.p1.1.m1" class="ltx_Math" alttext="-3" display="inline" intent=":literal"><semantics><mrow><mo>−</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">-3</annotation></semantics></math> on BCB; Qwen3-4B: <math id="S3.SS10.SSS0.Px4.p1.2.m2" class="ltx_Math" alttext="+1" display="inline" intent=":literal"><semantics><mrow><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">+1</annotation></semantics></math> on BCB). Mining self-generated easy math and evaluating on MATH-500 yields catastrophic regression (<math id="S3.SS10.SSS0.Px4.p1.3.m3" class="ltx_Math" alttext="-100" display="inline" intent=":literal"><semantics><mrow><mo>−</mo><mn>100</mn></mrow><annotation encoding="application/x-tex">-100</annotation></semantics></math> on Qwen3-8B; <math id="S3.SS10.SSS0.Px4.p1.4.m4" class="ltx_Math" alttext="-3" display="inline" intent=":literal"><semantics><mrow><mo>−</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">-3</annotation></semantics></math> on Qwen3-4B). Mining must match the eval distribution closely.</p>
+</div>
+</section>
+<section id="S3.SS10.SSS0.Px5" class="ltx_paragraph">
+<h4 class="ltx_title ltx_title_paragraph">(e) ARC-AGI: silent infrastructure crash.</h4>
+
+<div id="S3.SS10.SSS0.Px5.p1" class="ltx_para">
+<p id="S3.SS10.SSS0.Px5.p1.1" class="ltx_p">We attempted self-bootstrap on ARC-AGI-1 with Qwen3-8B-Base and the “model writes Python transform function, verifier runs against task train examples” approach. The vLLM engine crashed silently during model load on our pod; we did not recover before our compute budget expired.</p>
+</div>
+</section>
+<section id="S3.SS10.SSS0.Px6" class="ltx_paragraph">
+<h4 class="ltx_title ltx_title_paragraph">(f) Cross-domain transfer is marginal.</h4>
+
+<div id="S3.SS10.SSS0.Px6.p1" class="ltx_para">
+<p id="S3.SS10.SSS0.Px6.p1.3" class="ltx_p">We trained a recipe on code-only pairs (48 mined from MBPP-train) with Qwen2.5-3B-Base and evaluated on math without any math training data: HumanEval moved 13/80<math id="S3.SS10.SSS0.Px6.p1.1.m1" class="ltx_Math" alttext="\to" display="inline" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\to</annotation></semantics></math>12/80 (flat), MATH-500 moved 37/100<math id="S3.SS10.SSS0.Px6.p1.2.m2" class="ltx_Math" alttext="\to" display="inline" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\to</annotation></semantics></math>39/100 (<math id="S3.SS10.SSS0.Px6.p1.3.m3" class="ltx_Math" alttext="+2" display="inline" intent=":literal"><semantics><mrow><mo>+</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">+2</annotation></semantics></math>). The math lift is within noise. We interpret this as weak evidence that code-trained recipes transfer cross-domain to math; a stronger cross-domain claim would require larger pair counts and multi-seed validation.</p>
+</div>
+</section>
+<section id="S3.SS10.SSS0.Px7" class="ltx_paragraph">
+<h4 class="ltx_title ltx_title_paragraph">(g) Diversity-cued mining yields too few pairs to help.</h4>
+
+<div id="S3.SS10.SSS0.Px7.p1" class="ltx_para">
+<p id="S3.SS10.SSS0.Px7.p1.2" class="ltx_p">We prompted the model with explicit cognitive “lenses” (brute force, math formula, hash structure, recursion) during pair generation, hoping to broaden the at-edge pool. Yield was low (8 pairs from 150 problems) and the resulting LoRA was within noise of base (HE <math id="S3.SS10.SSS0.Px7.p1.1.m1" class="ltx_Math" alttext="+2" display="inline" intent=":literal"><semantics><mrow><mo>+</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">+2</annotation></semantics></math> from 16/164<math id="S3.SS10.SSS0.Px7.p1.2.m2" class="ltx_Math" alttext="\to" display="inline" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\to</annotation></semantics></math>18/164). The cued-prompt strategy may need a stronger base model and many more attempts per problem to reach a useful pair count.</p>
+</div>
+</section>
+</section>
+<section id="S3.SS11" class="ltx_subsection">
+<h3 class="ltx_title ltx_font_bold ltx_title_subsection">Boundary conditions summary</h3>
+
+<div id="S3.SS11.p1" class="ltx_para">
+<p id="S3.SS11.p1.1" class="ltx_p">Across 9 base models we observe four conditions under which the recipe fails (Table&nbsp;<a href="https://services.arxiv.org/html/submission/7575637/view#S3.T4" title="Table 4 ‣ Boundary conditions summary ‣ Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_tag">4</span></a>).</p>
+</div>
+<figure id="S3.T4" class="ltx_table">
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_table"><span id="S3.T4.10.1.1" class="ltx_text" style="font-size:90%;">Table 4</span>: </span><span id="S3.T4.11.2" class="ltx_text" style="font-size:90%;">Necessary conditions for recipe lift.</span></figcaption>
+<table id="S3.T4.8" class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr id="S3.T4.8.9.1" class="ltx_tr">
+<th id="S3.T4.8.9.1.1" class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_th_row ltx_border_tt"><span id="S3.T4.8.9.1.1.1" class="ltx_text" style="font-size:90%;">Failure mode</span></th>
+<th id="S3.T4.8.9.1.2" class="ltx_td ltx_align_justify ltx_align_top ltx_th ltx_th_column ltx_border_tt">
+<span id="S3.T4.8.9.1.2.1" class="ltx_inline-block ltx_align_top">
+<span id="S3.T4.8.9.1.2.1.1" class="ltx_p" style="width:128.0pt;"><span id="S3.T4.8.9.1.2.1.1.1" class="ltx_text" style="font-size:90%;">Example</span></span>
+</span>
+</th>
+<th id="S3.T4.8.9.1.3" class="ltx_td ltx_align_justify ltx_align_top ltx_th ltx_th_column ltx_border_tt">
+<span id="S3.T4.8.9.1.3.1" class="ltx_inline-block ltx_align_top">
+<span id="S3.T4.8.9.1.3.1.1" class="ltx_p" style="width:156.5pt;"><span id="S3.T4.8.9.1.3.1.1.1" class="ltx_text" style="font-size:90%;">Diagnosis</span></span>
+</span>
+</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr id="S3.T4.3.3" class="ltx_tr">
+<th id="S3.T4.3.3.4" class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t"><span id="S3.T4.3.3.4.1" class="ltx_text" style="font-size:90%;">Saturation</span></th>
+<td id="S3.T4.3.3.3" class="ltx_td ltx_align_justify ltx_align_top ltx_border_t">
+<span id="S3.T4.3.3.3.3" class="ltx_inline-block ltx_align_top">
+<span id="S3.T4.3.3.3.3.3" class="ltx_p" style="width:128.0pt;"><span id="S3.T4.3.3.3.3.3.1" class="ltx_text" style="font-size:90%;">Qwen2.5-72B </span><math id="S3.T4.1.1.1.1.1.m1" class="ltx_Math" alttext="-6" display="inline" intent=":literal"><semantics><mrow><mo mathsize="0.900em">−</mo><mn mathsize="0.900em">6</mn></mrow><annotation encoding="application/x-tex">-6</annotation></semantics></math><span id="S3.T4.3.3.3.3.3.2" class="ltx_text" style="font-size:90%;">; Qwen3-8B </span><math id="S3.T4.2.2.2.2.2.m2" class="ltx_Math" alttext="-8" display="inline" intent=":literal"><semantics><mrow><mo mathsize="0.900em">−</mo><mn mathsize="0.900em">8</mn></mrow><annotation encoding="application/x-tex">-8</annotation></semantics></math><span id="S3.T4.3.3.3.3.3.3" class="ltx_text" style="font-size:90%;">; Qwen3-14B </span><math id="S3.T4.3.3.3.3.3.m3" class="ltx_Math" alttext="-2" display="inline" intent=":literal"><semantics><mrow><mo mathsize="0.900em">−</mo><mn mathsize="0.900em">2</mn></mrow><annotation encoding="application/x-tex">-2</annotation></semantics></math></span>
+</span>
+</td>
+<td id="S3.T4.3.3.5" class="ltx_td ltx_align_justify ltx_align_top ltx_border_t">
+<span id="S3.T4.3.3.5.1" class="ltx_inline-block ltx_align_top">
+<span id="S3.T4.3.3.5.1.1" class="ltx_p" style="width:156.5pt;"><span id="S3.T4.3.3.5.1.1.1" class="ltx_text" style="font-size:90%;">Base too strong; few mining candidates fail</span></span>
+</span>
+</td>
+</tr>
+<tr id="S3.T4.5.5" class="ltx_tr">
+<th id="S3.T4.5.5.3" class="ltx_td ltx_align_left ltx_th ltx_th_row"><span id="S3.T4.5.5.3.1" class="ltx_text" style="font-size:90%;">Distribution mismatch</span></th>
+<td id="S3.T4.5.5.2" class="ltx_td ltx_align_justify ltx_align_top">
+<span id="S3.T4.5.5.2.2" class="ltx_inline-block ltx_align_top">
+<span id="S3.T4.5.5.2.2.2" class="ltx_p" style="width:128.0pt;"><span id="S3.T4.5.5.2.2.2.1" class="ltx_text" style="font-size:90%;">BCB-Hard </span><math id="S3.T4.4.4.1.1.1.m1" class="ltx_Math" alttext="\pm 1" display="inline" intent=":literal"><semantics><mrow><mo mathsize="0.900em">±</mo><mn mathsize="0.900em">1</mn></mrow><annotation encoding="application/x-tex">\pm 1</annotation></semantics></math><span id="S3.T4.5.5.2.2.2.2" class="ltx_text" style="font-size:90%;">; MATH-easy </span><math id="S3.T4.5.5.2.2.2.m2" class="ltx_Math" alttext="-100" display="inline" intent=":literal"><semantics><mrow><mo mathsize="0.900em">−</mo><mn mathsize="0.900em">100</mn></mrow><annotation encoding="application/x-tex">-100</annotation></semantics></math></span>
+</span>
+</td>
+<td id="S3.T4.5.5.4" class="ltx_td ltx_align_justify ltx_align_top">
+<span id="S3.T4.5.5.4.1" class="ltx_inline-block ltx_align_top">
+<span id="S3.T4.5.5.4.1.1" class="ltx_p" style="width:156.5pt;"><span id="S3.T4.5.5.4.1.1.1" class="ltx_text" style="font-size:90%;">Train and eval distributions differ</span></span>
+</span>
+</td>
+</tr>
+<tr id="S3.T4.7.7" class="ltx_tr">
+<th id="S3.T4.7.7.3" class="ltx_td ltx_align_left ltx_th ltx_th_row"><span id="S3.T4.7.7.3.1" class="ltx_text" style="font-size:90%;">Base too weak</span></th>
+<td id="S3.T4.7.7.2" class="ltx_td ltx_align_justify ltx_align_top">
+<span id="S3.T4.7.7.2.2" class="ltx_inline-block ltx_align_top">
+<span id="S3.T4.7.7.2.2.2" class="ltx_p" style="width:128.0pt;"><span id="S3.T4.7.7.2.2.2.1" class="ltx_text" style="font-size:90%;">OLMo-2-7B </span><math id="S3.T4.6.6.1.1.1.m1" class="ltx_Math" alttext="\approx" display="inline" intent=":literal"><semantics><mo mathsize="0.900em">≈</mo><annotation encoding="application/x-tex">\approx</annotation></semantics></math><span id="S3.T4.7.7.2.2.2.2" class="ltx_text" style="font-size:90%;"> 3% base </span><math id="S3.T4.7.7.2.2.2.m2" class="ltx_Math" alttext="\rightarrow-1" display="inline" intent=":literal"><semantics><mrow><mi></mi><mo mathsize="0.900em" stretchy="false">→</mo><mrow><mo mathsize="0.900em">−</mo><mn mathsize="0.900em">1</mn></mrow></mrow><annotation encoding="application/x-tex">\rightarrow-1</annotation></semantics></math></span>
+</span>
+</td>
+<td id="S3.T4.7.7.4" class="ltx_td ltx_align_justify ltx_align_top">
+<span id="S3.T4.7.7.4.1" class="ltx_inline-block ltx_align_top">
+<span id="S3.T4.7.7.4.1.1" class="ltx_p" style="width:156.5pt;"><span id="S3.T4.7.7.4.1.1.1" class="ltx_text" style="font-size:90%;">Mined pairs are noise; model can’t generate well-formed problems</span></span>
+</span>
+</td>
+</tr>
+<tr id="S3.T4.8.8" class="ltx_tr">
+<th id="S3.T4.8.8.2" class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_bb"><span id="S3.T4.8.8.2.1" class="ltx_text" style="font-size:90%;">Cross-family pair non-transfer</span></th>
+<td id="S3.T4.8.8.1" class="ltx_td ltx_align_justify ltx_align_top ltx_border_bb">
+<span id="S3.T4.8.8.1.1" class="ltx_inline-block ltx_align_top">
+<span id="S3.T4.8.8.1.1.1" class="ltx_p" style="width:128.0pt;"><span id="S3.T4.8.8.1.1.1.1" class="ltx_text" style="font-size:90%;">Llama-3.2 trained on Qwen-mined: </span><math id="S3.T4.8.8.1.1.1.m1" class="ltx_Math" alttext="-7" display="inline" intent=":literal"><semantics><mrow><mo mathsize="0.900em">−</mo><mn mathsize="0.900em">7</mn></mrow><annotation encoding="application/x-tex">-7</annotation></semantics></math><span id="S3.T4.8.8.1.1.1.2" class="ltx_text" style="font-size:90%;"> HE</span></span>
+</span>
+</td>
+<td id="S3.T4.8.8.3" class="ltx_td ltx_align_justify ltx_align_top ltx_border_bb">
+<span id="S3.T4.8.8.3.1" class="ltx_inline-block ltx_align_top">
+<span id="S3.T4.8.8.3.1.1" class="ltx_p" style="width:156.5pt;"><span id="S3.T4.8.8.3.1.1.1" class="ltx_text" style="font-size:90%;">Tokenizer/pretraining mismatch; need own-mined pairs</span></span>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+</figure>
+<figure id="S3.F5" class="ltx_figure"><img src="./How Far Can an Open Base Model Self-Improve_ Recipes, Limits, and Test-Time Synergy_files/x5.png" id="S3.F5.g1" class="ltx_graphics ltx_centering ltx_img_landscape" width="705" height="320" alt="Refer to caption">
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure"><span id="S3.F5.3.1.1" class="ltx_text" style="font-size:90%;">Figure 5</span>: </span><span id="S3.F5.4.2" class="ltx_text ltx_font_bold" style="font-size:90%;">Boundary conditions.<span id="S3.F5.4.2.1" class="ltx_text ltx_font_medium"> The recipe lifts when (i) base has eval headroom, (ii) base is strong enough to produce well-formed mined problems, (iii) training distribution matches eval, and (iv) the model is mining its own pairs.</span></span></figcaption>
+</figure>
+</section>
+</section>
+<section id="S4" class="ltx_section">
+<h2 class="ltx_title ltx_font_bold ltx_title_section" style="font-size:120%;">Related work</h2>
+
+<section id="S4.SS0.SSS0.Px1" class="ltx_paragraph">
+<h4 class="ltx_title ltx_title_paragraph">Self-improvement with verifiers.</h4>
+
+<div id="S4.SS0.SSS0.Px1.p1" class="ltx_para">
+<p id="S4.SS0.SSS0.Px1.p1.1" class="ltx_p"><span id="S4.SS0.SSS0.Px1.p1.1.1" class="ltx_text ltx_font_bold">STaR</span>&nbsp;<cite class="ltx_cite ltx_citemacro_cite">[<a href="https://services.arxiv.org/html/submission/7575637/view#bib.bib1" title="" class="ltx_ref">1</a>]</cite> and <span id="S4.SS0.SSS0.Px1.p1.1.2" class="ltx_text ltx_font_bold">Rejection-Sampling Fine-Tuning (RFT)</span>&nbsp;<cite class="ltx_cite ltx_citemacro_cite">[<a href="https://services.arxiv.org/html/submission/7575637/view#bib.bib2" title="" class="ltx_ref">2</a>]</cite> generate model rationales conditioned on <em id="S4.SS0.SSS0.Px1.p1.1.3" class="ltx_emph ltx_font_italic">external</em> problem sets and fine-tune on the correct subset. We differ in (i) using model-generated problems with no external set, (ii) mining <em id="S4.SS0.SSS0.Px1.p1.1.4" class="ltx_emph ltx_font_italic">paired</em> (broken, fixed) examples rather than retaining only correct rationales, and (iii) introducing the auto-difficulty curriculum. <span id="S4.SS0.SSS0.Px1.p1.1.5" class="ltx_text ltx_font_bold">R1-Zero</span>&nbsp;<cite class="ltx_cite ltx_citemacro_cite">[<a href="https://services.arxiv.org/html/submission/7575637/view#bib.bib3" title="" class="ltx_ref">3</a>]</cite> uses GRPO with verifiable rewards; we use SFT with mined pairs on a much smaller scale. <span id="S4.SS0.SSS0.Px1.p1.1.6" class="ltx_text ltx_font_bold">Self-Refine</span>&nbsp;<cite class="ltx_cite ltx_citemacro_cite">[<a href="https://services.arxiv.org/html/submission/7575637/view#bib.bib5" title="" class="ltx_ref">5</a>]</cite> and <span id="S4.SS0.SSS0.Px1.p1.1.7" class="ltx_text ltx_font_bold">Reflexion</span>&nbsp;<cite class="ltx_cite ltx_citemacro_cite">[<a href="https://services.arxiv.org/html/submission/7575637/view#bib.bib6" title="" class="ltx_ref">6</a>]</cite> use self-correction at inference time without training updates; our Section&nbsp;<a href="https://services.arxiv.org/html/submission/7575637/view#S3.SS10" title="Failure modes and methodology lessons ‣ Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_tag">3.10</span></a>(a) explores the training-time analog and documents its failure mode.</p>
+</div>
+</section>
+<section id="S4.SS0.SSS0.Px2" class="ltx_paragraph">
+<h4 class="ltx_title ltx_title_paragraph">Test-time scaling.</h4>
+
+<div id="S4.SS0.SSS0.Px2.p1" class="ltx_para">
+<p id="S4.SS0.SSS0.Px2.p1.1" class="ltx_p"><span id="S4.SS0.SSS0.Px2.p1.1.1" class="ltx_text ltx_font_bold">Codex pass@<math id="S4.SS0.SSS0.Px2.p1.1.1.m1" class="ltx_Math" alttext="N" display="inline" intent=":literal"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math></span>&nbsp;<cite class="ltx_cite ltx_citemacro_cite">[<a href="https://services.arxiv.org/html/submission/7575637/view#bib.bib9" title="" class="ltx_ref">9</a>]</cite> introduced the metric in 2021. <span id="S4.SS0.SSS0.Px2.p1.1.2" class="ltx_text ltx_font_bold">AlphaCode</span>&nbsp;<cite class="ltx_cite ltx_citemacro_cite">[<a href="https://services.arxiv.org/html/submission/7575637/view#bib.bib15" title="" class="ltx_ref">15</a>]</cite> used massive sampling and verifier-based filtering for competitive programming. <span id="S4.SS0.SSS0.Px2.p1.1.3" class="ltx_text ltx_font_bold">Self-Consistency</span>&nbsp;<cite class="ltx_cite ltx_citemacro_cite">[<a href="https://services.arxiv.org/html/submission/7575637/view#bib.bib16" title="" class="ltx_ref">16</a>]</cite> pioneered majority-vote selection without external verifiers. <span id="S4.SS0.SSS0.Px2.p1.1.4" class="ltx_text ltx_font_bold">Snell et al.</span>&nbsp;<cite class="ltx_cite ltx_citemacro_cite">[<a href="https://services.arxiv.org/html/submission/7575637/view#bib.bib17" title="" class="ltx_ref">17</a>]</cite> formalize test-time compute as a scaling axis. The o1-class models (e.g., OpenAI o1, DeepSeek-R1) extend this with sophisticated tree search and verifier learning. Our contribution is empirical quantification on <em id="S4.SS0.SSS0.Px2.p1.1.5" class="ltx_emph ltx_font_italic">small modern open bases</em>, where prior tabulated numbers are scarce.</p>
+</div>
+</section>
+<section id="S4.SS0.SSS0.Px3" class="ltx_paragraph">
+<h4 class="ltx_title ltx_title_paragraph">Synergy between training and inference scaling.</h4>
+
+<div id="S4.SS0.SSS0.Px3.p1" class="ltx_para">
+<p id="S4.SS0.SSS0.Px3.p1.1" class="ltx_p"><span id="S4.SS0.SSS0.Px3.p1.1.1" class="ltx_text ltx_font_bold">Snell et al.</span>&nbsp;<cite class="ltx_cite ltx_citemacro_cite">[<a href="https://services.arxiv.org/html/submission/7575637/view#bib.bib17" title="" class="ltx_ref">17</a>]</cite> study the trade-off between training compute and test-time compute. Our recipe <math id="S4.SS0.SSS0.Px3.p1.1.m1" class="ltx_Math" alttext="\times" display="inline" intent=":literal"><semantics><mo>×</mo><annotation encoding="application/x-tex">\times</annotation></semantics></math> TTS interaction (Section&nbsp;<a href="https://services.arxiv.org/html/submission/7575637/view#S3.SS5" title="Recipe × TTS synergy threshold ‣ Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_tag">3.5</span></a>) is, to our knowledge, the first concrete documentation of a <em id="S4.SS0.SSS0.Px3.p1.1.2" class="ltx_emph ltx_font_italic">threshold</em> regime where below-threshold recipe training degrades TTS performance — not a smooth trade-off but a sign change.</p>
+</div>
+</section>
+</section>
+<section id="S5" class="ltx_section">
+<h2 class="ltx_title ltx_font_bold ltx_title_section" style="font-size:120%;">Discussion</h2>
+
+<section id="S5.SS0.SSS0.Px1" class="ltx_paragraph">
+<h4 class="ltx_title ltx_title_paragraph">What the recipe actually does.</h4>
+
+<div id="S5.SS0.SSS0.Px1.p1" class="ltx_para">
+<p id="S5.SS0.SSS0.Px1.p1.1" class="ltx_p">The control experiment isolates the contribution: the model’s own at-edge failure patterns carry the training signal. Mechanically-corrupted external pairs do not. The recipe operates by extracting and re-exposing the model’s latent competence rather than introducing new knowledge.</p>
+</div>
+</section>
+<section id="S5.SS0.SSS0.Px2" class="ltx_paragraph">
+<h4 class="ltx_title ltx_title_paragraph">Recipe vs. TTS, regime-dependent.</h4>
+
+<div id="S5.SS0.SSS0.Px2.p1" class="ltx_para">
+<p id="S5.SS0.SSS0.Px2.p1.1" class="ltx_p">Our central finding is that the relative value of recipe-style fine-tuning and test-time sampling depends on regime:</p>
+<ul id="S5.I1" class="ltx_itemize">
+<li id="S5.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S5.I1.i1.p1" class="ltx_para">
+<p id="S5.I1.i1.p1.1" class="ltx_p"><em id="S5.I1.i1.p1.1.1" class="ltx_emph ltx_font_italic">Under-trained recipe</em>: 36 pairs on 3B; recipe <em id="S5.I1.i1.p1.1.2" class="ltx_emph ltx_font_italic">degrades</em> TTS by 4.9pp.</p>
+</div>
+</li>
+<li id="S5.I1.i2" class="ltx_item" style="list-style-type:none;padding-top:0.0pt;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S5.I1.i2.p1" class="ltx_para">
+<p id="S5.I1.i2.p1.1" class="ltx_p"><em id="S5.I1.i2.p1.1.1" class="ltx_emph ltx_font_italic">Well-trained recipe</em>: 132 pairs on 14B; recipe + TTS exceeds either alone by 12.8pp.</p>
+</div>
+</li>
+</ul>
+<p id="S5.SS0.SSS0.Px2.p1.2" class="ltx_p">This implies a sample-budget consideration: small mined-pair counts on small bases should defer to TTS-only; deployment scenarios that justify the training cost (and provide enough pairs) gain from the combination. The transition point and its model-size dependence are open questions.</p>
+</div>
+</section>
+<section id="S5.SS0.SSS0.Px3" class="ltx_paragraph">
+<h4 class="ltx_title ltx_title_paragraph">Modern bases vs. older bases.</h4>
+
+<div id="S5.SS0.SSS0.Px3.p1" class="ltx_para">
+<p id="S5.SS0.SSS0.Px3.p1.1" class="ltx_p">The recipe alone gives its largest absolute lifts on under-trained 2024-era bases (Qwen2.5-7B/14B) and modest lifts on modern 2025 bases (Qwen3-4B). On saturated modern bases (Qwen3-8B+, Qwen2.5-72B), recipe regresses. The recipe’s primary use case is therefore lifting models with code-skill headroom on the target benchmark — not lifting models that already approach the benchmark ceiling.</p>
+</div>
+</section>
+<section id="S5.SS0.SSS0.Px4" class="ltx_paragraph">
+<h4 class="ltx_title ltx_title_paragraph">Negative findings as evidence.</h4>
+
+<div id="S5.SS0.SSS0.Px4.p1" class="ltx_para">
+<p id="S5.SS0.SSS0.Px4.p1.1" class="ltx_p">Five negative paths (Section&nbsp;<a href="https://services.arxiv.org/html/submission/7575637/view#S3.SS10" title="Failure modes and methodology lessons ‣ Experiments ‣ How Far Can an Open Base Model Self-Improve? Recipes, Limits, and Test-Time Synergy" class="ltx_ref"><span class="ltx_text ltx_ref_tag">3.10</span></a>) document failure modes that may save future practitioners time: self-correction over-correction (and its fix), recursive plateau, tree-shaped training data side effects, distribution mismatch with concrete examples, and base-capability requirements. The over-correction <math id="S5.SS0.SSS0.Px4.p1.1.m1" class="ltx_Math" alttext="\to" display="inline" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\to</annotation></semantics></math> mixed-trace recovery is a methodology contribution in its own right.</p>
+</div>
+</section>
+</section>
+<section id="S6" class="ltx_section">
+<h2 class="ltx_title ltx_font_bold ltx_title_section" style="font-size:120%;">Limitations</h2>
+
+<div id="S6.p1" class="ltx_para">
+<ul id="S6.I1" class="ltx_itemize">
+<li id="S6.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S6.I1.i1.p1" class="ltx_para">
+<p id="S6.I1.i1.p1.1" class="ltx_p"><span id="S6.I1.i1.p1.1.1" class="ltx_text ltx_font_bold">Single-seed for 14B</span>: our headline 80.5% multi-pair result is single-seed; we have 3-seed validation only at 7B and 21-pair scale.</p>
+</div>
+</li>
+<li id="S6.I1.i2" class="ltx_item" style="list-style-type:none;padding-top:0.0pt;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S6.I1.i2.p1" class="ltx_para">
+<p id="S6.I1.i2.p1.1" class="ltx_p"><span id="S6.I1.i2.p1.1.1" class="ltx_text ltx_font_bold">LiveCodeBench</span>: we did not evaluate on the most recent contamination-resistant code benchmark; HumanEval+ is our best contamination-resistance evidence.</p>
+</div>
+</li>
+<li id="S6.I1.i3" class="ltx_item" style="list-style-type:none;padding-top:0.0pt;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S6.I1.i3.p1" class="ltx_para">
+<p id="S6.I1.i3.p1.1" class="ltx_p"><span id="S6.I1.i3.p1.1.1" class="ltx_text ltx_font_bold">Math beyond GSM8K</span>: the auto-curriculum is validated on GSM8K only; on MATH-500 we observe negative findings (distribution mismatch) without a positive recipe.</p>
+</div>
+</li>
+<li id="S6.I1.i4" class="ltx_item" style="list-style-type:none;padding-top:0.0pt;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S6.I1.i4.p1" class="ltx_para">
+<p id="S6.I1.i4.p1.1" class="ltx_p"><span id="S6.I1.i4.p1.1.1" class="ltx_text ltx_font_bold">Self-consistency at one model size</span>: we report SC on Qwen3-1.7B; broader replication is desirable.</p>
+</div>
+</li>
+<li id="S6.I1.i5" class="ltx_item" style="list-style-type:none;padding-top:0.0pt;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S6.I1.i5.p1" class="ltx_para">
+<p id="S6.I1.i5.p1.1" class="ltx_p"><span id="S6.I1.i5.p1.1.1" class="ltx_text ltx_font_bold">Synergy threshold mapping</span>: we report two data points (3B/36 pairs negative; 14B/132 pairs positive); the threshold’s exact shape (varying pair count, varying model size) is not characterized.</p>
+</div>
+</li>
+<li id="S6.I1.i6" class="ltx_item" style="list-style-type:none;padding-top:0.0pt;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S6.I1.i6.p1" class="ltx_para">
+<p id="S6.I1.i6.p1.1" class="ltx_p"><span id="S6.I1.i6.p1.1.1" class="ltx_text ltx_font_bold">ARC-AGI incomplete</span>: we attempted but did not complete an ARC-AGI evaluation.</p>
+</div>
+</li>
+<li id="S6.I1.i7" class="ltx_item" style="list-style-type:none;padding-top:0.0pt;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S6.I1.i7.p1" class="ltx_para">
+<p id="S6.I1.i7.p1.1" class="ltx_p"><span id="S6.I1.i7.p1.1.1" class="ltx_text ltx_font_bold">Cross-family transfer is partial</span>: Qwen-mined pairs do not transfer to Llama; own-mined pairs give a small lift; cross-family generalization is not established at scale.</p>
+</div>
+</li>
+<li id="S6.I1.i8" class="ltx_item" style="list-style-type:none;padding-top:0.0pt;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S6.I1.i8.p1" class="ltx_para">
+<p id="S6.I1.i8.p1.1" class="ltx_p"><span id="S6.I1.i8.p1.1.1" class="ltx_text ltx_font_bold">Verifier requirement</span>: oracle pass@<math id="S6.I1.i8.p1.1.m1" class="ltx_Math" alttext="N" display="inline" intent=":literal"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math> requires test cases; deployable settings need self-consistency or a learned verifier, both of which lose some of the oracle’s benefit.</p>
+</div>
+</li>
+</ul>
+</div>
+</section>
+<section id="S7" class="ltx_section">
+<h2 class="ltx_title ltx_font_bold ltx_title_section" style="font-size:120%;">Conclusion</h2>
+
+<div id="S7.p1" class="ltx_para">
+<p id="S7.p1.1" class="ltx_p">We presented TinyForge-Zero, a study of self-bootstrap and test-time sampling for lifting open base models on code and math benchmarks. The recipe alone takes <span id="S7.p1.1.1" class="ltx_text ltx_font_typewriter">Qwen2.5-14B-Base</span> from 26.8% to <math id="S7.p1.1.m1" class="ltx_Math" alttext="\approx" display="inline" intent=":literal"><semantics><mo>≈</mo><annotation encoding="application/x-tex">\approx</annotation></semantics></math>80% on HumanEval pass@1 (74.4% on HumanEval+); test-time sampling alone takes <span id="S7.p1.1.2" class="ltx_text ltx_font_typewriter">Qwen3-4B-Base</span> from 48.2% to 92.7% with no training. Their combination is regime-dependent: recipe <em id="S7.p1.1.3" class="ltx_emph ltx_font_italic">adds</em> to sampling at sufficient training scale, but <em id="S7.p1.1.4" class="ltx_emph ltx_font_italic">hurts</em> sampling at small scale — the first documentation of this synergy threshold. Seven negative or marginal paths are documented alongside the positive ones, including the catastrophic-then-fixed self-correction over-correction — a recipe lesson with general implications.</p>
+</div>
+<div id="S7.p2" class="ltx_para">
+<p id="S7.p2.1" class="ltx_p">All experiments use single-GPU consumer-rentable instances at under $50 total compute. All code, mined pairs, and a reproduction guide are released at <a href="https://github.com/ranausmanai/tinyforge-zero" title="" class="ltx_ref ltx_url ltx_font_typewriter">https://github.com/ranausmanai/tinyforge-zero</a>; the LoRA adapter weights for the 14B run are mirrored on Hugging Face Hub.</p>
+</div>
+</section>
+<section id="bib" class="ltx_bibliography">
+<h2 class="ltx_title ltx_title_bibliography">References</h2>
+
+<ul class="ltx_biblist">
+<li id="bib.bib1" class="ltx_bibitem">
+<span class="ltx_tag ltx_tag_bibitem">[1]</span>
+<span class="ltx_bibblock">
+Eric Zelikman, Yuhuai Wu, Jesse Mu, Noah D. Goodman.
+STaR: Bootstrapping Reasoning With Reasoning.
+<em id="bib.bib1.1.1" class="ltx_emph ltx_font_italic">NeurIPS</em>, 2022.
+
+</span>
+</li>
+<li id="bib.bib2" class="ltx_bibitem">
+<span class="ltx_tag ltx_tag_bibitem">[2]</span>
+<span class="ltx_bibblock">
+Tianbao Yuan et al.
+Scaling Relationship on Learning Mathematical Reasoning with Large Language Models.
+<em id="bib.bib2.1.1" class="ltx_emph ltx_font_italic">arXiv:2308.01825</em>, 2023.
+
+</span>
+</li>
+<li id="bib.bib3" class="ltx_bibitem">
+<span class="ltx_tag ltx_tag_bibitem">[3]</span>
+<span class="ltx_bibblock">
+DeepSeek-AI.
+DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning.
+<em id="bib.bib3.1.1" class="ltx_emph ltx_font_italic">arXiv:2501.12948</em>, 2025.
+
+</span>
+</li>
+<li id="bib.bib4" class="ltx_bibitem">
+<span class="ltx_tag ltx_tag_bibitem">[4]</span>
+<span class="ltx_bibblock">
+Qwen Team.
+Qwen2.5-Coder Technical Report.
+<em id="bib.bib4.1.1" class="ltx_emph ltx_font_italic">arXiv:2409.12186</em>, 2024.
+
+</span>
+</li>
+<li id="bib.bib5" class="ltx_bibitem">
+<span class="ltx_tag ltx_tag_bibitem">[5]</span>
+<span class="ltx_bibblock">
+Aman Madaan et al.
+Self-Refine: Iterative Refinement with Self-Feedback.
+<em id="bib.bib5.1.1" class="ltx_emph ltx_font_italic">NeurIPS</em>, 2023.
+
+</span>
+</li>
+<li id="bib.bib6" class="ltx_bibitem">
+<span class="ltx_tag ltx_tag_bibitem">[6]</span>
+<span class="ltx_bibblock">
+Noah Shinn et al.
+Reflexion: Language Agents with Verbal Reinforcement Learning.
+<em id="bib.bib6.1.1" class="ltx_emph ltx_font_italic">NeurIPS</em>, 2023.
+
+</span>
+</li>
+<li id="bib.bib7" class="ltx_bibitem">
+<span class="ltx_tag ltx_tag_bibitem">[7]</span>
+<span class="ltx_bibblock">
+Weizhe Yuan et al.
+Self-Rewarding Language Models.
+<em id="bib.bib7.1.1" class="ltx_emph ltx_font_italic">arXiv:2401.10020</em>, 2024.
+
+</span>
+</li>
+<li id="bib.bib8" class="ltx_bibitem">
+<span class="ltx_tag ltx_tag_bibitem">[8]</span>
+<span class="ltx_bibblock">
+Mark Chen et al.
+Evaluating Large Language Models Trained on Code (Codex).
+<em id="bib.bib8.1.1" class="ltx_emph ltx_font_italic">arXiv:2107.03374</em>, 2021.
+
+</span>
+</li>
+<li id="bib.bib9" class="ltx_bibitem">
+<span class="ltx_tag ltx_tag_bibitem">[9]</span>
+<span class="ltx_bibblock">
+Mark Chen et al.
+Evaluating Large Language Models Trained on Code (Codex).
+<em id="bib.bib9.1.1" class="ltx_emph ltx_font_italic">arXiv:2107.03374</em>, 2021.
+
+</span>
+</li>
+<li id="bib.bib10" class="ltx_bibitem">
+<span class="ltx_tag ltx_tag_bibitem">[10]</span>
+<span class="ltx_bibblock">
+Jiawei Liu et al.
+Is Your Code Generated by ChatGPT Really Correct? Rigorous Evaluation of Large Language Models for Code Generation.
+<em id="bib.bib10.1.1" class="ltx_emph ltx_font_italic">NeurIPS</em>, 2023.
+
+</span>
+</li>
+<li id="bib.bib11" class="ltx_bibitem">
+<span class="ltx_tag ltx_tag_bibitem">[11]</span>
+<span class="ltx_bibblock">
+Jacob Austin et al.
+Program Synthesis with Large Language Models.
+<em id="bib.bib11.1.1" class="ltx_emph ltx_font_italic">arXiv:2108.07732</em>, 2021.
+
+</span>
+</li>
+<li id="bib.bib12" class="ltx_bibitem">
+<span class="ltx_tag ltx_tag_bibitem">[12]</span>
+<span class="ltx_bibblock">
+Karl Cobbe et al.
+Training Verifiers to Solve Math Word Problems.
+<em id="bib.bib12.1.1" class="ltx_emph ltx_font_italic">arXiv:2110.14168</em>, 2021.
+
+</span>
+</li>
+<li id="bib.bib13" class="ltx_bibitem">
+<span class="ltx_tag ltx_tag_bibitem">[13]</span>
+<span class="ltx_bibblock">
+Dan Hendrycks et al.
+Measuring Mathematical Problem Solving With the MATH Dataset.
+<em id="bib.bib13.1.1" class="ltx_emph ltx_font_italic">NeurIPS</em>, 2021.
+
+</span>
+</li>
+<li id="bib.bib14" class="ltx_bibitem">
+<span class="ltx_tag ltx_tag_bibitem">[14]</span>
+<span class="ltx_bibblock">
+Naman Jain et al.
+LiveCodeBench: Holistic and Contamination Free Evaluation of Large Language Models for Code.
+<em id="bib.bib14.1.1" class="ltx_emph ltx_font_italic">arXiv:2403.07974</em>, 2024.
+
+</span>
+</li>
+<li id="bib.bib15" class="ltx_bibitem">
+<span class="ltx_tag ltx_tag_bibitem">[15]</span>
+<span class="ltx_bibblock">
+Yujia Li et al.
+Competition-Level Code Generation with AlphaCode.
+<em id="bib.bib15.1.1" class="ltx_emph ltx_font_italic">Science</em>, 2022.
+
+</span>
+</li>
+<li id="bib.bib16" class="ltx_bibitem">
+<span class="ltx_tag ltx_tag_bibitem">[16]</span>
+<span class="ltx_bibblock">
+Xuezhi Wang et al.
+Self-Consistency Improves Chain of Thought Reasoning in Language Models.
+<em id="bib.bib16.1.1" class="ltx_emph ltx_font_italic">ICLR</em>, 2023.
+
+</span>
+</li>
+<li id="bib.bib17" class="ltx_bibitem">
+<span class="ltx_tag ltx_tag_bibitem">[17]</span>
+<span class="ltx_bibblock">
+Charlie Snell et al.
+Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters.
+<em id="bib.bib17.1.1" class="ltx_emph ltx_font_italic">arXiv:2408.03314</em>, 2024.
+
+</span>
+</li>
+</ul>
+</section>
+</article>
+</div>
+</div>
+<footer class="arxiv-html-footer">
+  <div class="ltx_page_logo">
+    Experimental support, please
+    
+    <a href="https://services.arxiv.org/html/submission/7575637/__stdout.txt" class="ltx_ref" target="_blank" rel="nofollow">view the build logs</a>
+    
+    for errors. Generated by
+    <a href="https://math.nist.gov/~BMiller/LaTeXML/" target="_blank" class="ltx_ref ltx_LaTeXML_logo">
+      <span style="letter-spacing: -0.2em; margin-right: 0.1em;">
+        L
+        <span style="font-size: 70%; position: relative; bottom: 2.2pt;">A</span>
+        T
+        <span style="position: relative; bottom: -0.4ex;">E</span>
+      </span>
+      <span class="ltx_font_smallcaps">xml</span>
+      <img alt="[LOGO]" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==">
+    </a>.
+  </div>
+  <div class="keyboard-glossary">
+    <h2>Instructions for reporting errors</h2>
+    <p>We are continuing to improve HTML versions of papers, and your feedback helps enhance accessibility and mobile
+      support. To report errors in the HTML that will help us improve conversion and rendering, choose any of the
+      methods listed below:</p>
+    <ul>
+      <li>Click the "Report Issue" <span class="mobile-only">(<svg role="presentation" style="display: inline-block; vertical-align: middle; fill: var(--text-color);" aria-hidden="true" height="1em" viewBox="0 0 640 640">
+            <path d="M224 160C224 107 267 64 320 64C373 64 416 107 416 160L416 163.6C416 179.3 403.3 192 387.6 192L252.5 192C236.8 192 224.1 179.3 224.1 163.6L224.1 160zM569.6 172.8C580.2 186.9 577.3 207 563.2 217.6L465.4 290.9C470.7 299.8 474.7 309.6 477.2 320L576 320C593.7 320 608 334.3 608 352C608 369.7 593.7 384 576 384L480 384L480 416C480 418.6 479.9 421.3 479.8 423.9L563.2 486.4C577.3 497 580.2 517.1 569.6 531.2C559 545.3 538.9 548.2 524.8 537.6L461.7 490.3C438.5 534.5 395.2 566.5 344 574.2L344 344C344 330.7 333.3 320 320 320C306.7 320 296 330.7 296 344L296 574.2C244.8 566.5 201.5 534.5 178.3 490.3L115.2 537.6C101.1 548.2 81 545.3 70.4 531.2C59.8 517.1 62.7 497 76.8 486.4L160.2 423.9C160.1 421.3 160 418.7 160 416L160 384L64 384C46.3 384 32 369.7 32 352C32 334.3 46.3 320 64 320L162.8 320C165.3 309.6 169.3 299.8 174.6 290.9L76.8 217.6C62.7 207 59.8 186.9 70.4 172.8C81 158.7 101.1 155.8 115.2 166.4L224 248C236.3 242.9 249.8 240 264 240L376 240C390.2 240 403.7 242.8 416 248L524.8 166.4C538.9 155.8 559 158.7 569.6 172.8z"></path>
+          </svg>)</span> button, located in the page header.</li>
+    </ul>
+    <p><strong>Tip:</strong> You can select the relevant text first, to include it in your report.</p>
+    <p>Our team has already identified <a class="ltx_ref" href="https://github.com/arXiv/html_feedback/issues" target="_blank">the following issues</a>. We appreciate your time reviewing and reporting rendering errors we
+      may not have found yet. Your efforts will help us improve the HTML versions for all readers, because disability
+      should not be a barrier to accessing research. Thank you for your continued support in championing open access for
+      all.</p>
+    <p>Have a free development cycle? Help support accessibility at arXiv! Our collaborators at LaTeXML maintain a <a class="ltx_ref" href="https://github.com/brucemiller/LaTeXML/wiki/Porting-LaTeX-packages-for-LaTeXML" target="_blank">list of packages that need conversion</a>, and welcome <a class="ltx_ref" href="https://github.com/brucemiller/LaTeXML/issues" target="_blank">developer contributions</a>.</p>
+  </div>
+</footer>
+<div id="fixed-buttons-container">
+  <div id="beta-badge" aria-hidden="true">BETA</div>
+  <a id="disable-reading-mode-btn" class="header-button" href="javascript:toggleReadingMode();" title="Disable reading mode, show header and footer">
+    <svg role="presentation" height="1.25rem" viewBox="0 0 448 512"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+      <path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"></path>
+    </svg>
+  </a>
+</div>
+
+</body></html>
