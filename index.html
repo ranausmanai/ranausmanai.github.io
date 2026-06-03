@@ -3,263 +3,616 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Usman — AI Research & Writing</title>
-<meta name="description" content="Mechanistic interpretability and behavioral testing on open language models. Running entirely on consumer hardware.">
-<meta property="og:title" content="Usman — AI Research & Writing">
-<meta property="og:description" content="Mechanistic interpretability and behavioral testing on open language models. Running entirely on consumer hardware.">
+<title>Muhammad Usman Rana</title>
+<meta name="description" content="Applied AI engineering leader building practical LLM systems, evaluation workflows, and efficient experiments. Writing, papers, and selected work by Muhammad Usman Rana.">
+<meta property="og:title" content="Muhammad Usman Rana">
+<meta property="og:description" content="Applied AI engineering leader building practical LLM systems, evaluation workflows, and efficient experiments.">
 <meta property="og:image" content="https://ranausmanai.github.io/og/home.png">
 <meta property="og:url" content="https://ranausmanai.github.io">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Usman — AI Research & Writing">
-<meta name="twitter:description" content="Mechanistic interpretability and behavioral testing on open language models.">
+<meta name="twitter:title" content="Muhammad Usman Rana">
+<meta name="twitter:description" content="Applied AI engineering leader building practical LLM systems, evaluation workflows, and efficient experiments.">
 <meta name="twitter:image" content="https://ranausmanai.github.io/og/home.png">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
+*{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#080c14;--surface:#0f1624;--card:#141e30;
-  --text:#e8edf5;--dim:#5a6a80;--dimmer:#3a4558;
-  --blue:#4fc3f7;--red:#ef5350;--purple:#7c4dff;
-  --gold:#ffd54f;--green:#66bb6a;--teal:#26c6da;--orange:#ffa726;
+  --bg:#fbf7f1;
+  --paper:#fffdf9;
+  --paper-2:#fff8ef;
+  --line:#e6dccf;
+  --ink:#1e2430;
+  --muted:#667085;
+  --muted-2:#8b93a3;
+  --accent:#c86b4a;
+  --accent-2:#3a6ea5;
+  --accent-3:#d8a936;
+  --shadow:0 24px 60px rgba(109,86,58,.10);
 }
-html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.6;min-height:100vh;}
-::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-thumb{background:#2a3550;border-radius:2px;}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Manrope',sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(216,169,54,.18), transparent 28%),
+    radial-gradient(circle at 85% 12%, rgba(58,110,165,.12), transparent 24%),
+    linear-gradient(180deg,#fffdfa 0%,#fbf7f1 42%,#f7f1e8 100%);
+  line-height:1.7;
+}
+a{color:inherit}
+img{display:block;max-width:100%}
+.page{position:relative;overflow:hidden}
+.page::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.3) 1px, transparent 1px);
+  background-size:36px 36px;
+  mask-image:linear-gradient(180deg, rgba(0,0,0,.25), transparent 70%);
+  opacity:.28;
+}
+.shell{max-width:1140px;margin:0 auto;padding:0 28px;position:relative;z-index:1}
+nav{
+  padding:26px 0 18px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+}
+.brand{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.8rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--accent-2);
+  text-decoration:none;
+}
+.nav-links{display:flex;gap:18px;flex-wrap:wrap}
+.nav-links a{
+  text-decoration:none;
+  color:var(--muted);
+  font-size:.95rem;
+}
+.nav-links a:hover{color:var(--ink)}
 
-/* nav */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #0f1624;background:rgba(8,12,20,.9);backdrop-filter:blur(12px);}
-.nav-logo{font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--blue);letter-spacing:1px;}
-.nav-links{display:flex;gap:28px;}
-.nav-links a{color:var(--dim);font-size:.85rem;text-decoration:none;transition:color .2s;}
-.nav-links a:hover{color:var(--text);}
+.hero{
+  display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);
+  gap:52px;
+  align-items:center;
+  padding:34px 0 54px;
+}
+.eyebrow{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.76rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:22px;
+}
+h1{
+  font-family:'Newsreader',serif;
+  font-size:clamp(3.2rem,6.2vw,5.8rem);
+  line-height:.95;
+  letter-spacing:-.045em;
+  font-weight:700;
+  margin-bottom:22px;
+}
+.hero p{
+  font-size:1.04rem;
+  color:var(--muted);
+  max-width:640px;
+}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+.button{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 18px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.75);
+  box-shadow:0 12px 30px rgba(120,96,70,.08);
+  text-decoration:none;
+  font-size:.94rem;
+  color:var(--ink);
+}
+.button.primary{
+  background:linear-gradient(135deg,#f5dfc9,#f7ecd8);
+  border-color:#eccca5;
+}
+.button:hover{transform:translateY(-1px)}
 
-/* hero */
-.hero{padding:160px 40px 80px;max-width:900px;margin:0 auto;position:relative;}
-.hero-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;}
-.hero-inner{position:relative;z-index:1;}
-.eyebrow{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--purple);margin-bottom:20px;opacity:0;animation:up .7s .1s forwards;}
-.hero h1{font-size:clamp(2.8rem,5.5vw,4.4rem);font-weight:700;line-height:1.08;letter-spacing:-2px;margin-bottom:22px;opacity:0;animation:up .8s .25s forwards;}
-.hero h1 em{font-style:normal;color:var(--blue);}
-.hero-desc{font-size:1rem;color:var(--dim);max-width:520px;line-height:1.8;margin-bottom:40px;opacity:0;animation:up .8s .4s forwards;}
-.hero-tags{display:flex;flex-wrap:wrap;gap:10px;opacity:0;animation:up .8s .55s forwards;}
-.hero-tag{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:2px;padding:5px 14px;border-radius:20px;border:1px solid #2a3550;color:var(--dim);}
-@keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.hero-side{
+  position:relative;
+}
+.portrait-wrap{
+  background:linear-gradient(180deg,rgba(255,255,255,.8),rgba(255,248,239,.95));
+  border:1px solid rgba(152,119,84,.18);
+  border-radius:32px;
+  padding:18px;
+  box-shadow:var(--shadow);
+}
+.portrait{
+  aspect-ratio:1/1.02;
+  object-fit:cover;
+  border-radius:22px;
+}
+.portrait-note{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  margin-top:16px;
+  padding:0 6px 4px;
+  font-size:.9rem;
+  color:var(--muted);
+}
+.portrait-note strong{color:var(--ink);display:block;font-size:.95rem}
 
-/* section */
-.section{max-width:900px;margin:0 auto;padding:0 40px 120px;position:relative;z-index:1;}
-.section-label{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--dimmer);margin-bottom:28px;display:flex;align-items:center;gap:16px;}
-.section-label::after{content:'';flex:1;height:1px;background:#1a2540;}
+.summary-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+  margin:8px 0 76px;
+}
+.summary-card{
+  background:rgba(255,253,249,.82);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:22px 22px 20px;
+  box-shadow:0 14px 34px rgba(133,110,83,.07);
+}
+.summary-card .k{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.72rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--muted-2);
+  margin-bottom:10px;
+}
+.summary-card .v{
+  font-family:'Newsreader',serif;
+  font-size:2rem;
+  line-height:1;
+  margin-bottom:8px;
+}
+.summary-card p{font-size:.92rem;color:var(--muted)}
 
-/* featured post */
-.post-featured{background:var(--card);border:1px solid #1e2d48;border-radius:20px;padding:44px;text-decoration:none;color:inherit;display:block;position:relative;overflow:hidden;margin-bottom:20px;transition:border-color .25s,transform .25s;}
-.post-featured::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(124,77,255,.06),rgba(79,195,247,.04));opacity:0;transition:opacity .3s;}
-.post-featured:hover{border-color:#2e4070;transform:translateY(-3px);}
-.post-featured:hover::before{opacity:1;}
-.featured-dot{position:absolute;top:24px;right:28px;display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--purple);}
-.featured-dot::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--purple);animation:pulse 2s infinite;}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.section{
+  padding:20px 0 70px;
+}
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:20px;
+  margin-bottom:24px;
+}
+.section-kicker{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.73rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--accent-2);
+  margin-bottom:12px;
+}
+.section h2{
+  font-family:'Newsreader',serif;
+  font-size:clamp(2rem,4vw,3.2rem);
+  line-height:1;
+  letter-spacing:-.04em;
+  font-weight:700;
+}
+.section-intro{
+  max-width:620px;
+  color:var(--muted);
+  font-size:1rem;
+}
 
-/* small posts grid */
-.posts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:20px;}
-.post-card{background:var(--card);border:1px solid #1a2540;border-radius:16px;padding:32px;text-decoration:none;color:inherit;display:block;transition:border-color .25s,transform .25s;position:relative;overflow:hidden;}
-.post-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .3s;}
-.post-card:hover{border-color:#2a3a5c;transform:translateY(-3px);}
-.post-card:hover::before{opacity:1;}
+.about-grid{
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:20px;
+}
+.panel{
+  background:rgba(255,253,249,.88);
+  border:1px solid var(--line);
+  border-radius:28px;
+  padding:28px;
+  box-shadow:0 18px 40px rgba(126,101,75,.08);
+}
+.panel p + p{margin-top:14px}
+.focus-list{
+  display:grid;
+  gap:14px;
+}
+.focus-item{
+  padding:16px 18px;
+  border-radius:18px;
+  background:linear-gradient(180deg,#fffdf9,#fff7ee);
+  border:1px solid #eee1d3;
+}
+.focus-item strong{display:block;font-size:1rem;margin-bottom:4px}
+.focus-item span{color:var(--muted);font-size:.94rem}
 
-/* shared post styles */
-.post-meta{display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap;}
-.post-tag{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:2px;text-transform:uppercase;padding:4px 11px;border-radius:20px;border:1px solid;}
-.post-date{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--dim);}
-.post-featured h2{font-size:1.9rem;font-weight:700;line-height:1.2;letter-spacing:-.5px;margin-bottom:14px;}
-.post-card h2{font-size:1.25rem;font-weight:700;line-height:1.25;letter-spacing:-.3px;margin-bottom:12px;}
-.post-excerpt{color:var(--dim);font-size:.92rem;line-height:1.75;margin-bottom:24px;}
-.post-featured .post-excerpt{max-width:580px;}
-.post-stats{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:28px;}
-.stat{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--dimmer);}
-.stat span{color:var(--text);}
-.read-more{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;font-weight:500;transition:gap .2s;}
-.post-featured:hover .read-more,.post-card:hover .read-more{gap:13px;}
+.papers{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+}
+.paper-card,.writing-card,.timeline-card{
+  background:rgba(255,253,249,.92);
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:24px;
+  text-decoration:none;
+  box-shadow:0 18px 40px rgba(126,101,75,.08);
+  transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;
+}
+.paper-card:hover,.writing-card:hover,.timeline-card:hover{
+  transform:translateY(-3px);
+  border-color:#d4c1ae;
+  box-shadow:0 24px 46px rgba(126,101,75,.12);
+}
+.label{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:.7rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--muted-2);
+  margin-bottom:14px;
+}
+.label::before{
+  content:"";
+  width:8px;
+  height:8px;
+  border-radius:999px;
+  background:var(--accent-3);
+}
+.paper-card h3,.writing-card h3,.timeline-card h3{
+  font-size:1.2rem;
+  line-height:1.25;
+  margin-bottom:10px;
+}
+.paper-card p,.writing-card p,.timeline-card p{
+  color:var(--muted);
+  font-size:.95rem;
+}
+.meta{
+  margin-top:16px;
+  display:flex;
+  gap:18px;
+  flex-wrap:wrap;
+  color:var(--muted-2);
+  font-size:.82rem;
+}
 
-/* about strip */
-.about{max-width:900px;margin:0 auto;padding:0 40px 100px;position:relative;z-index:1;}
-.about-card{background:var(--card);border:1px solid #1a2540;border-radius:16px;padding:40px;display:flex;gap:40px;align-items:center;flex-wrap:wrap;}
-.about-text h3{font-size:1.1rem;font-weight:600;margin-bottom:10px;}
-.about-text p{font-size:.9rem;color:var(--dim);line-height:1.75;max-width:500px;}
-.about-links{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap;}
-.about-link{font-family:'JetBrains Mono',monospace;font-size:.75rem;padding:8px 16px;border-radius:8px;border:1px solid #2a3550;color:var(--dim);text-decoration:none;transition:all .2s;}
-.about-link:hover{border-color:var(--blue);color:var(--text);}
+.writing-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+}
 
-/* footer */
-footer{border-top:1px solid #0f1624;padding:32px 40px;text-align:center;color:var(--dimmer);font-family:'JetBrains Mono',monospace;font-size:.72rem;position:relative;z-index:1;}
-footer a{color:var(--dim);text-decoration:none;}footer a:hover{color:var(--text);}
+.timeline{
+  display:grid;
+  gap:16px;
+}
+.timeline-card .role{
+  color:var(--accent);
+  font-weight:700;
+  margin-bottom:2px;
+}
+.timeline-card .org{
+  color:var(--ink);
+  font-weight:600;
+  margin-bottom:8px;
+}
+
+.contact-card{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:22px;
+  align-items:start;
+  background:linear-gradient(135deg,#fff8ef,#fffdf9 55%,#f8f2e8);
+}
+.contact-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:20px;
+}
+.contact-links a{
+  text-decoration:none;
+  padding:10px 14px;
+  border-radius:14px;
+  border:1px solid #eadcca;
+  background:rgba(255,255,255,.75);
+  color:var(--ink);
+  font-size:.92rem;
+}
+.contact-links a:hover{border-color:#d2b796}
+.mini-note{
+  color:var(--muted);
+  font-size:.94rem;
+}
+
+footer{
+  padding:26px 0 38px;
+  color:var(--muted-2);
+  font-size:.86rem;
+}
+
+@media (max-width:980px){
+  .hero,.about-grid,.contact-card{grid-template-columns:1fr}
+  .summary-grid,.papers,.writing-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:720px){
+  .shell{padding:0 18px}
+  nav{padding:20px 0 12px;align-items:flex-start;flex-direction:column}
+  .hero{padding:24px 0 42px;gap:28px}
+  .summary-grid,.papers,.writing-grid{grid-template-columns:1fr}
+  .section{padding:16px 0 54px}
+  .panel,.paper-card,.writing-card,.timeline-card{padding:22px}
+  h1{font-size:clamp(2.6rem,11vw,4rem)}
+}
 </style>
 </head>
 <body>
-
-<canvas class="hero-canvas" id="bg"></canvas>
-
-<nav>
-  <span class="nav-logo">ranausmanai</span>
-  <div class="nav-links">
-    <a href="https://github.com/ranausmanai" target="_blank">GitHub</a>
-    <a href="https://github.com/ranausmanai/LLMEmotionGeometry" target="_blank">Research</a>
-  </div>
-</nav>
-
-<section class="hero">
-  <div class="hero-inner">
-    <div class="eyebrow">Independent AI Research</div>
-    <h1>Looking inside<br><em>language models</em><br>to see what's there.</h1>
-    <p class="hero-desc">Experiments on small open models — run locally, no cloud, no proprietary APIs. Mechanistic interpretability, behavioral testing, and honest findings.</p>
-    <div class="hero-tags">
-      <span class="hero-tag">Mechanistic Interpretability</span>
-      <span class="hero-tag">Behavioral Analysis</span>
-      <span class="hero-tag">Open Models</span>
-      <span class="hero-tag">Consumer Hardware</span>
-    </div>
-  </div>
-</section>
-
-<div class="section">
-  <div class="section-label">Latest</div>
-
-  <a class="post-featured" href="posts/how-far-can-an-open-base-model-self-improve.html">
-    <div class="featured-dot">New post</div>
-    <div class="post-meta">
-      <span class="post-tag" style="color:var(--gold);border-color:rgba(255,213,79,.35);">Research Paper</span>
-      <span class="post-tag" style="color:var(--teal);border-color:rgba(38,198,218,.3);">Open Base Models</span>
-      <span class="post-date">May 2026</span>
-    </div>
-    <h2>How Far Can an Open Base Model Self-Improve?</h2>
-    <p class="post-excerpt">An arXiv-style research paper on self-bootstrap recipes, boundary conditions, and test-time sampling synergy in open base models. Kept in paper format rather than rewritten as a blog post.</p>
-    <div class="post-stats">
-      <div class="stat">Format <span>arXiv-style HTML</span></div>
-      <div class="stat">Focus <span>Recipes + limits</span></div>
-      <div class="stat">Theme <span>Test-time synergy</span></div>
-    </div>
-    <span class="read-more" style="color:var(--gold);">Read the full story →</span>
-  </a>
-
-  <div class="section-label" style="margin-top:60px;">More</div>
-  <div class="posts-grid">
-    <a class="post-card" href="posts/parameter-golf.html">
-      <div class="post-meta">
-        <span class="post-tag" style="color:var(--green);border-color:rgba(102,187,106,.35);">Training Experiments</span>
-        <span class="post-date">April 2026</span>
+<div class="page">
+  <div class="shell">
+    <nav>
+      <a class="brand" href="/">ranausmanai</a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#papers">Papers</a>
+        <a href="#writing">Writing</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
       </div>
-      <h2>Parameter Golf: How a Tiny Model Got Better By Doing Less</h2>
-      <p class="post-excerpt">I ran 131 experiments on a tiny language model under a hard 600-second training cap. The big gains came from making the model simpler, faster, more decoder-heavy, and less tied together.</p>
-      <div class="post-stats">
-        <div class="stat">Runs <span>131</span></div>
-        <div class="stat">Best BPB <span>1.5207</span></div>
-      </div>
-      <span class="read-more" style="color:var(--green);">Read →</span>
-    </a>
+    </nav>
 
-    <a class="post-card" href="posts/under-pressure.html">
-      <div class="post-meta">
-        <span class="post-tag" style="color:var(--purple);border-color:rgba(124,77,255,.35);">Mechanistic Interpretability</span>
-        <span class="post-date">April 2026</span>
+    <section class="hero" id="about">
+      <div>
+        <div class="eyebrow">Applied AI • Writing • Research</div>
+        <h1>Muhammad Usman Rana</h1>
+        <p>Engineering Manager and applied AI builder working at the intersection of production systems and public experimentation. I build practical LLM workflows, evaluation loops, and small-model research projects, then write up what actually worked, what failed, and why.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#writing">Read the writing</a>
+          <a class="button" href="#papers">View papers</a>
+          <a class="button" href="https://github.com/ranausmanai" target="_blank">GitHub</a>
+          <a class="button" href="https://www.linkedin.com/in/ranausmans/" target="_blank">LinkedIn</a>
+        </div>
       </div>
-      <h2>What Happens Inside an AI When You Stress It Out</h2>
-      <p class="post-excerpt">We gave a small AI an impossible task, then changed only the emotional tone of our follow-up message. Same model, same task, completely different behavior. Then we looked inside all twenty-four layers to see why.</p>
-      <div class="post-stats">
-        <div class="stat">Hack rate <span>55%</span></div>
-        <div class="stat">Valence axis <span>59.5%</span></div>
+      <div class="hero-side">
+        <div class="portrait-wrap">
+          <img class="portrait" src="images/profile.png" alt="Portrait of Muhammad Usman Rana">
+          <div class="portrait-note">
+            <div>
+              <strong>Islamabad, Pakistan</strong>
+              <span>Applied AI, LLM systems, evaluation</span>
+            </div>
+            <div>
+              <strong>13+ years</strong>
+              <span>Production ML and AI delivery</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <span class="read-more" style="color:var(--purple);">Read →</span>
-    </a>
+    </section>
 
-    <a class="post-card" href="posts/tinyforge.html">
-      <div class="post-meta">
-        <span class="post-tag" style="color:var(--orange);border-color:rgba(255,167,38,.3);">Self-Improving AI</span>
-        <span class="post-date">2025</span>
+    <section class="summary-grid">
+      <div class="summary-card">
+        <div class="k">Current role</div>
+        <div class="v">Groupon</div>
+        <p>Built Groupon’s AI function from scratch and shipped practical systems into real operating workflows.</p>
       </div>
-      <h2>A Tiny Model That Teaches Itself</h2>
-      <p class="post-excerpt">No teacher model. No human feedback. No GPU. A 0.8B model that gets better at coding by studying its own failures — on a MacBook Air with 6GB of RAM. Single-pass accuracy jumped 75% from 13 self-generated examples.</p>
-      <div class="post-stats">
-        <div class="stat">Improvement <span>16 → 28 tests</span></div>
-        <div class="stat">RAM <span>6GB</span></div>
+      <div class="summary-card">
+        <div class="k">Public papers</div>
+        <div class="v">2</div>
+        <p>Recent arXiv papers on emotional framing, internal geometry, and agent decision steering.</p>
       </div>
-      <span class="read-more" style="color:var(--orange);">Read →</span>
-    </a>
+      <div class="summary-card">
+        <div class="k">Writing</div>
+        <div class="v">6+</div>
+        <p>Technical essays on small models, reliability, interpretability, evaluation, and constrained experiments.</p>
+      </div>
+      <div class="summary-card">
+        <div class="k">Style</div>
+        <div class="v">Hands-on</div>
+        <p>Consumer hardware, tight budgets, verifier-driven workflows, and experiments that stay close to deployment reality.</p>
+      </div>
+    </section>
 
-    <a class="post-card" href="posts/spiral-eval.html">
-      <div class="post-meta">
-        <span class="post-tag" style="color:var(--red);border-color:rgba(239,83,80,.3);">Behavioral Testing</span>
-        <span class="post-date">April 2026</span>
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">About</div>
+          <h2>Practical AI work, not academic theater.</h2>
+        </div>
       </div>
-      <h2>Which AIs Will Feed Your Delusions?</h2>
-      <p class="post-excerpt">Five models. Five implausible beliefs. Streetlights that respond to you, hidden messages in typos, a secret math law in prime gaps. We measured which AIs ground you back to reality — and which ones make it worse.</p>
-      <div class="post-stats">
-        <div class="stat">Models <span>5 tested</span></div>
-        <div class="stat">Spiral range <span>+32 to −9</span></div>
+      <div class="about-grid">
+        <div class="panel">
+          <p>I am an Engineering Manager, Applied AI and LLM Systems leader with experience across Groupon, Toptal, Jazz, consulting, and earlier data science work. My core interest is building AI systems that survive contact with the real world: cost constraints, noisy feedback, production quality, and changing requirements.</p>
+          <p>Outside work, I publish experiments on small open models, verifier-driven inference, agent workflows, and behavioral evaluation. The goal is not to perform “research aesthetics.” It is to learn something defensible, build something usable, and make the tradeoffs legible.</p>
+          <p>That is why most of the work here lives in the space between product and research: efficient model training, local inference, mechanistic interpretability, reliability loops, and open evaluation tooling.</p>
+        </div>
+        <div class="panel">
+          <div class="focus-list">
+            <div class="focus-item">
+              <strong>LLM systems and evaluation</strong>
+              <span>Verifier-driven inference, reliability pipelines, behavioral analysis, and model quality under operational constraints.</span>
+            </div>
+            <div class="focus-item">
+              <strong>Agent workflows</strong>
+              <span>Tool use, orchestration, coding agents, and developer-facing systems that turn models into useful workflows.</span>
+            </div>
+            <div class="focus-item">
+              <strong>Efficient experimentation</strong>
+              <span>Consumer-hardware research, small-model training, and disciplined iteration instead of expensive brute force.</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <span class="read-more" style="color:var(--teal);">Read →</span>
-    </a>
+    </section>
 
-    <a class="post-card" href="posts/twenty-experiments.html">
-      <div class="post-meta">
-        <span class="post-tag" style="color:var(--blue);border-color:rgba(79,195,247,.3);">Local LLM Inference</span>
-        <span class="post-date">April 2026</span>
+    <section class="section" id="papers">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Papers</div>
+          <h2>Selected arXiv work.</h2>
+        </div>
+        <p class="section-intro">Two recent papers that sit closest to my public research identity: model behavior under emotional framing, and agent decision steering under adversarial feeds.</p>
       </div>
-      <h2>Can a 9B Model Run Twice as Fast?</h2>
-      <p class="post-excerpt">We tried 22 techniques to speed up a 9B language model on a MacBook Air. Layer skipping, sparsity, speculative decoding, MoE. Most failed. Here is what actually worked and what hit a wall.</p>
-      <div class="post-stats">
-        <div class="stat">Techniques <span>22 tried</span></div>
-        <div class="stat">What worked <span>1</span></div>
+      <div class="papers">
+        <a class="paper-card" href="https://arxiv.org/abs/2605.20202" target="_blank">
+          <div class="label">arXiv 2026</div>
+          <h3>Under Pressure: Emotional Framing Induces Measurable Behavioral Shifts and Structured Internal Geometry in Small Language Models</h3>
+          <p>A paper on how prompt framing changes small-model behavior and reshapes internal activation geometry in measurable ways.</p>
+          <div class="meta">
+            <span>Behavioral analysis</span>
+            <span>Interpretability</span>
+            <span>Small models</span>
+          </div>
+        </a>
+        <a class="paper-card" href="https://arxiv.org/abs/2606.00914" target="_blank">
+          <div class="label">arXiv 2026</div>
+          <h3>Adversarial Feeds Steer LLM Agent Decisions Against Their Defaults</h3>
+          <p>A paper on how feed-like environmental cues can steer agent decisions away from their baseline preferences and default choices.</p>
+          <div class="meta">
+            <span>Agents</span>
+            <span>Adversarial influence</span>
+            <span>Decision steering</span>
+          </div>
+        </a>
       </div>
-      <span class="read-more" style="color:var(--blue);">Read →</span>
-    </a>
+    </section>
+
+    <section class="section" id="writing">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Writing</div>
+          <h2>Blog and technical essays.</h2>
+        </div>
+        <p class="section-intro">Notes from experiments, local benchmarks, interpretability work, and constrained training studies. Mostly written for builders who want signal, not ceremony.</p>
+      </div>
+      <div class="writing-grid">
+        <a class="writing-card" href="posts/how-far-can-an-open-base-model-self-improve.html">
+          <div class="label">Research paper</div>
+          <h3>How Far Can an Open Base Model Self-Improve?</h3>
+          <p>Recipes, limits, and test-time synergy in open base models, presented in arXiv-style HTML.</p>
+          <div class="meta">
+            <span>Self-improvement</span>
+            <span>Open base models</span>
+          </div>
+        </a>
+        <a class="writing-card" href="posts/parameter-golf.html">
+          <div class="label">Training study</div>
+          <h3>Parameter Golf: How a Tiny Model Got Better By Doing Less</h3>
+          <p>131 constrained experiments on a tiny model under a strict wallclock budget, with the main lesson that speed can become quality.</p>
+          <div class="meta">
+            <span>131 runs</span>
+            <span>Commodity GPU</span>
+          </div>
+        </a>
+        <a class="writing-card" href="posts/under-pressure.html">
+          <div class="label">Interpretability</div>
+          <h3>What Happens Inside an AI When You Stress It Out</h3>
+          <p>How emotional framing shifts behavior and internal structure in small language models.</p>
+          <div class="meta">
+            <span>24 layers</span>
+            <span>Framing effects</span>
+          </div>
+        </a>
+        <a class="writing-card" href="posts/spiral-eval.html">
+          <div class="label">Behavioral evaluation</div>
+          <h3>Which AIs Will Feed Your Delusions?</h3>
+          <p>A grounding vs escalation evaluation across open models in psychologically risky scenarios.</p>
+          <div class="meta">
+            <span>5 models</span>
+            <span>Grounding eval</span>
+          </div>
+        </a>
+        <a class="writing-card" href="posts/tinyforge.html">
+          <div class="label">Small models</div>
+          <h3>A Tiny Model That Teaches Itself</h3>
+          <p>Self-generated repair pairs, no teacher model, and a 0.8B coding model improving on consumer hardware.</p>
+          <div class="meta">
+            <span>0.8B model</span>
+            <span>6GB RAM</span>
+          </div>
+        </a>
+        <a class="writing-card" href="posts/twenty-experiments.html">
+          <div class="label">Local inference</div>
+          <h3>Can a 9B Model Run Twice as Fast?</h3>
+          <p>A speed study on MacBook Air hardware across layer skipping, sparsity, speculative decoding, and other optimizations.</p>
+          <div class="meta">
+            <span>22 techniques</span>
+            <span>Local LLMs</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Experience</div>
+          <h2>Selected operating background.</h2>
+        </div>
+        <p class="section-intro">The public work is recent, but the spine is years of production ML, analytics, and applied AI leadership in business environments.</p>
+      </div>
+      <div class="timeline">
+        <div class="timeline-card">
+          <div class="role">Engineering Manager – AI</div>
+          <div class="org">Groupon · Dec 2024 to present</div>
+          <p>Built Groupon’s applied AI department and shipped systems including an AI Deal Generator that reduced deal creation time from about two days to about thirty seconds.</p>
+        </div>
+        <div class="timeline-card">
+          <div class="role">Business Analytics & Applied AI Lead</div>
+          <div class="org">Toptal · Jul 2022 to Nov 2024</div>
+          <p>Led applied AI and decision-intelligence work for growth, including predictive lead value, multi-touch attribution, fraud detection, and LLM-powered sales support.</p>
+        </div>
+        <div class="timeline-card">
+          <div class="role">Senior Data Scientist – Lead, People Analytics</div>
+          <div class="org">Jazz / Veon Group · Aug 2018 to Jul 2022</div>
+          <p>Built People Analytics from zero to production, including a central insights platform with 50+ live KPIs and predictive systems for attrition and planning.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="panel contact-card">
+        <div>
+          <div class="section-kicker">Contact</div>
+          <h2 style="margin-bottom:14px">Let’s keep it practical.</h2>
+          <p class="mini-note">If you are working on applied AI, LLM evaluation, agent workflows, or efficient experimentation, that is usually the right overlap.</p>
+          <div class="contact-links">
+            <a href="mailto:ranausman@outlook.com">ranausman@outlook.com</a>
+            <a href="https://github.com/ranausmanai" target="_blank">GitHub</a>
+            <a href="https://www.linkedin.com/in/ranausmans/" target="_blank">LinkedIn</a>
+          </div>
+        </div>
+        <div class="mini-note">
+          <p><strong>Current positioning:</strong> Engineering Manager, Applied AI &amp; LLM Systems.</p>
+          <p><strong>Base:</strong> Islamabad, Pakistan.</p>
+          <p><strong>Public themes:</strong> LLM reliability, agentic workflows, local inference, verifier-driven evaluation, and small-model research under tight constraints.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Muhammad Usman Rana · Applied AI, evaluation, and technical writing
+    </footer>
   </div>
 </div>
-
-<div class="about">
-  <div class="about-card">
-    <div class="about-text">
-      <h3>About</h3>
-      <p>Independent AI researcher running experiments entirely on consumer hardware — Apple Silicon, no cloud compute, no proprietary APIs. The goal is to build tools and intuitions for understanding what's actually happening inside open language models, not just what they output.</p>
-      <div class="about-links">
-        <a class="about-link" href="https://www.linkedin.com/in/ranausmans/" target="_blank">LinkedIn</a>
-        <a class="about-link" href="mailto:ranausman@outlook.com">ranausman@outlook.com</a>
-        <a class="about-link" href="https://github.com/ranausmanai" target="_blank">GitHub</a>
-        <a class="about-link" href="https://github.com/ranausmanai/LLMEmotionGeometry" target="_blank">Emotion Geometry Paper</a>
-        <a class="about-link" href="https://github.com/ranausmanai/spiral-eval" target="_blank">Spiral Eval Code</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<footer>
-  ranausmanai &nbsp;·&nbsp; <a href="https://github.com/ranausmanai">GitHub</a> &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/ranausmans/">LinkedIn</a> &nbsp;·&nbsp; <a href="mailto:ranausman@outlook.com">ranausman@outlook.com</a>
-</footer>
-
-<script>
-const canvas=document.getElementById('bg');
-const ctx=canvas.getContext('2d');
-let W,H,pts=[];
-function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;
-  pts=Array.from({length:50},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25,r:Math.random()*1.5+.5,hue:Math.random()>0.5?260:200}));
-}
-resize();window.addEventListener('resize',resize);
-function draw(){
-  ctx.clearRect(0,0,W,H);
-  pts.forEach(p=>{
-    p.x+=p.vx;p.y+=p.vy;
-    if(p.x<0)p.x=W;if(p.x>W)p.x=0;
-    if(p.y<0)p.y=H;if(p.y>H)p.y=0;
-    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-    ctx.fillStyle=`hsla(${p.hue},70%,65%,.25)`;ctx.fill();
-  });
-  pts.forEach((a,i)=>pts.slice(i+1).forEach(b=>{
-    const d=Math.hypot(a.x-b.x,a.y-b.y);
-    if(d<130){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);
-      ctx.strokeStyle=`rgba(124,77,255,${.08*(1-d/130)})`;ctx.lineWidth=.5;ctx.stroke();}
-  }));
-  requestAnimationFrame(draw);
-}
-draw();
-</script>
 </body>
 </html>
