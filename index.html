@@ -14,79 +14,88 @@
 <meta name="twitter:title" content="Muhammad Usman Rana">
 <meta name="twitter:description" content="Applied AI engineering leader working on LLM systems, evaluation, agent workflows, and efficient model experimentation.">
 <meta name="twitter:image" content="https://ranausmanai.github.io/og/home.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
 body{
   margin:0;
-  padding:28px 18px 60px;
-  background:#fffdfa;
-  color:#1f2937;
-  font-family:Georgia,"Times New Roman",serif;
-  line-height:1.55;
+  padding:32px 20px 72px;
+  background:#fffefb;
+  color:#20242b;
+  font-family:"Crimson Pro",Georgia,serif;
+  line-height:1.62;
+  font-size:20px;
 }
-a{color:#1d4e89;text-decoration:none}
+a{color:#1a4f8b;text-decoration:none}
 a:hover{text-decoration:underline}
-.page{max-width:980px;margin:0 auto}
+.page{max-width:1000px;margin:0 auto}
 .top{
   display:grid;
-  grid-template-columns:1fr 240px;
-  gap:28px;
+  grid-template-columns:minmax(0,1fr) 230px;
+  gap:34px;
   align-items:start;
 }
 h1{
-  margin:0 0 8px;
-  font-size:2.3rem;
+  margin:0 0 10px;
+  font-size:2.7rem;
   font-weight:700;
-  line-height:1.05;
+  line-height:1;
+  letter-spacing:-.02em;
 }
 .subtitle{
-  font-size:1.05rem;
-  margin-bottom:12px;
+  font-size:1.08rem;
+  margin-bottom:10px;
 }
 .contact{
   color:#4b5563;
   margin-bottom:14px;
+  font-family:"Source Sans 3",Arial,sans-serif;
+  font-size:.98rem;
 }
 .links{
   display:flex;
   flex-wrap:wrap;
   gap:14px;
   margin-bottom:18px;
-  font-family:Arial,Helvetica,sans-serif;
+  font-family:"Source Sans 3",Arial,sans-serif;
   font-size:.95rem;
 }
 .portrait{
   width:100%;
-  border-radius:4px;
+  border-radius:3px;
   border:1px solid #d6d3d1;
 }
 nav{
-  margin:18px 0 26px;
+  margin:22px 0 28px;
   padding-bottom:10px;
   border-bottom:1px solid #ddd6ce;
-  font-family:Arial,Helvetica,sans-serif;
-  font-size:.95rem;
+  font-family:"Source Sans 3",Arial,sans-serif;
+  font-size:.96rem;
 }
 nav a{margin-right:16px}
-section{margin-top:30px}
+section{margin-top:34px}
 h2{
   margin:0 0 14px;
-  font-size:1.35rem;
+  font-size:1.55rem;
   font-weight:700;
+  letter-spacing:-.01em;
 }
-p{margin:0 0 14px}
-ul{margin:0 0 14px 22px;padding:0}
+p{margin:0 0 14px;max-width:42em}
+ul{margin:0 0 14px 24px;padding:0;max-width:42em}
 li{margin:0 0 8px}
 .pub-list,.writing-list,.exp-list{
   display:grid;
-  gap:14px;
+  gap:16px;
 }
 .item-title{
   font-weight:700;
+  line-height:1.35;
 }
 .meta{
   color:#6b7280;
-  font-family:Arial,Helvetica,sans-serif;
+  font-family:"Source Sans 3",Arial,sans-serif;
   font-size:.92rem;
 }
 .small{
@@ -97,13 +106,14 @@ footer{
   padding-top:18px;
   border-top:1px solid #ddd6ce;
   color:#6b7280;
-  font-family:Arial,Helvetica,sans-serif;
+  font-family:"Source Sans 3",Arial,sans-serif;
   font-size:.9rem;
 }
 @media (max-width:760px){
   .top{grid-template-columns:1fr}
   .portrait-wrap{max-width:280px}
-  body{padding:20px 14px 48px}
+  body{padding:20px 14px 48px;font-size:19px}
+  h1{font-size:2.25rem}
 }
 </style>
 </head>
@@ -134,20 +144,6 @@ footer{
     <a href="#experience">Experience</a>
   </nav>
 
-  <section id="about">
-    <h2>About</h2>
-    <p>I work in the space between research and production. The through-line across my projects is simple: build AI systems that are useful, inspectable, and honest about their limits.</p>
-    <p>That includes verifier-driven inference, agent workflows, interpretability experiments, behavioral evaluation, and constrained training studies on consumer or commodity hardware. I am not an academic in the formal sense, but I do publish technical work when the result is solid enough to stand on its own.</p>
-    <p>Topics I care about most:</p>
-    <ul>
-      <li>LLM evaluation and reliability</li>
-      <li>Agent workflows and tool use</li>
-      <li>Small-model and local inference research</li>
-      <li>Behavioral analysis and interpretability</li>
-      <li>Practical AI systems under real operating constraints</li>
-    </ul>
-  </section>
-
   <section id="papers">
     <h2>Papers</h2>
     <div class="pub-list">
@@ -160,6 +156,20 @@ footer{
         <div class="meta">arXiv e-print, 2026</div>
       </div>
     </div>
+  </section>
+
+  <section id="about">
+    <h2>About</h2>
+    <p>I work in the space between research and production. The through-line across my projects is simple: build AI systems that are useful, inspectable, and honest about their limits.</p>
+    <p>That includes verifier-driven inference, agent workflows, interpretability experiments, behavioral evaluation, and constrained training studies on consumer or commodity hardware. I am not an academic in the formal sense, but I do publish technical work when the result is solid enough to stand on its own.</p>
+    <p>Topics I care about most:</p>
+    <ul>
+      <li>LLM evaluation and reliability</li>
+      <li>Agent workflows and tool use</li>
+      <li>Small-model and local inference research</li>
+      <li>Behavioral analysis and interpretability</li>
+      <li>Practical AI systems under real operating constraints</li>
+    </ul>
   </section>
 
   <section id="writing">
