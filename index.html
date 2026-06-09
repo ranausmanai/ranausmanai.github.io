@@ -15,192 +15,169 @@
 <meta name="twitter:description" content="Applied AI engineering leader working on LLM systems, evaluation, agent workflows, and efficient model experimentation.">
 <meta name="twitter:image" content="https://ranausmanai.github.io/og/home.png">
 <style>
+*{box-sizing:border-box}
+
 body{
   margin:0;
-  padding:28px 16px 60px;
-  background:#c9c9c2;
-  background-image:repeating-linear-gradient(45deg,rgba(0,0,0,.012) 0 2px,transparent 2px 4px);
-  color:#111;
-  font-family:"Times New Roman",Times,Georgia,serif;
-  font-size:18px;
-  line-height:1.5;
+  padding:64px 24px 80px;
+  background:#f5f0e6;
+  color:#2a2620;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:19px;
+  line-height:1.66;
+  -webkit-font-smoothing:antialiased;
 }
 
-/* the "document" panel sitting on the desktop */
-.frame{
-  max-width:760px;
-  margin:0 auto;
-  background:#fcfbf7;
-  border:1px solid #555;
-  box-shadow:3px 3px 0 rgba(0,0,0,.18);
-  padding:36px 44px 30px;
+.page{max-width:660px;margin:0 auto}
+
+a{color:#8a4b2f;text-decoration:none;border-bottom:1px solid rgba(138,75,47,.32)}
+a:hover{border-bottom-color:#8a4b2f}
+
+h1{
+  font-size:2.3rem;
+  font-weight:600;
+  line-height:1.12;
+  letter-spacing:-.01em;
+  margin:0 0 6px;
+}
+.role{font-size:1.12rem;font-style:italic;color:#4a443b;margin:0 0 10px}
+.meta{color:#726a5c;font-size:.92rem;margin:0 0 4px}
+.links{margin:0 0 4px;font-size:.95rem}
+.links a{margin-right:14px}
+
+/* header with a modest portrait */
+.intro-grid{
+  display:flex;align-items:flex-start;gap:28px;
+  margin-bottom:34px;
+}
+.intro-grid .text{flex:1;min-width:0}
+.portrait{
+  width:130px;height:auto;flex:none;
+  border:1px solid #d8cfba;
+  border-radius:2px;
+  margin-top:4px;
+}
+p{margin:0 0 14px}
+.lead{margin-top:18px}
+.lead.small{font-size:.96rem;color:#5c554a}
+
+h2{
+  font-size:1.18rem;
+  font-weight:600;
+  margin:46px 0 16px;
+  padding-bottom:7px;
+  border-bottom:1px solid #e3dac8;
+  letter-spacing:.005em;
 }
 
-a{color:#0033aa;text-decoration:underline}
-a:visited{color:#551a8b}
-a:hover{color:#cc2200;background:#fff3c4}
+.list{display:block}
+.item{margin:0 0 18px}
+.item .t{line-height:1.4}
+.item .d{font-style:italic;color:#6f675a;font-size:.9rem;margin-top:2px}
 
-h1,h2,h3{font-family:"Times New Roman",Times,Georgia,serif;color:#001f73;font-weight:bold}
-h1{font-size:2.15rem;margin:0 0 4px;line-height:1.1}
-h2{font-size:1.4rem;margin:30px 0 2px}
-h3{font-size:1.08rem;margin:0}
+ul{margin:4px 0 14px;padding-left:22px}
+li{margin:0 0 7px}
 
-/* engraved classic horizontal rule */
-hr{
-  border:0;height:0;
-  border-top:1px solid #9a958a;
-  border-bottom:1px solid #ffffff;
-  margin:8px 0 16px;
-}
-hr.thin{margin:6px 0 12px}
+.job{margin:0 0 20px}
+.job .jt{font-weight:600}
+.job .jw{font-style:italic;color:#6f675a;font-size:.9rem;margin:1px 0 5px}
+.job p{margin:0;font-size:.97rem;color:#39342c}
 
-.mono{font-family:"Courier New",Courier,monospace}
-
-/* header */
-.photo{
-  float:right;
-  margin:4px 0 14px 22px;
-  border:4px ridge #b8b3a4;
-  background:#fff;
-  padding:4px;
-  width:168px;
-}
-.photo img{display:block;width:160px;height:auto;border:1px solid #ccc}
-.role{font-size:1.12rem;font-style:italic;margin:0 0 8px;color:#222}
-.contact{font-family:"Courier New",Courier,monospace;font-size:.86rem;color:#333;margin:0 0 12px}
-
-/* nav bar of bracketed links */
-.nav{
-  font-family:"Courier New",Courier,monospace;
-  font-size:.92rem;
-  margin:14px 0 4px;
-  color:#555;
-}
-.nav a{margin:0 2px}
-
-p{margin:0 0 12px;max-width:64ch}
-.intro{margin-top:14px}
-
-ul{margin:6px 0 14px;padding-left:24px;max-width:64ch}
-li{margin:0 0 9px}
-ul.tight li{margin-bottom:4px}
-
-.entry-meta{font-family:"Courier New",Courier,monospace;font-size:.82rem;color:#555}
-
-/* little retro "new!" tag */
-.new{
-  font-family:"Courier New",Courier,monospace;
-  font-size:.62rem;font-weight:bold;letter-spacing:.04em;
-  color:#fff;background:#cc2200;
-  padding:1px 5px;border-radius:2px;
-  vertical-align:2px;margin-left:6px;text-transform:uppercase;
-}
-
-/* experience blocks */
-.job{margin:0 0 18px}
-.job .jtitle{font-weight:bold;color:#111}
-.job .jwhen{font-family:"Courier New",Courier,monospace;font-size:.82rem;color:#555;margin:1px 0 5px}
-.job p{margin:0;font-size:.98rem}
-
-/* footer + hit counter */
 footer{
-  margin-top:26px;
-  font-family:"Courier New",Courier,monospace;
-  font-size:.8rem;color:#555;
-  text-align:center;line-height:1.7;
-}
-.counter{
-  display:inline-block;
-  background:#111;color:#33ff66;
-  font-family:"Courier New",Courier,monospace;
-  letter-spacing:3px;font-size:.82rem;
-  padding:2px 7px;border:1px solid #000;
-  vertical-align:middle;margin:0 4px;
+  margin-top:54px;
+  padding-top:18px;
+  border-top:1px solid #e3dac8;
+  color:#827a6a;
+  font-size:.86rem;
 }
 
 @media(max-width:560px){
-  .frame{padding:24px 18px}
-  .photo{float:none;margin:0 0 16px;width:100%;max-width:200px}
-  .photo img{width:100%}
-  body{font-size:17px}
-  h1{font-size:1.8rem}
+  body{padding:40px 18px 56px;font-size:18px}
+  .intro-grid{flex-direction:column-reverse;gap:18px}
+  .portrait{width:112px}
+  h1{font-size:2rem}
 }
 </style>
 </head>
 <body>
-<div class="frame">
+<div class="page">
 
-  <div class="photo"><img src="images/profile.png" alt="Muhammad Usman Rana"></div>
-
-  <h1>Muhammad Usman Rana</h1>
-  <p class="role">Engineering Manager, Applied AI &amp; LLM Systems</p>
-  <p class="contact">Islamabad, Pakistan &nbsp;|&nbsp; ranausman@outlook.com<br>
-  <a href="https://github.com/ranausmanai">GitHub</a> &nbsp;|&nbsp;
-  <a href="https://www.linkedin.com/in/ranausmans/">LinkedIn</a> &nbsp;|&nbsp;
-  <a href="mailto:ranausman@outlook.com">Email</a></p>
-
-  <div class="nav">
-    [ <a href="#top">Home</a> ]
-    [ <a href="#papers">Papers</a> ]
-    [ <a href="#writing">Writing</a> ]
-    [ <a href="#about">About</a> ]
-    [ <a href="#experience">Experience</a> ]
+  <div class="intro-grid">
+    <div class="text">
+      <h1>Muhammad Usman Rana</h1>
+      <p class="role">Engineering Manager, Applied AI &amp; LLM Systems</p>
+      <p class="meta">Islamabad, Pakistan &middot; ranausman@outlook.com</p>
+      <p class="links">
+        <a href="https://github.com/ranausmanai">GitHub</a>
+        <a href="https://www.linkedin.com/in/ranausmans/">LinkedIn</a>
+        <a href="mailto:ranausman@outlook.com">Email</a>
+      </p>
+    </div>
+    <img class="portrait" src="images/profile.png" alt="Muhammad Usman Rana">
   </div>
-  <hr>
 
-  <p class="intro">Welcome. I build practical AI systems: LLM workflows, evaluation loops, agent
-  tooling, and small-model experiments that stay grounded in cost, latency, and deployment
-  constraints.</p>
-  <p>My background is in applied AI leadership across Groupon, Toptal, and Jazz. My public work
-  focuses on model behavior, reliability, local inference, and efficient experimentation on open
-  models.</p>
+  <p class="lead">I build practical AI systems: LLM workflows, evaluation loops, agent tooling, and
+  small-model experiments that stay grounded in cost, latency, and deployment constraints.</p>
+  <p class="lead small">My background is in applied AI leadership across Groupon, Toptal, and Jazz.
+  My public work focuses on model behavior, reliability, local inference, and efficient
+  experimentation on open models.</p>
 
-  <h2 id="papers">Papers</h2>
-  <hr class="thin">
-  <ul>
-    <li>
-      <a href="https://arxiv.org/abs/2605.20202">Under Pressure: Emotional Framing Induces
-      Measurable Behavioral Shifts and Structured Internal Geometry in Small Language Models</a>
-      <span class="new">new</span><br>
-      <span class="entry-meta">arXiv e-print, 2026</span>
-    </li>
-    <li>
-      <a href="https://arxiv.org/abs/2606.00914">Adversarial Feeds Steer LLM Agent Decisions
-      Against Their Defaults</a>
-      <span class="new">new</span><br>
-      <span class="entry-meta">arXiv e-print, 2026</span>
-    </li>
-  </ul>
+  <h2>Papers</h2>
+  <div class="list">
+    <div class="item">
+      <div class="t"><a href="https://arxiv.org/abs/2605.20202">Under Pressure: Emotional Framing
+        Induces Measurable Behavioral Shifts and Structured Internal Geometry in Small Language
+        Models</a></div>
+      <div class="d">arXiv e-print, 2026</div>
+    </div>
+    <div class="item">
+      <div class="t"><a href="https://arxiv.org/abs/2606.00914">Adversarial Feeds Steer LLM Agent
+        Decisions Against Their Defaults</a></div>
+      <div class="d">arXiv e-print, 2026</div>
+    </div>
+  </div>
 
-  <h2 id="writing">Blog / Writing</h2>
-  <hr class="thin">
-  <ul>
-    <li><a href="posts/how-far-can-an-open-base-model-self-improve.html">How Far Can an Open Base
-      Model Self-Improve?</a><br>
-      <span class="entry-meta">Research paper in arXiv-style HTML</span></li>
-    <li><a href="posts/parameter-golf.html">Parameter Golf: How a Tiny Model Got Better By Doing
-      Less</a><br>
-      <span class="entry-meta">131 constrained training experiments on a tiny model</span></li>
-    <li><a href="posts/under-pressure.html">What Happens Inside an AI When You Stress It Out</a><br>
-      <span class="entry-meta">Emotional framing, behavior shifts, and internal geometry</span></li>
-    <li><a href="posts/spiral-eval.html">Which AIs Will Feed Your Delusions?</a><br>
-      <span class="entry-meta">Behavioral evaluation of grounding vs escalation</span></li>
-    <li><a href="posts/tinyforge.html">A Tiny Model That Teaches Itself</a><br>
-      <span class="entry-meta">Self-improving coding model on consumer hardware</span></li>
-    <li><a href="posts/twenty-experiments.html">Can a 9B Model Run Twice as Fast?</a><br>
-      <span class="entry-meta">Local inference speed experiments on small hardware</span></li>
-  </ul>
+  <h2>Writing</h2>
+  <div class="list">
+    <div class="item">
+      <div class="t"><a href="posts/how-far-can-an-open-base-model-self-improve.html">How Far Can
+        an Open Base Model Self-Improve?</a></div>
+      <div class="d">Research paper in arXiv-style HTML</div>
+    </div>
+    <div class="item">
+      <div class="t"><a href="posts/parameter-golf.html">Parameter Golf: How a Tiny Model Got
+        Better By Doing Less</a></div>
+      <div class="d">131 constrained training experiments on a tiny model</div>
+    </div>
+    <div class="item">
+      <div class="t"><a href="posts/under-pressure.html">What Happens Inside an AI When You Stress
+        It Out</a></div>
+      <div class="d">Emotional framing, behavior shifts, and internal geometry</div>
+    </div>
+    <div class="item">
+      <div class="t"><a href="posts/spiral-eval.html">Which AIs Will Feed Your Delusions?</a></div>
+      <div class="d">Behavioral evaluation of grounding vs escalation</div>
+    </div>
+    <div class="item">
+      <div class="t"><a href="posts/tinyforge.html">A Tiny Model That Teaches Itself</a></div>
+      <div class="d">Self-improving coding model on consumer hardware</div>
+    </div>
+    <div class="item">
+      <div class="t"><a href="posts/twenty-experiments.html">Can a 9B Model Run Twice as
+        Fast?</a></div>
+      <div class="d">Local inference speed experiments on small hardware</div>
+    </div>
+  </div>
 
-  <h2 id="about">About</h2>
-  <hr class="thin">
+  <h2>About</h2>
   <p>I work in the space between research and production. The through-line across my projects is
   simple: build AI systems that are useful, inspectable, and honest about their limits.</p>
   <p>That includes verifier-driven inference, agent workflows, interpretability experiments,
   behavioral evaluation, and constrained training studies on consumer or commodity hardware. I am
   not an academic in the formal sense, but I do publish technical work when the result is solid
   enough to stand on its own.</p>
-  <p style="margin-bottom:4px">Topics I care about most:</p>
-  <ul class="tight">
+  <p>Topics I care about most:</p>
+  <ul>
     <li>LLM evaluation and reliability</li>
     <li>Agent workflows and tool use</li>
     <li>Small-model and local inference research</li>
@@ -208,32 +185,28 @@ footer{
     <li>Practical AI systems under real operating constraints</li>
   </ul>
 
-  <h2 id="experience">Selected Experience</h2>
-  <hr class="thin">
+  <h2>Selected Experience</h2>
   <div class="job">
-    <div class="jtitle">Engineering Manager &ndash; AI, Groupon</div>
-    <div class="jwhen">Dec 2024 &ndash; Present</div>
+    <div class="jt">Engineering Manager &ndash; AI, Groupon</div>
+    <div class="jw">Dec 2024 &ndash; Present</div>
     <p>Built Groupon&rsquo;s applied AI function and shipped systems including an AI Deal Generator
     that reduced deal creation time from about two days to about thirty seconds.</p>
   </div>
   <div class="job">
-    <div class="jtitle">Business Analytics &amp; Applied AI Lead, Toptal</div>
-    <div class="jwhen">Jul 2022 &ndash; Nov 2024</div>
+    <div class="jt">Business Analytics &amp; Applied AI Lead, Toptal</div>
+    <div class="jw">Jul 2022 &ndash; Nov 2024</div>
     <p>Led applied AI and decision systems for growth, including predictive lead value, attribution,
     fraud detection, and LLM-assisted sales workflows.</p>
   </div>
   <div class="job">
-    <div class="jtitle">Senior Data Scientist &ndash; Lead, People Analytics, Jazz</div>
-    <div class="jwhen">Aug 2018 &ndash; Jul 2022</div>
+    <div class="jt">Senior Data Scientist &ndash; Lead, People Analytics, Jazz</div>
+    <div class="jw">Aug 2018 &ndash; Jul 2022</div>
     <p>Built People Analytics from zero to production, including a central insights platform with
     50+ live KPIs and predictive systems for attrition and planning.</p>
   </div>
 
-  <hr>
   <footer>
-    Muhammad Usman Rana &nbsp;&middot;&nbsp; Applied AI, LLM systems, evaluation &amp; technical writing<br>
-    You are visitor <span class="counter">0 0 4 2 7 1</span> &nbsp;&middot;&nbsp; Last updated June 2026<br>
-    Best viewed with any browser.
+    Muhammad Usman Rana &middot; Applied AI, LLM systems, evaluation, and technical writing
   </footer>
 
 </div>
