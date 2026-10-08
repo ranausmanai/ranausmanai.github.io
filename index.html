@@ -78,6 +78,7 @@ h2{
 .item .t{line-height:1.4}
 .item .d{font-style:italic;color:#6f675a;font-size:.9rem;margin-top:2px}
 .item .summary{color:#4f493f;font-size:.93rem;line-height:1.45;margin-top:5px;max-width:620px}
+.paper-note{color:#6f675a;font-size:.95rem;margin:-4px 0 22px}
 
 ul{margin:4px 0 14px;padding-left:22px}
 li{margin:0 0 7px}
@@ -127,12 +128,14 @@ footer{
   experimentation on open models.</p>
 
   <h2>Papers</h2>
+  <p class="paper-note">Accepted work: 3 papers, 4 workshop acceptances &mdash; 3 at NeurIPS 2026
+    workshops and 1 at a COLM 2026 workshop.</p>
   <div class="list">
     <div class="item">
       <div class="t"><a href="https://arxiv.org/abs/2608.20438">Peer-Voted LLM-Agent Stress Tests
         Find Feed-Induced Lexical Convergence but No Reliable Matched-Exposure Advantage for
         Distributed Sources</a></div>
-      <div class="d">arXiv e-print, 2026 · with Dominic Williamson</div>
+      <div class="d">arXiv e-print, 2026 · accepted at SocialAgent @ NeurIPS 2026 and Agentic Web @ NeurIPS 2026 · with Dominic Williamson</div>
       <div class="summary">A preregistered study of 448 synthetic-agent trials across four open-weight model
         families, testing how peer-ranked feeds affect downstream language and decisions. Peer exposure
         reliably increased lexical similarity, but multiple distributed sources did not produce a reliable
@@ -141,7 +144,7 @@ footer{
     <div class="item">
       <div class="t"><a href="https://arxiv.org/abs/2607.20492">PhantomFill: When the Form Demands
         an Answer, Language Models Invent One</a></div>
-      <div class="d">arXiv e-print, 2026 · accepted at the Stanford AIMS Workshop, 2026</div>
+      <div class="d">arXiv e-print, 2026 · accepted at AIMS @ COLM 2026</div>
       <div class="summary">This benchmark tests whether required schemas make language models invent information
         that is absent from the input. Required fields drove fabrication to 100% in 10 of 13 models,
         while an explicit escape option was largely ignored by open-weight models.</div>
@@ -157,13 +160,13 @@ footer{
         directions also formed a structured geometry in the final layer.</div>
     </div>
     <div class="item">
-      <div class="t"><a href="https://arxiv.org/abs/2606.00914">Adversarial Feeds Steer LLM Agent
-        Decisions Against Their Defaults</a></div>
-      <div class="d">arXiv e-print, 2026</div>
-      <div class="summary">This work isolates the effect of a ranked feed by holding the agent, persona, topic,
-        and final prompt fixed while changing only the preceding scrolling experience. Across 2,785
-        rollouts, adversarial feeds shifted uncertain decisions dramatically, but generally could not
-        overturn strong defaults; two simple feed-level defenses partly reduced the effect.</div>
+      <div class="t"><a href="https://arxiv.org/abs/2606.00914">Counterfactual Evidence Audits Predict
+        LLM-Agent Susceptibility to Ranked Context</a></div>
+      <div class="d">arXiv e-print, 2026 · accepted at FLMSec @ NeurIPS 2026</div>
+      <div class="summary">This paper uses mirrored five-document audits to predict how agents respond to much
+        larger ranked contexts. Across held-out model-task cells, the small audit predicted full-context
+        effects with Spearman &rho; = .855, reduced prediction error by 62%, and transferred from feeds
+        to static RAG dossiers.</div>
     </div>
   </div>
 
